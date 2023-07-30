@@ -1,0 +1,1799 @@
+<%
+    let one1 = 'No login,';
+    let one2 = 'Communication that';
+    let one3 = 'kept warm.';
+    let two1 = "Let's talk with the viewer";
+    let two2 = 'of the same web site.';
+    let two12Br = true;
+    let three1 = "Let's embed it on web sites";
+    let three2 = 'all over the world.';
+    let three12Br = false;
+    let fourth1 = "Let's talk at No login,";
+    let fourth2 = "about Fun & Impression.";
+    let fiveCompanyKey = "COMPANY";
+    let fiveCompanyNameKey = "NAME";
+    let fiveCompanyNameValue = "talkn Co.,Ltd.";
+    let fiveCompanyFoundedKey = "FOUNDED";
+    let fiveCompanyFoundedValue = "March, 2020";
+    let fiveCompanyRepresentativeKey = "REPRESENTATIVE";
+    let fiveCompanyRepresentativeValue = "Hiroyuki Miyazaki";
+    let fiveCompanyPolicyKey = "POLICY";
+    let fiveCompanyPolicyValue = "Update the internet for creaters.";
+    let fiveContactKey = "CONTACT";
+    let fiveContactNameKey = "Your name";
+    let fiveContactMailKey = "Your email";
+    let fiveContactTitleKey = "Title";
+    let fiveContactContentKey = "Contents";
+    let fiveContactSendKey = "Send";
+    let letterSpacingSmall = 0;
+    let letterSpacingMiddle = 0;
+    let letterSpacingLarge = 0;
+    let copyIframeComment = "Embed in any position of HTML5"
+    let copyScriptComment = "Fixed at the bottom of the browser"
+    switch( language ){
+    case "zh":
+        one1 = "不需要登录,";
+        one2 = "'保持热度交流'";
+        one3 = "让我们沟通吧。";
+        two1 = "和正在浏览同一网页的朋友们";
+        two2 = "一起交流一下吧。";
+        two12Br = true;
+        three1 = "我们可以将它嵌入";
+        three2 = "世界各地的网站中。";
+        three12Br = true;
+        fourth1 = "不用任何登陆，";
+        fourth2 = "全世界的「欢乐」、「感动」即时分享";
+        fiveCompanyKey = "公司";
+        fiveContactKey = "联系方式";
+        break;
+    case "ja":
+        one1 = "あなたのWEBサイトを";
+        one2 = "'LIVE会場'に変える。";
+        one3 = "";
+        two1 = "'応援コメント'で";
+        two2 = "ユーザーの一体感・熱量UP!";
+        two12Br = true;
+        three1 = "世界中のWEBサイトに";
+        three2 = "埋め込もう。";
+        three12Br = true;
+        fourth1 = "世界中の「楽しい」「感動」を";
+        fourth2 = "LIVEで話そう。";
+        fiveCompanyKey = "会社";
+        fiveCompanyNameKey = "名前";
+        fiveCompanyNameValue = "株式会社talkn";
+        fiveCompanyFoundedKey = "設立";
+        fiveCompanyFoundedValue = "2022年4月";
+        fiveCompanyRepresentativeKey = "代表取締役";
+        fiveCompanyRepresentativeValue = "宮﨑博之(Hiroyuki Miyazaki)";
+        fiveCompanyPolicyKey = "企業理念";
+        fiveContactKey = "お問い合わせ";
+        fiveContactNameKey = "お名前";
+        fiveContactMailKey = "ご返信先Eメール";
+        fiveContactTitleKey = "タイトル";
+        fiveContactContentKey = "内容";
+        fiveContactSendKey = "送信";
+        letterSpacingSmall = "2px";
+        letterSpacingMiddle = "2px";
+        letterSpacingLarge = "5px";
+        break;
+    case "de":
+        one1 = "Kein Login,";
+        one2 = "Lass uns ein warmes";
+        one3 = "Gespräch führen.";
+        two1 = "Sprechen wir mit Leuten,";
+        two2 = "die dieselbe Website besuchen.";
+        three1 = "Lassen Sie uns es auf Webseiten";
+        three2 = "auf der ganzen Welt einbetten.";
+        three12Br = false;
+        fourth1 = "Reden wir unter Kein Login,";
+        fourth2 = "über Spaß & Eindruck";
+        fiveCompanyKey = "Firma";
+        fiveContactKey = "Anfrage";
+        break;
+    case "fr":
+        one1 = "Pas de login,";
+        one2 = "Une communication qui";
+        one3 = "reste au chaud.";
+        two1 = "Parlons avec le spectateur";
+        two2 = "du même site Web.";
+        two12Br = true;
+        three1 = "Intégrons-le sur des sites Web";
+        three2 = "du monde entier.";
+        three12Br = false;
+        fourth1 = "Parlons à pas de connexion,";
+        fourth2 = "à propos de Fun & Impression.";
+        fiveCompanyKey = "Société";
+        fiveContactKey = "Enquête";
+        break;
+    case "hi":
+        one1 = "कोई लॉगिन नहीं,";
+        one2 = "संचार कि";
+        one3 = "गर्म रखा गया।";
+        two1 = "के साथ बात करते हैं";
+        two2 = "उसी वेब साइट का दर्शक।";
+        two12Br = true;
+        three1 = "आइए इसे वेब साइटों पर एम्बेड करें";
+        three2 = "पूरी दुनिया में।";
+        three12Br = false;
+        fourth1 = "नो लॉगिन पर बात करते हैं,";
+        fourth2 = "मज़ा और छाप के बारे में";
+        fiveCompanyKey = "कंपनी";
+        fiveContactKey = "संपर्क करें";
+        break;
+    case "pt":
+        one1 = "Sem login,";
+        one2 = "Comunicação que";
+        one3 = "se manteve quente.";
+        two1 = "Vamos conversar com";
+        two2 = "o espectador do mesmo site.";
+        two12Br = true;
+        three1 = "Vamos incorporá-lo em sites";
+        three2 = "No mundo todo.";
+        three12Br = false;
+        fourth1 = "Vamos conversar no No login,";
+        fourth2 = "sobre diversão e impressão.";
+        fiveCompanyKey = "EMPRESA";
+        fiveContactKey = "CONTATO";
+        break;
+    case "it":
+        one1 = "Nessun accesso,";
+        one2 = "Comunicazione che";
+        one3 = "si mantiene calda.";
+        two1 = "Parliamo con lo spettatore";
+        two2 = "dello stesso sito web.";
+        two12Br = true;
+        three1 = "Incorporiamolo sui siti web";
+        three2 = "tutto il mondo.";
+        three12Br = false;
+        fourth1 = "Parliamo senza accesso,";
+        fourth2 = "su Fun & Impression.";
+        fiveCompanyKey = "AZIENDA";
+        fiveContactKey = "CONTATTO";
+        break;
+    case "ru":
+        one1 = "Нет логина,";
+        one2 = "Общение, которое";
+        one3 = "сохраняло тепло.";
+        two1 = "Давайте поговорим со";
+        two2 = "зрителем того же сайта.";
+        two12Br = true;
+        three1 = "Давайте вставим это на веб-сайты";
+        three2 = "по всему миру.";
+        three12Br = false;
+        fourth1 = "Давайте поговорим на Нет входа,";
+        fourth2 = "о веселье и впечатления.";
+        fiveCompanyKey = "КОМПАНИЯ";
+        fiveContactKey = "CONTACT";
+        break;
+    case "ko":
+        one1 = "로그인 없음,";
+        one2 = "따뜻한";
+        one3 = "커뮤니케이션.";
+        two1 = "같은 웹 사이트의";
+        two2 = "시청자와 이야기 해 봅시다.";
+        two12Br = true;
+        three1 = "웹 사이트에 그것을 포함 시키자.";
+        three2 = "전 세계.";
+        three12Br = false;
+        fourth1 = "로그인하지 말자.";
+        fourth2 = "재미와 인상에 대해서.";
+        fiveCompanyKey = "회사";
+        fiveContactKey = "접촉";
+        break;
+    case "es":
+        one1 = "Sin inicio de sesión,";
+        one2 = "Comunicación que";
+        one3 = "mantenido caliente.";
+        two1 = "Hablemos con el espectador";
+        two2 = "del mismo sitio web.";
+        two12Br = true;
+        three1 = "Vamos a insertarlo en sitios web,";
+        three2 = "en todo el mundo.";
+        three12Br = false;
+        fourth1 = "Hablemos al no iniciar sesión,";
+        fourth2 = "sobre la diversión y la impresión.";
+        fiveCompanyKey = "EMPRESA";
+        fiveContactKey = "CONTACTO";
+        break;
+    case "id":
+        one1 = "Tanpa login,";
+        one2 = "Komunikasi yang";
+        one3 = "tetap hangat.";
+        two1 = "Mari kita bicara dengan";
+        two2 = "pengunjung situs web yang sama.";
+        two12Br = true;
+        three1 = "Mari kita tanamkan di situs web";
+        three2 = "di seluruh dunia.";
+        three12Br = false;
+        fourth1 = "Mari kita bicara tanpa login,";
+        fourth2 = "entang Kesenangan & Impresi.";
+        fiveCompanyKey = "PERUSAHAAN";
+        fiveContactKey = "HUBUNGI KAMI";
+        break;
+    case "tr":
+        one1 = "Giriş yok,";
+        one2 = "İletişim sıcak";
+        one3 = "tuttu.";
+        two1 = "Aynı web sitesinin";
+        two2 = "izleyicisiyle konuşalım.";
+        two12Br = true;
+        three1 = "Web sitelerine yerleştirelim";
+        three2 = "tüm dünyada.";
+        three12Br = false;
+        fourth1 = "Giriş yapmadan konuşalım.";
+        fourth2 = "Eğlence ve İzlenim hakkında.";
+        fiveCompanyKey = "ŞİRKET";
+        fiveContactKey = "İLETİŞİM";
+        break;
+    case "nl":
+        one1 = "Geen login,";
+        one2 = "Communicatie die";
+        one3 = "warm bleef.";
+        two1 = "Laten we praten met de kijker";
+        two2 = "van dezelfde website.";
+        two12Br = true;
+        three1 = "van dezelfde website.";
+        three2 = "over de hele wereld.";
+        three12Br = false;
+        fourth1 = "Laten we praten op Geen login,";
+        fourth2 = "over plezier en indrukken.";
+        fiveCompanyKey = "COMPANY";
+        fiveContactKey = "CONTACT";
+        break;
+    case "ar":
+        one1 = "لا تسجيل الدخول ،";
+        one2 = "الاتصالات التي أبقى دافئة.";
+        one3 = "";
+        two1 = "دعنا نتحدث مع المشاهد من نفس الموقع.";
+        two2 = "";
+        two12Br = true;
+        three1 = "فلنضمّنه على مواقع الويب";
+        three2 = "في جميع أنحاء العالم.";
+        three12Br = false;
+        fourth1 = "دعنا نتحدث في عدم تسجيل الدخول ،";
+        fourth2 = "عن المرح والانطباع.";
+        fiveCompanyKey = "شركة";
+        fiveContactKey = "اتصال";
+        break;
+    case "zh-TW":
+        one1 = "不需要登陸";
+        one2 = "保持熱度交流";
+        one3 = "讓我們溝通吧。";
+        two1 = "和正在瀏覽同一網頁的";
+        two2 = "朋友們一起交流一下吧。";
+        two12Br = true;
+        three1 = "和正在瀏覽同一網頁的朋友們一起";
+        three2 = "交流一下吧。";
+        three12Br = false;
+        fourth1 = "不用任何登陸、";
+        fourth2 = "全世界的「歡樂」、「感動」即時分享。";
+        fiveCompanyKey = "公司";
+        fiveContactKey = "聯繫方式";
+        break;
+    case "pl":
+        one1 = "Brak logowania,";
+        one2 = "Komunikacja,";
+        one3 = "która utrzymywała ciepło.";
+        two1 = "Porozmawiajmy z widzem";
+        two2 = "tej samej strony internetowej.";
+        two12Br = true;
+        three1 = "Umieśćmy je na stronach";
+        three2 = "internetowych na całym świecie.";
+        three12Br = false;
+        fourth1 = "Porozmawiajmy na Brak logowania,";
+        fourth2 = "o Fun & Impression.";
+        fiveCompanyKey = "Firma";
+        fiveContactKey = "Kontakt";
+        break;
+    case "sv":
+        one1 = "Ingen inloggning,";
+        one2 = "Kommunikation som";
+        one3 = "hålls varm.";
+        two1 = "Låt oss prata med tittaren";
+        two2 = "på samma webbplats.";
+        two12Br = true;
+        three1 = "Låt oss bädda in den på webbplatser";
+        three2 = "över hela världen.";
+        three12Br = true;
+        fourth1 = "Låt oss prata vid ingen inloggning,";
+        fourth2 = "om kul och intryck.";
+        fiveCompanyKey = "företag";
+        fiveContactKey = "Kontakta";
+        break;
+    case "th":
+        one1 = "ไม่มีการลงชื่อเข้าใช้";
+        one2 = "การสื่อสารที่อบอุ่น";
+        one3 = "";
+        two1 = "มาพูดคุยกับ";
+        two2 = "ผู้ดูเว็บไซต์เดียวกัน";
+        two12Br = true;
+        three1 = "ลองฝังไว้ในเว็บไซต์";
+        three2 = "ทั่วทุกมุมโลก";
+        three12Br = true;
+        fourth1 = "พูดคุยกันที่ไม่มีการเข้าสู่ระบบ";
+        fourth2 = "เกี่ยวกับความสนุกและความประทับใจ";
+        fiveCompanyKey = "บริษัท";
+        fiveContactKey = "ติดต่อ";
+        break;
+    case "fa":
+        one1 = "بدون ورود";
+        one2 = "ارتباطی که گرم شد";
+        one3 = "";
+        two1 = "بیایید صحبت کنیم";
+        two2 = "بیننده ی همان وب سایت.";
+        two12Br = true;
+        three1 = "ลองฝังไว้ในเว็บไซต์";
+        three2 = "ทั่วทุกมุมโลก";
+        three12Br = true;
+        fourth1 = "بگذارید آن را در وب سایت ها جاسازی کنیم";
+        fourth2 = "در سراسر جهان";
+        fiveCompanyKey = "شرکت";
+        fiveContactKey = "تماس بگیرید";
+        break;
+    case "nn":
+        one1 = "Ingen innlogging,"
+        one2 = "Kommunikasjon som";
+        one3 = "holdt seg varm.";
+        two1 = "La oss snakke med";
+        two2 = "seeren på samme nettsted.";
+        two12Br = true;
+        three1 = "La oss legge det inn på nettsider";
+        three2 = "over hele verden.";
+        three12Br = true;
+        fourth1 = "La oss snakke ved Ingen innlogging,";
+        fourth2 = "om moro og inntrykk.";
+        fiveCompanyKey = "selskapet";
+        fiveContactKey = "Kontakt";
+        break;
+    case "ga":
+        one1 = "Ingen innlogging,"
+        one2 = "Cumarsáid a choimeád te.";
+        one3 = "";
+        two1 = "Déanaimis labhairt leis an lucht féachana";
+        two2 = "ar an suíomh gréasáin céanna.";
+        two12Br = false;
+        three1 = "A ligean ar é a leabú ar láithreáin";
+        three2 = "ghréasáin ar fud an domhain.";
+        three12Br = true;
+        fourth1 = "Déanaimis caint ar Gan logáil isteach,";
+        fourth2 = "faoi Fun & Impression.";
+        fiveCompanyKey = "Cuideachta";
+        fiveContactKey = "Teagmháil";
+        break;
+    case "he":
+        one1 = "אין כניסה,"
+        one2 = "תקשורת שהחמימה.";
+        one3 = "";
+        two1 = "בואו נדבר עם הצופה ";
+        two2 = "של אותו אתר.";
+        two12Br = true;
+        three1 = "בואו להטביע אותו באתרי אינטרנט";
+        three2 = "בכל העולם.";
+        three12Br = true;
+        fourth1 = "בוא נדבר ב אין כניסה,";
+        fourth2 = "על כיף & הופעות.";
+        fiveCompanyKey = "החברה";
+        fiveContactKey = "איש קשר";
+        break;
+    case "mr":
+        one1 = "Tiada log masuk,";
+        one2 = "Komunikasi yang hangat.";
+        one3 = "";
+        two1 = "Mari kita bercakap dengan penonton";
+        two2 = "laman web yang sama.";
+        two12Br = false;
+        three1 = "Mari benamkannya di laman web";
+        three2 = "seluruh dunia.";
+        three12Br = true;
+        fourth1 = "Mari kita bercakap pada Tiada login,";
+        fourth2 = "mengenai Fun & Impression.";
+        fiveCompanyKey = "Syarikat";
+        fiveContactKey = "Hubungi";
+        break;
+    }
+%>
+<!doctype html>
+<html lang=<%= language%>>
+<head>
+    <title>talkn | <%= language %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta content="Comment to web. talkn can share comments with users watching the same web page. Please enjoy the world of talkn." name="description">
+    <meta name="theme-color" content="rgb(79, 174, 159)">
+
+    <meta property="og:title" content="talkn">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://<%= domain %>">
+    <meta property="og:image" content="https://<%= assetsURL %>/own/bg.jpg">
+    <meta property="og:site_name" content="talkn">
+    <meta property="og:description" content="talkn can share comments with users watching the same WEB page. Please enjoy the world of fun talkn.">
+    <meta property="fb:page_id" content="641091596303567">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IoTalkn">
+    <meta name="twitter:url" content="https://<%= domain %>">
+    <meta name="twitter:title" content="talkn">
+    <meta name="twitter:description" content="talkn can share comments with users watching the same WEB page. Please enjoy the world of fun talkn.">
+    <meta name="twitter:image" content="https://<%= assetsURL %>/own/bg.jpg">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="canonical" href="https://<%= ownURL %>/">
+    <link rel="alternate" hreflang="en" href="https://<%= ownURL %>/en">
+    <link rel="alternate" hreflang="zh" href="https://<%= ownURL %>/zh">
+    <link rel="alternate" hreflang="ja" href="https://<%= ownURL %>/ja">
+    <link rel="alternate" hreflang="de" href="https://<%= ownURL %>/de">
+    <link rel="alternate" hreflang="fr" href="https://<%= ownURL %>/fr">
+    <link rel="alternate" hreflang="hi" href="https://<%= ownURL %>/hi">
+    <link rel="alternate" hreflang="pt" href="https://<%= ownURL %>/pt">
+    <link rel="alternate" hreflang="it" href="https://<%= ownURL %>/it">
+
+    <link rel="alternate" hreflang="ru" href="https://<%= ownURL %>/ru">
+    <link rel="alternate" hreflang="ko" href="https://<%= ownURL %>/ko">
+    <link rel="alternate" hreflang="es" href="https://<%= ownURL %>/es">
+    <link rel="alternate" hreflang="id" href="https://<%= ownURL %>/id">
+    <link rel="alternate" hreflang="tr" href="https://<%= ownURL %>/tr">
+    <link rel="alternate" hreflang="nl" href="https://<%= ownURL %>/nl">
+    <link rel="alternate" hreflang="ar" href="https://<%= ownURL %>/ar">
+    <link rel="alternate" hreflang="zh-TW" href="https://<%= ownURL %>/zh-TW">
+
+    <link rel="alternate" hreflang="pl" href="https://<%= ownURL %>/pl">
+    <link rel="alternate" hreflang="sv" href="https://<%= ownURL %>/sv">
+    <link rel="alternate" hreflang="th" href="https://<%= ownURL %>/th">
+    <link rel="alternate" hreflang="fa" href="https://<%= ownURL %>/fa">
+    <link rel="alternate" hreflang="nn" href="https://<%= ownURL %>/nn">
+    <link rel="alternate" hreflang="ga" href="https://<%= ownURL %>/ga">
+    <link rel="alternate" hreflang="he" href="https://<%= ownURL %>/he">
+    <link rel="alternate" hreflang="mr" href="https://<%= ownURL %>/mr">
+    <link rel="stylesheet" href="own.css">
+    <link rel="shortcut icon" href="<%= favicon %>">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <script type="text/javascript" async src="//<%= apiAccessURL %>"></script>
+    <script type="text/javascript" async src="//<%= bannerURL %>"></script>
+    <script type="text/javascript" async src="//<%= extURL %>"></script>
+    <script type="text/javascript">
+        const wideScreenWidth = 1000;
+        const smallScreenWidth = 600;
+        const responsiveWidth = 640;
+        const headerHeight = 100;
+        const navTop = 60;
+        const screenTops = [ 0, 2374, 5958, 12170 ];
+        const pointerStyles = [
+            { height: "5px", width: "10%", transform: "translate3d(0%,0px,0px)" },
+            { height: "5px", width: "10%", transform: "translate3d(250%,0px,0px)" },
+            { height: "5px", width: "10%", transform: "translate3d(500%,0px,0px)" },
+            { height: "5px", width: "10%", transform: "translate3d(750%,0px,0px)" },
+            { height: "0px", width: "10%", transform: "translate3d(750%,0px,0px)" }
+        ];
+        const menuStyles = {
+            active: { color: "rgb(79, 174, 159)" },
+            unactive: { color: "rgb(55, 55, 55)" },
+        }
+        let intervalSecondId = null;
+        let intervalApiId = null;
+        let intervalSelectChId = null;
+        let intervalApiSecond = 1000;
+        let intervalSelectChSecond = 3000;
+        let commentsTag;
+        let imageLIveCntNumTag;
+        let imageContentLiveCntTag;
+        let imageLiveCntNumTag;
+        const commentsTagWindowScrollHeight = 1500;
+        const domain = "<%= domain  %>";
+        const assetsURL = "<%= assetsURL  %>";
+        const languageCnt = "<%= lpLanguages.length  %>";
+        const lpLanguages = "<%= lpLanguages  %>".split(',');
+        const tuneIds = {};
+        const postExample = [
+            {inputPost: "Hello talkn😃", inputStampId: 0},
+            {inputPost: "Hahaha😊", inputStampId: 0 },
+            {inputPost: ".. Oh Dios mío", inputStampId: 0 },
+            {inputPost: "为什么会这样呢？", inputStampId: 0 },
+            {inputPost: "나쁜 소식 이구나😱", inputStampId: 0 },
+            {inputPost: "この🍰美味しそう😋", inputStampId: 0 },
+            {inputPost: "これ誰の曲？🎵", inputStampId: 0 },
+            {inputPost: "これ欲しい✨✨✨", inputStampId: 0 },
+            {inputPost: "またこのニュースかい..😣", inputStampId: 0 },
+            {inputPost: "感動したよ〜💖💖💖", inputStampId: 0 },
+            {inputPost: "ありえない、、😭", inputStampId: 0 },
+            {inputPost: "真恭喜你！", inputStampId: 0 },
+            {inputPost: "Veuillez me dire le film recommandé", inputStampId: 0 },
+            {inputPost: "Bu kozmetiği kullanmak istiyorum!!", inputStampId: 0 },
+            {inputPost: "¿Cuál es el precio actual de los activos criptográficos?", inputStampId: 0 },
+            {inputPost: "Умехара Удачи!", inputStampId: 0 },
+            {inputPost: 'おすすめのドラマ教えて！', inputStampId: 0 },
+            {inputPost: '電暈病毒很可怕...😱', inputStampId: 0 },
+            {inputPost: '<iframe width="160" height="100" src="https://www.youtube.com/embed/0jdcR8jr3d0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', inputStampId: 0 },
+            {inputPost: "💖", inputStampId: 1201 }, 
+            {inputPost: "👍", inputStampId: 1 } ,
+            {inputPost: "😭", inputStampId: 2301 } ,
+            {inputPost: "🍺", inputStampId: 1304 },
+            {inputPost: "💴", inputStampId: 100 },
+        ];
+        const eatsMap = {
+            maton: {price: "価格　¥1280", desc: "一晩じっくり煮込んだとろとろのマトンに、薄くスライスしたチーズを乗せました。 当店おすすめの一品です。まだ未食の方は是非♬"},
+            beef: { price: "価格　¥1080", desc: "メキシカンな深いコクとココナッツの風味が特徴のビーフカレーです。癖になる人続出。"},
+            pan_cofee: { price: "価格　¥680", desc: "当店自慢のパンケーキと、コーヒーをセットにしたお得な一品。食後のゆったりとした時間にどうぞ。"},
+            kaisou: { price: "価格　¥480", desc: "わかめ、白木耳、茎わかめ、寒天、杉のり、ふのりの６種類の豊富な品目からなる爽やかな酸味が特徴な海藻サラダ。"},
+            aice: { price: "価格　¥380", desc: "濃厚ミルクアイスをふんわりシューに惜しげもなく入れ込んだ絶品シューアイス。"},
+            yasai: { price: "価格　¥1100", desc: "アサヒ甘玉（甘70）のたまねぎをふんだんに練り込んだ当店オリジナルのカレー。"},
+            karaage: { price: "価格　¥980", desc: "ザクザクの衣にジューシーな鶏肉を閉じ込めたボリューム満点の唐揚げカレー。"},
+            cofee: { price: "価格　¥380", desc: "柔らかい香りと硬めの苦味がカレーと合うドリップ式のコーヒー。"},
+        };
+        const apiBlance = ['tune', 'tune', 'tune', 'untune', 'untune', 'untune', 'post', 'post', 'post', 'post'];
+        let screen = 0;
+        let isAnimateScrolling = false;
+        let oneScreenHeight = smallScreenWidth;
+        function onServiceWorker() {
+            if ( 'serviceWorker' in navigator ) {
+                navigator.serviceWorker.register( '/service.worker.js' ).then( function ( registration ) {
+                    // 登録成功
+                    console.log( '[own]ServiceWorker registration successful with scope: ', registration.scope );
+                } ).catch( function ( err ) {
+                    // 登録失敗 :(
+                    console.log( '[own]ServiceWorker registration failed: ', err );
+                } );
+            }
+        }
+        function onMouseOver( num ) {
+            movePointer( num );
+            setMenuColor();
+        }
+        function onMouseLeave( num ) {
+            movePointer( screen );
+            setMenuColor();
+        }
+        function onClickMenu( num ) {
+            setScreen( num );
+            movePointer( num, true );
+            setMenuColor();
+        }
+        function onClickToTop() {
+            animateScrollTo( 0 );
+        }
+        function onClickLanguage() {
+            const languageMenu = document.querySelector( ".language-menu" );
+            if ( languageMenu.style.transform === "" ) {
+                languageMenu.style.transform = "translate3d(0px, 450px, 0px )";
+            } else {
+                if ( languageMenu.style.transform === "translate3d(0px, 0px, 0px)" ) {
+                    languageMenu.style.transform = "translate3d(0px, 450px, 0px )";
+                } else {
+                    languageMenu.style.transform = "translate3d(0px, 0px, 0px)";
+                }
+            }
+        }
+        function onClickLanguageMenu( cn ) {
+            location.href = "https://<%= ownURL %>?lang=" + cn;
+        }
+        function onKeyPressSearch( e ) {
+            if ( e.key === "Enter" ) {
+                let value = e.target.value;
+                let isUrl = false;
+                let url = "";
+                if ( value.indexOf( "https:/" ) === 0 ) {
+                    value = value.replace( "https:/", "" );
+                    isUrl = true;
+                }
+                if ( value.indexOf( "http:/" ) === 0 ) {
+                    value = value.replace( "http:/", "" );
+                    isUrl = true;
+                }
+                url = isUrl ? value : "/" + value;
+                location.href = "https://<%= domain %>" + url;
+            }
+        }
+        function getCalcScreen() {
+            const { scrollY, innerHeight } = window;
+            if ( screenTops[ 0 ] <= scrollY && scrollY < screenTops[ 1 ] ) {
+                screen = 0;
+            } else if ( screenTops[ 1 ] <= scrollY && scrollY < screenTops[ 2 ] ) {
+                screen = 1;
+            } else if ( screenTops[ 2 ] <= scrollY && scrollY < screenTops[ 3 ] ) {
+                screen = 2;
+            }else if ( screenTops[ 3 ] <= scrollY  ) {
+                screen = 3;
+            }
+            return screen;
+        }
+        function setScreen( num ) {
+            if ( num ) {
+                screen = num;
+            } else {
+                screen = getCalcScreen();
+            }
+            return screen;
+        }
+        function setMenuColor() {
+            if ( window.menuLis ) {
+                window.menuLis.forEach( ( menuLi, i ) => {
+                    menuLi.style.color = screen === i ? menuStyles.active.color : menuStyles.unactive.color;
+                } );
+            }
+        }
+        function movePointer( num = 0, animateScroll = false ) {
+            const { scrollY, innerHeight } = window.scrollY;
+            const pointerStyle = pointerStyles[ num ];
+            const pointer = document.querySelector( ".pointer" );
+            pointer.style.width = pointerStyle.width;
+            pointer.style.height = pointerStyle.height;
+            pointer.style.transform = pointerStyle.transform;
+            const moveScrollY = screenTops[num];
+            if ( animateScroll ) {
+                animateScrollTo( moveScrollY, 600 );
+            }
+        }
+        function setNavStyles() {
+            const nav = document.querySelector( "nav" );
+            const accessory = document.querySelector( ".accessory" );
+            const toTop = document.querySelector( ".toTop" );
+            const scrollY = window.scrollY;
+            const changeAccessoryFunc = ( scrollY ) => {
+                const changeNavMenuHeight = ( oneScreenHeight * ( pointerStyles.length - 1 ) ) + headerHeight;
+                if ( scrollY >= changeNavMenuHeight ) {
+                    accessory.style.transform = `translate3d(0px, -${ navTop }px, 0px)`;
+                    accessory.style.width = "90px";
+                    accessory.style.height = "90px";
+                    accessory.innerText = "Powerd by";
+                } else {
+                    accessory.style.transform = "translate3d(0px, 15px, 0px)";
+                    accessory.style.width = "90px";
+                    accessory.style.height = "90px";
+                    accessory.innerText = "talkn";
+                }
+            }
+            if ( !toTop ) {
+                // return false;
+            }
+
+            if ( scrollY < navTop ) {
+                if ( nav.style.position === "fixed" ) {
+                    nav.style.position = "absolute";
+                    nav.style.top = `${ navTop }px`;
+                    accessory.style.transform = "translate3d(0px, -25px, 0px)";
+                }
+                //toTop.style.display = "none";
+            } else {
+                if ( nav.style.position === "absolute" ) {
+                    nav.style.position = "fixed";
+                    nav.style.top = "0px";
+                    accessory.style.transform = "translate3d(0px, 0px, 0px)";
+                    changeAccessoryFunc( scrollY );
+                } else if ( nav.style.position === "fixed" ) {
+                    changeAccessoryFunc( scrollY );
+                } else if ( nav.style.position === "" ) {
+                    nav.style.position = "absolute";
+                    nav.style.top = `${ navTop }px`;
+                    accessory.style.transform = "translate3d(0px, -25px, 0px)";
+                }
+                if ( toTop ) toTop.style.display = "flex";
+            }
+        }
+        function animateScrollTo( to = 99999, duration = 400, callback = () => { } ) {
+            if ( duration === 0 ) {
+                window.scrollTo( 0, to );
+            } else {
+                if ( !isAnimateScrolling ) {
+                    let start = window.scrollY;
+                    let change = to - start;
+                    let currentTime = 0;
+                    let increment = 20;
+                    const animateScroll = () => {
+                        currentTime += increment;
+                        let scrollTop = Math.easeInOutQuad( currentTime, start, change, duration );
+                        screenTop = Math.floor( scrollTop );
+                        window.scrollTo( 0, scrollTop );
+                        if ( currentTime < duration ) {
+                            isAnimateScrolling = true;
+                            setTimeout( animateScroll, increment );
+                        }
+                        if ( to === screenTop ) {
+                            isAnimateScrolling = false;
+                            callback();
+                        }
+                    };
+                    animateScroll();
+                }
+            }
+        }
+        function setupMath() {
+            Math.easeInOutQuad = function ( t, b, c, d ) {
+                t /= d / 2;
+                if ( t < 1 ) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * ( t * ( t - 2 ) - 1 ) + b;
+            };
+        }
+        function onMouseOverInput( className ) {
+            document.querySelector( "section." + className ).style.border = "5px solid rgba( 79,174,159,0.8)";
+        }
+        function onMouseLeaveInput( className ) {
+            document.querySelector( "section." + className ).style.border = "5px solid rgba( 0,0,0,0.2)";
+        }
+        function onFocusInput( className ) {
+            document.querySelector( "section." + className ).style.border = "5px solid rgba( 79,174,159,0.8)";
+        }
+        function onBlurInput( className ) {
+            document.querySelector( "section." + className ).style.border = "5px solid rgba( 0,0,0,0.2)";
+        }
+        function onClickCopyTag( type ) {
+            const selector = `section.three code.${ type }Code`;
+            const replaceComment = type === "copyIframe" ? "<%= copyIframeComment %>" : "<%= copyScriptComment %>";
+            document.querySelector( selector ).style.opacity = "1";
+            const copyTag = document.createElement( "input" );
+            copyTag.value = document.querySelector( `${ selector } pre` )
+                .innerText
+                .replace( `// ${ replaceComment }`, "" )
+                .replace( /\r?\n/g, '' )
+                .replace( /    /g, " " );
+            copyTag.id = type;
+            copyTag.type = "text";
+            copyTag.style = "opacity: 0";
+            document.querySelector( selector ).appendChild( copyTag );
+            copyTag.focus();
+            copyTag.select();
+            document.execCommand( "copy" );
+            setTimeout( () => {
+                document.querySelector( selector ).style.opacity = "0";
+                setTimeout( () => {
+                    copyTag.parentNode.removeChild( copyTag );
+                }, 1000 );
+            }, 3000 );
+        }
+        function onResizeWindow() {
+            let newOneScreenHeight = 0;
+            if ( window.innerWidth < responsiveWidth ) {
+                newOneScreenHeight = smallScreenWidth;
+            } else {
+                newOneScreenHeight = wideScreenWidth;
+            }
+            if ( oneScreenHeight !== newOneScreenHeight ) {
+                oneScreenHeight = newOneScreenHeight;
+                screen = setScreen();
+                movePointer( screen );
+                setNavStyles();
+                setMenuColor();
+            }
+        }
+        function onClickSearchIcon() {
+            const search = document.querySelector( ".search" );
+            const href = search.value.replace( "https:/", "" ).replace( "http:/", "" );
+            location.href = "https://<%= domain %>" + href;
+        }
+        function onClickCountry(country) {
+            const toNormalTag = document.querySelector( `.country_demo .active` );
+            toNormalTag && toNormalTag.classList.remove( "active" );
+            const toActiveTag = document.querySelector( `.country_demo .${country}` );
+            if( toActiveTag && toActiveTag.className.indexOf('active') === -1){
+                toActiveTag.classList.add("active");
+                const control = document.querySelector( `.tune_control .selectCh` );
+                control.innerHTML = country === "top" ?
+                    `/own.<%= domain %>/` :
+                    `/own.<%= domain %>/?lang=${country}/`; 
+            }
+        }
+        const exeApi = {
+            tune: (ch) => {
+                const id = "DEMO: " + new Date();
+                ch = ch ? ch : document.querySelector( ".selectCh" ).innerHTML;
+                if ( !tuneIds[ ch ] ) tuneIds[ ch ] = [];
+                tuneIds[ ch ].push( id );
+                talknAPI.tune( { ch, id }, onClickTuneCallback );
+
+                // ui(.image_portal)
+                const tuneTag = document.querySelector( ".tune_control .tune" );
+                if ( tuneTag.className.indexOf( 'active' ) === -1 ) {
+                    tuneTag.classList.add( "active" );
+                    setTimeout( () => {
+                        tuneTag.classList.remove( "active" );
+                    }, 300 );
+                }
+            },
+            untune: () => {
+                const ch = document.querySelector( ".selectCh" ).innerHTML;
+                if ( tuneIds[ ch ] && tuneIds[ ch ].length > 0 ) {
+                    const id = tuneIds[ ch ][ 0 ];
+                    talknAPI.untune( id );
+                    tuneIds[ ch ].splice( 0, 1 );
+                }
+
+                // ui
+                const untuneTag = document.querySelector( ".tune_control .untune" );
+                if ( untuneTag.className.indexOf( 'active' ) === -1 ) {
+                    untuneTag.classList.add( "active" );
+                    setTimeout( () => {
+                        untuneTag.classList.remove( "active" );
+                    }, 300 );
+                }
+            },
+            post: () => {
+                const postExampleIndex = Math.floor( Math.random() * postExample.length );
+                talknAPI.post( postExample[ postExampleIndex ] );
+
+                // ui
+                const postTag = document.querySelector( ".tune_control .post" );
+                if ( postTag.className.indexOf( 'active' ) === -1 ) {
+                    postTag.classList.add( "active" );
+                    setTimeout( () => {
+                        postTag.classList.remove( "active" );
+                    }, 300 );
+                }
+            }
+        }
+        function onClickTune() {
+            exeApi.tune();
+        }
+        function onClickTuneCallback( ioType, method, state) {
+
+        }
+        function onClickUnTune() {
+            exeApi.untune();
+
+        }
+        function onClickPost() {
+            exeApi.post();
+        }
+        function onClickAutoRun() {
+            const runControlTag = document.querySelector( `.run_control` );
+            const selectCh = () => {
+
+            }
+            if ( runControlTag.className.indexOf( 'active' ) === -1 ) {
+                runControlTag.classList.add( "active" );
+
+                exeApi.tune();
+
+                intervalApiId = setInterval(() => {
+                    const apiBlanceIndex = Math.floor( Math.random() * apiBlance.length  );
+                    const method = apiBlance[ apiBlanceIndex ];
+                    exeApi[ method ]();
+                }, intervalApiSecond);
+
+                intervalSelectChId = setInterval(() => {
+                    const lpLanguageIndex = Math.floor( Math.random() * languageCnt - 1);
+                    onClickCountry(lpLanguages[ lpLanguageIndex ]);
+                }, intervalSelectChSecond);
+            }
+        }
+        function onClickStop() {
+            const runControlTag = document.querySelector( `.run_control` );
+            if ( runControlTag.className.indexOf( 'active' ) >= 0 ) {
+                clearInterval( intervalApiId);
+                clearTimeout( intervalSelectChId );
+                runControlTag.classList.remove( "active" );
+            }
+        }
+        function onChangeUserUrl() {
+            const inputUserUrl = document.querySelector( `.image_banner input.user_url` ).value;
+            const _ch1 = inputUserUrl.replace( "https:/", "" ).replace( "http:/", "" );
+            const _ch2 = _ch1.endsWith( "/" ) ? _ch1 : _ch1 + "/";
+            const ch = _ch2.startsWith( "/" ) ? _ch2 : "/" + _ch2;
+            const href = `//${ domain }${ ch }`;
+
+            // normal
+            const normalTextarea = document.querySelector( `.image_banner .normal textarea.copy_user_url` );
+            const normalLink = document.querySelector( `.image_banner .normal a` );
+            normalTextarea.value = `<a href='//${ domain }${ ch }'><img src="//${assetsURL}/img/logo.png" alt="talkn"></a>`;
+            normalLink.href = href;
+
+            // live
+            const liveTextarea = document.querySelector( `.image_banner .live textarea.copy_user_url` );
+            const liveLink = document.querySelector( `.image_banner .live a` );
+            liveTextarea.value = `<div data-href='//${ domain }${ ch }' class='talkn_banner'></div>`;
+            liveLink.href = `//${ domain }${ ch }`;
+        }
+        function onClickEats(eats){
+            const eatsActiveMenuTag = document.querySelector( `.image_shop ul li.active` );
+            const eatsMenuTag = document.querySelector(`.image_shop ul li.${eats}`);
+            const contentTag = document.querySelector( `.image_shop .content` );
+            const detailPriceTag = document.querySelector( `.image_shop .detail .price` );
+            const detailDescTag = document.querySelector( `.image_shop .detail .desc` );
+            const isActive = eatsMenuTag.className.indexOf("active") >= 0;
+
+            if(!isActive){
+                eatsActiveMenuTag.classList.remove("active");
+                eatsMenuTag.classList.add("active");
+                contentTag.style.backgroundImage = `url(${ eats }.jpg)`;
+                detailPriceTag.innerHTML = eatsMap[eats].price;
+                detailDescTag.innerHTML = eatsMap[ eats ].desc;
+            }
+        }
+        window.addEventListener("load", ( e ) => {
+            onServiceWorker();
+            const search = document.querySelector( ".search" );
+            commentsTag = document.querySelector( ".comments" );
+            imageLiveCntNumTag = document.querySelector( ".image_live_cnt .live_cnt" );
+            imageContentLiveCntTag = document.querySelector( ".image_content .live .cnt" );
+            const introPagination = document.querySelectorAll( ".intro nav.pagination span" );
+            const mediaPagination = document.querySelectorAll( ".image_media nav.pagination span" );
+            // search.addEventListener('keypress', onKeyPressSearch);
+            onResizeWindow();
+            setupMath();
+            window.pointer = document.querySelector( ".pointer" );
+            window.menuLis = document.querySelectorAll( "nav li" );
+            window.nav = document.querySelector( "nav" );
+            setNavStyles();
+            setMenuColor();
+            introPagination.forEach( page => page.addEventListener( 'click', ( e ) => {
+                const scrollLeft = Number( e.target.dataset.index ) === 1 ? 0 : 9999999;
+                document.querySelector( ".intro .slide" ).scrollLeft = scrollLeft;
+            } ) );
+            mediaPagination.forEach( page => page.addEventListener( 'click', ( e ) => {
+                const scrollLeft = Number( e.target.dataset.index ) === 1 ? 0 : 9999999;
+                document.querySelector( ".image_media .slide" ).scrollLeft = scrollLeft;
+            } ) );
+
+            document.querySelector( ".language-menu" ).addEventListener( "transitionend", () => {
+                const languageMenu = document.querySelector( ".language-menu" );
+                if ( languageMenu.style.transform === "translate3d(0px, 450px, 0px)" ) {
+                    document.body.addEventListener( "click", function temp() {
+                        languageMenu.style.transform = "translate3d(0px, 0px, 0px)";
+                        this.removeEventListener( "click", temp );
+                    } );
+                }
+            } );
+            
+            const data = {
+                "labels": ["Excite","Happy","Joy","Relax","Slack","Melancholy","Anger","Worry&Fear"],
+                "datasets":[
+                    {
+                        "backgroundColor":"rgba(240, 100, 195, 0.2 )",
+                        "borderCapStyle":"square",
+                        "borderColor":"rgba(240, 100, 195, 0.8 )",
+                        "borderWidth":"4",
+                        "pointBackgroundColor":"rgba(240, 100, 195, 0.8 )",
+                        "pointBorderColor":"rgba(240, 100, 195, 0 )",
+                        "pointHoverBackgroundColor":"rgba(255, 255, 255, 0.8 )",
+                        "pointHoverBorderColor":"rgba(240, 100, 195, 0.8 )",
+                        "pointHoverBorderWidth":"4",
+                        "data":[5,2,4,4,3,4,1,3]
+                    }
+                ]
+            };
+
+            const options = {
+                "responsive":true,
+                "responsiveAnimationDuration":0,
+                chartArea: { backgroundColor: 'red' },
+                "elements":{
+                    "rectangle": {
+                        "backgroundColor":"rgba(79, 174, 159, 0.6)",
+                    },
+                    "arc":{
+                        "backgroundColor":"rgba(79, 174, 159, 0.6)",
+                    },
+                    "point":{
+                        "backgroundColor":"rgba(79, 174, 159, 0.6)",
+                        "borderAlign":"left",
+                        "borderColor":"rgba(79, 174, 159, 0.6)",
+                        "borderWidth":100
+                    },
+                    "line":{
+                        "tension":0.1,
+                        "backgroundColor":"rgba(79, 174, 159, 0.6)",
+                        "borderWidth":"10",
+                        "borderColor":"rgba(79, 174, 159, 0.6)",
+                        "borderCapStyle":"square",
+                        "borderDash":[]
+                    }
+                },
+                "legend":{
+                    "display":false
+                },
+                "tooltips":{
+                    "enabled":true,
+                    "intersect":true,
+                    "backgroundColor":"rgba(240, 100, 195, 0.7 )",
+                    "callbacks":{}
+                },
+                "scale":{
+                    "ticks":{
+                        "fontSize":16,
+                        "fontColor":"rgb(130, 130, 130)",
+                        "backdropColor":"rgba(255,255,255,0)",
+                        "beginAtZero":true,
+                        "max":5,
+                        "min":0,
+                        "stepSize":1
+                    },
+                    "pointLabels":{
+                        "fontSize":14,
+                        "fontColor":"rgb(130, 130, 130)"
+                    }
+                }
+            };
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            window.myChart = new Chart(ctx, {
+                type: 'radar',
+                data: data,
+                options: options
+            });
+        });
+
+        window.onscroll = ( e ) => {
+            setNavStyles();
+            if ( !isAnimateScrolling ) {
+                let beforeScreen = screen;
+                screen = setScreen();
+                if ( screen !== beforeScreen ) {
+                    movePointer( screen );
+                    setMenuColor();
+                }
+            }
+
+            const updateLiveCntRate = Math.floor( Math.random() * 10 );
+            const liveCntIndex = Math.floor( Math.random() * 10 );
+            const liveCntText = [ 319, 321, 334, 337, 338, 339, 340, 342, 343, 344 ];
+
+            if(commentsTag){
+                const commentsTranslteY = Number(window.getComputedStyle(commentsTag).getPropertyValue("transform").split(", ")[5].replace(")", ""));
+                const scrollTop = window.outerHeight + window.scrollY;
+                const commentsStartTop = commentsTag.offsetTop + commentsTranslteY;
+                const commentsEndTop = ( commentsTag.offsetTop + commentsTag.offsetHeight + commentsTranslteY );
+                const commentsHeight = commentsEndTop - commentsStartTop;
+                const innerScrollTop = scrollTop - commentsStartTop;
+                const innerScrollRate = Math.round( ( innerScrollTop / window.outerHeight ) * 100 );
+
+                if ( scrollTop >= commentsStartTop && scrollTop < ( commentsEndTop +  window.innerHeight) ) {
+                    commentsScrollTop = Math.round(window.outerHeight * ( innerScrollRate * 0.01));
+                    commentsTag.scrollTo({top: commentsScrollTop});
+
+                    if(imageContentLiveCntTag) {
+                        if( updateLiveCntRate === 0){
+                            imageContentLiveCntTag.innerHTML = liveCntText[liveCntIndex];
+                        }
+                    }
+
+                    if(window.myChart) {
+                        const updateGraphRate = Math.floor( Math.random() * 10 );
+                        if( updateGraphRate === 0){
+                            const graphIndex = Math.floor( Math.random() * 8 );
+                            const graphPoint = Math.floor( Math.random() * 5 );
+                            window.myChart.config.data.datasets[0].data[graphIndex] = graphPoint;
+                            window.myChart.update();
+                        }
+                    }
+                }
+
+            }
+
+            if ( imageLiveCntNumTag && updateLiveCntRate === 0) {
+                imageLiveCntNumTag.innerHTML = liveCntText[ liveCntIndex ];
+            }
+        };
+        window.onresize = onResizeWindow;
+    </script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=1655931587827697"></script>
+
+    <div class="fixBackground">
+        <div class="background"></div>
+    </div>
+    <div class="container">
+
+        <header>
+            <ul class="language-menu" transitionend="onTransitionEndLanguageMenu()">
+                <li onclick="onClickLanguageMenu('en')" class="active">English(en)</li>
+                <li onclick="onClickLanguageMenu('zh')" class="active">简体中文(zh)</li>
+                <li onclick="onClickLanguageMenu('ja')" class="active">日本語(ja)</li>
+                <li onclick="onClickLanguageMenu('de')" class="active">Deutsch(de)</li>
+                <li onclick="onClickLanguageMenu('fr')" class="active">Français(fr)</li>
+                <li onclick="onClickLanguageMenu('hi')" class="active">हिंदी(hi)</li>
+                <li onclick="onClickLanguageMenu('pt')" class="active">Português(pt)</li>
+                <li onclick="onClickLanguageMenu('it')" class="active">Italiano(it)</li>
+
+                <li onclick="onClickLanguageMenu('ru')" class="active">русский(ru)</li>
+                <li onclick="onClickLanguageMenu('ko')" class="active">한국(ko)</li>
+                <li onclick="onClickLanguageMenu('es')" class="active">Español(es)</li>
+                <li onclick="onClickLanguageMenu('id')" class="active">Indonesio(id)</li>
+                <li onclick="onClickLanguageMenu('tr')" class="active">Turco(tr)</li>
+                <li onclick="onClickLanguageMenu('nl')" class="active">Holandes(nl)</li>
+                <li onclick="onClickLanguageMenu('ar')" class="active">العربية(ar)</li>
+                <li onclick="onClickLanguageMenu('zh-TW')" class="active">繁体中文(zh-TW)</li>
+
+                <li onclick="onClickLanguageMenu('pl')" class="active">Polski(pl)</li>
+                <li onclick="onClickLanguageMenu('sv')" class="active">svenska(sv)</li>
+                <li onclick="onClickLanguageMenu('th')" class="active">Thailändska(th)</li>
+                <li onclick="onClickLanguageMenu('fa')" class="active">فارسی(fa)</li>
+                <li onclick="onClickLanguageMenu('nn')" class="active">norsk(nn)</li>
+                <li onclick="onClickLanguageMenu('ga')" class="active">Gaeilge(ga)</li>
+                <li onclick="onClickLanguageMenu('he')" class="active">עברית(he)</li>
+                <li onclick="onClickLanguageMenu('mr')" class="active">Melayu(mr)</li>
+            </ul>
+            <div class="menus">
+                <ul>
+                    <li>
+
+                    </li>
+                    <li>talkn</li>
+                    <li onclick="onClickLanguage()">
+                        Language(<%= language %>)
+                    </li>
+                </ul>
+            </div>
+
+            <nav class="head">
+                <div class="headBar"></div>
+                <ul>
+                    <li onclick="onClickMenu(0)" onmouseover="onMouseOver(0)" onmouseleave="onMouseLeave(0)">Intro</li>
+                    <li onclick="onClickMenu(1)" onmouseover="onMouseOver(1)" onmouseleave="onMouseLeave(1)">Live</li>
+                    <li onclick="onClickMenu(2)" onmouseover="onMouseOver(2)" onmouseleave="onMouseLeave(2)">Image</li>
+                    <li onclick="onClickMenu(3)" onmouseover="onMouseOver(3)" onmouseleave="onMouseLeave(3)">Future</li>
+                </ul>
+                <div class="pointerWrap">
+                    <div class="pointer" />
+                </div>
+            </nav>
+            <div class="accessory">talkn</div>
+            <div class="accessory-case"></div>
+        </header>
+
+        <section class="intro">
+            <div class="bg"></div>
+            <div class="bar"></div>
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="message">
+                <h2>
+                    あなたのWEBサイトを<br /><span class="bold">"LIVE会場"</span>に変える。
+                </h2>
+            </div>
+
+            <div class="content">
+                <div class="slide">
+                    <section id="talkn" class="board talkn">
+                        <div id="talknEmbed1" class="talknEmbed"></div>
+                    </section>
+                    <section id="youtube" class="board youtube">
+                        <iframe width="460" height="300" src="https://www.youtube.com/embed/3dUxV3yuIyc" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </section>
+                </div>
+                <nav class="pagination">
+                    <span data-index=1></span>
+                    <span data-index=2></span>
+                </nav>
+            </div>
+        </section>
+
+        <section class="for_owner">
+            <div class="block">
+                <div class="ribonWrap">
+                    <div class="ribon">WEBサイトオーナー様向け</div>
+                </div>
+        
+                <h2>WEB集客ツール「talkn」のご紹介</h2>
+                <div class="slide">
+
+                    <div class="old">
+                        <h3>- 既存のWEB集客の手段 -</h3>
+
+                        <div class="graph">
+                            <div class="outer">
+                                <div class="analytics">
+                                    <div class="inner">
+                                        内部
+                                    </div>
+                                    分析
+                                </div>
+                                外部
+                            </div>
+                            ↑あなたのWEBサイト
+                        </div>
+
+                        <div class="desc">
+                            <div class="inner">
+                                <dl>
+                                    <dt>内部</dt>
+                                    <dd>・SEO対策</dd>
+                                </dl>
+                            </div>
+                            <div class="analytics">
+                                <dl>
+                                    <dt>分析</dt>
+                                    <dd>・Google analytics</dd>
+                                </dl>
+                            </div>
+                            <div class="outer">
+                                <dl>
+                                    <dt>外部</dt>
+                                    <dd>・検索流入</dd>
+                                    <dd>・有料広告流入</dd>
+                                    <dd>・SNS拡散・流入</dd>
+                                    <dd>・PR(メディア掲載)</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="message">
+                            全て対応しているけど、これ以上ユーザーが増えないオーナー様へ。<br />
+                            新しい選択肢としてtalknをご検討下さい。(次のページへ)
+                        </div>
+                    </div>
+
+                    <div class="new">
+                        <h3>- talknの新しい集客手段 -</h3>
+                    
+                        <div class="graph">
+                            <div class="outer">
+                                <div class="analytics">
+                                    <div class="inner">
+                                        内部
+                                    </div>
+                                    分析
+                                </div>
+                                外部
+                            </div>
+                            ↑あなたのWEBサイト
+                        </div>
+                    
+                        <div class="desc">
+                            <div class="inner">
+                                <dl>
+                                    <dt>内部</dt>
+                                    <dd>・任意のUI無料提供</dd>
+                                    <dd>・LIVE数表示</dd>
+                                    <dd>・LIVE数ランク表示</dd>
+                                    <dd>・歓声(コメント)投稿</dd>
+                                </dl>
+                            </div>
+                            <div class="analytics">
+                                <dl>
+                                    <dt>分析</dt>
+                                    <dd>・talkn live analytics</dd>
+                                </dl>
+                            </div>
+                            <div class="outer">
+                                <dl>
+                                    <dt>外部</dt>
+                                    <dd>・LIVE数での検索流入</dd>
+                                    <dd>・LIVE数ランクをSNS拡散</dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="message">
+                            あなたのWEBサイトを全方位から'LIVE状態'にUPDATE。<br />
+                            ユーザーのリピート率UP・広告収入UPに貢献します。<br />
+                            また必要な機能のみに絞ったパッケージでもご提供いたします。(次のページへ)
+                        </div>
+                    </div>
+
+                    <div class="pic">
+                        <h3>- サービス概要図 -</h3>
+                        <div class="service_image"></div>
+                        <p>下記の1行を記述するだけで、<br />あなたのWEBサイトを上記の図のような状態にすることが可能です。</p>
+                        <div class="copy_ext">
+                            <div class="title">○headタグ内に挿入して下さい。</div>
+                            <div class="copy_wrap">
+                                <div class="exe_copy">COPY</div>
+                                <input type="text" value="<script src='//<%= extURL %>' async type='text/javascript'></script>" onmouseover="this.select();" onmouseleave="this.blur();"
+                                    onfocus="this.select();" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="image_live_cnt">
+            <div class="block">
+                <h2>
+                    'LIVE状態'って？①
+                </h2>
+                <h3>
+                    あなたのWEBサイトのURLのLIVE数を表示します。<br />
+                    LIVE数とは「いまこの瞬間にこのURLを何人が見ているか」という<br />
+                    インターネット上の新指標です。
+                </h3>
+                <div class="live_cnt">
+                    235
+                </div>
+                <div class="airplain"></div>
+            </div>
+        </section>
+
+        <section class="image_content">
+            <div class="block">
+                <h2>
+                    'LIVE状態'って？②
+                </h2>
+                <h3>
+                    あなたのWEBサイトのURLに「感情」を付与します。<br />
+                    現代のコンテンツはユーザーの「感情」を含んで成立していますが、<br />
+                    「感情の可視化」を常識としたコミニュケーションを実現します。
+                </h3>
+                <div class="old">
+                    <p>- old -</p>
+                    <div class="circle">
+                        URL<br />
+                        ・ニュース<br />
+                        ・音楽、動画<br />
+                        ・製品紹介<br />
+                    </div>
+                </div>
+                <div class="new">
+                    <p>- talkn -</p>
+                    <div class="circle">
+                        URL<br />
+                        ・ニュース<br />
+                        ・音楽、動画<br />
+                        ・製品紹介<br />
+                    </div>
+                </div>
+
+                <div class="myChartWrap">
+                    <canvas id="myChart"></canvas>
+                    <div class="myChartBg"></div>
+                </div>
+                <div class="live">
+                    <div class="label">LIVE</div>
+                    <div class="cnt">235</div>
+                </div>
+                <div class="comments">
+                    <div class="comment">この曲好き！🎵</div>
+                    <div class="comment">Did you see an Eastwood movie?</div>
+                    <div class="comment">また不倫のニュースね😞</div>
+                    <div class="comment">感動したよ〜💖💖💖</div>
+                    <div class="comment">Heloooooo😃</div>
+                    <div class="comment">ありえない、、😭</div>
+                    <div class="comment">このケーキ本当に美味しかった😋</div>
+                    <div class="comment">"为什么会这样呢？</div>
+                    <div class="comment">ダンスフロアで踊れる曲ね🎶</div>
+                    <div class="comment">真恭喜你！</div>
+                    <div class="comment">Veuillez me dire le film recommandé!</div>
+                    <div class="comment">こんにちわ😃</div>
+                    <div class="comment">De Verdad? Me sorprendió❗️</div>
+                    <div class="comment">Hello, talkn🙂</div>
+                    <div class="comment">President's hairstyle is VR</div>
+                    <div class="comment">.. US-China trade friction</div>
+                    <div class="comment">オリンピック金メダルきた〜🏅</div>
+                    <div class="comment">My wife is angry and doesn't talk..</div>
+                </div>
+
+            </div>
+        </section>
+        <section class="image_portal">
+            <div class="block">
+                <h2>
+                    'LIVE状態'って？③
+                </h2>
+                <h3>
+                    導入サイト配下のLIVE数のランキングを表示します。<br />
+                    切り替わるランキング間をユーザーが移動し、歓声(コメント)を上げる姿は<br />
+                    まるで音楽フェスを開催しているかのようです。<br />
+                </h3>
+                <div class="content">
+                    <div id="talknEmbed2" class="talknEmbed"></div>
+                </div>
+                <div class="demonstration">
+                    <h4>デモンストレーション</h4>
+                    <div class="run_control">
+                        <div class="auto_run" onclick="onClickAutoRun()">RUN LIVE</div>
+                        <div class="stop" onclick="onClickStop()">STOP</div>
+                    </div>
+                    <h4>アクション</h4>
+                    <div class="tune_control">
+                        <div class="tune" onclick="onClickTune()">tune</div>
+                        <div class="untune" onclick="onClickUnTune()">untune</div>
+                        <div class="post" onclick="onClickPost()">post</div>
+                        <div class="selectCh">/own.<%= domain %>/</div>
+                    </div>
+
+                    <h4>チャネル一覧</h4>
+                    <ul class="country_demo">
+                        <li class="top active" onclick="onClickCountry('top')">
+                            <span class="lang">TOPページ</span>
+                        </li>
+                        <% lpLanguages.forEach( (lang) => { %>
+                            <li class="<%= lang %>" onclick="onClickCountry('<%= lang %>')">
+                                <img src="https://<%= assetsURL %>/country/<%= lang %>.png">
+                                <span class="lang">talkn | <%= lang %></span>
+                            </li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <div class="copy_ext">
+                    <div class="title">○headタグ内に挿入して下さい。</div>
+                    <div class="copy_wrap">
+                        <div class="exe_copy">COPY</div>
+                        <input type="text" value="<script src='//<%= extURL %>' async type='text/javascript'></script>" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="image_news">
+            <div class="block">
+                <h2>
+                    導入イメージ1<br />
+                    <small>- ニュースサイト -</small>
+                </h2>
+                <div class="slide">
+                    <div class="boot">
+                        <h3>①起動</h3>
+                        <div class="left">
+                            <video src="image_boot.mp4" width="280" controls loop></video>
+                        </div>
+                        <div class="right">
+                            scriptタグ1行記述で起動。 スマホでもPCでも好みのサイズ・好みの場所に設置可能です。<br />
+                            <br />
+                            他ユーザーがコメント投稿した際には通知が表示(ON/OFF可能)され、通知や飛行機アイコンをタップするとスレッドが表示されます。
+                            <br />
+                            <br />
+                            <br />
+                            <div class="copy_ext">
+                                <div class="title">○headタグ内に挿入して下さい。</div>
+                                <div class="copy_wrap">
+                                    <div class="exe_copy">COPY</div>
+                                    <input type="text" value="<script src='//<%= extURL %>' async type='text/javascript'></script>" onmouseover="this.select();" onmouseleave="this.blur();"
+                                        onfocus="this.select();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <h3>②投稿</h3>
+                        <div class="left">
+                            <video src="image_post.mov" width="280" controls loop></video>
+                        </div>
+                        <div class="right">
+                            同じWEBサイトを見ているユーザーとコメントの共有をすることが出来ます。<br /><br />
+                            TOPページなどに設置すれば導入サイト配下のコメントを透過的に表示(ON/OFF可能)し、そのコメントを介して配下の記事ページに誘導するが出来ます。
+                        </div>
+                    </div>
+                    <div class="emotion">
+                        <h3>③ニュース記事を感情グラフ化</h3>
+                        <div class="left">
+                            <video src="image_emotion.mov" width="280" controls loop></video>
+                        </div>
+                        <div class="right">
+                            ニュース記事(URL)に対してユーザーが投稿したコメントの感情をグラフ化して表示します。<br /><br />
+                            感情グラフはユーザーの投稿に応じてリアルタイムで変化していきます。
+                        </div>
+                    </div>
+                    <div class="rank">
+                        <h3>④LIVE数ランキングが変化</h3>
+                        <div class="left">
+                            <video src="image_rank.mp4" width="280" controls loop></video>
+                        </div>
+                        <div class="right">
+                            導入サイト配下のLIVE数ランキングを表示します。<br /><br />
+                            TOPページに導入すれば、TOPページ配下の全ページのLIVE数ランキングを自動生成して表示出来ます。<br /><br />
+                            ランキングは自動で切り替わっていきます。
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section class="image_media">
+            <div class="block">
+                <h2>
+                    導入イメージ2<br />
+                    <small>- 動画・音楽配信サイト -</small>
+                </h2>
+                <h3>
+                    メディアのタイムラインに沿った歓声(コメント)投稿が可能です。<br />
+                    規制のない表現を配信したいオーナー様は是非導入下さい。<br />
+                    (Youtubeの動画も近日対応いたします。)
+                </h3>
+                <div class="left">
+                    <div class="slide">
+                        <ul class="songs">
+                            <li>
+                                <span>グラハゴン</span>
+                                <audio src="https://<%= ownURL %>/gurahagon.mp3" controls></audio>
+                            </li>
+                            <li>
+                                <span>Night Diver</span>
+                                <audio src="https://<%= ownURL %>/nightdiver.m4a" controls></audio>
+                            </li>
+                            <li>
+                                <span>Auschbitz</span>
+                                <audio src="https://<%= ownURL %>/auschbitz.mp3" controls></audio>
+                            </li>
+                            <li>
+                                <span>小羽のうたね</span>
+                                <audio src="https://<%= ownURL %>/kohane.mp3" controls></audio>
+                            </li>
+                            <li>
+                                <span>Chelsea Girl</span>
+                                <audio src="https://<%= ownURL %>/chelseagirl.m4a" controls></audio>
+                            </li>
+                        </ul>
+                        <div class="videos">
+                            <video width="540px" height="450px" src="https://<%= assetsURL %>/video/penguin.mp4" controls></video>
+                        </div>
+                    </div>
+                    <nav class="pagination">
+                        <span data-index=1></span>
+                        <span data-index=2></span>
+                    </nav>
+                </div>
+                <div class="right">
+                    <div id="talknEmbed3" class="talknEmbed"></div>
+                </div>
+                <div class="copy_ext">
+                    <div class="title">○headタグ内に挿入して下さい。</div>
+                    <div class="copy_wrap">
+                        <div class="exe_copy">COPY</div>
+                        <input type="text" value="<script src='//<%= extURL %>' async type='text/javascript'></script>" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="image_banner">
+            <div class="block">
+                <h2>
+                    導入イメージ3
+                    <small>- バナー設置 -</small>
+                </h2>
+                <div class="user_url_wrap">
+                    <input class="user_url" placeholder="あなたのWEBサイトのURL" type="text" onkeypress="onChangeUserUrl()" onkeyup="onChangeUserUrl()" onchange="onChangeUserUrl()" />
+                </div>
+                <div class="normal">
+                    <p>- 通常バナー -</p>
+                    <span class="desc">
+                        talknポータルへの入り口です。リンク先であなたのWEBサイトの歓声(コメント)の投稿・閲覧が出来ます。
+                    </span>
+                    <a href="//<%= domain %>/"><img src="https://<%= assetsURL %>/img/logo.png" /></a>
+                    <div class="howto">
+                        <textarea class="copy_user_url" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();"><a href='//<%= domain %>/' /><img src='//<%= assetsURL %>/img/logo.png' alt='talkn' /></a></textarea>
+                        <div class="suport">上記のコードをbodyタグ内のバナー表示させたい箇所に挿入して下さい。</div>
+                    </div>
+                </div>
+
+                <div class="live">
+                    <p>- LIVEバナー -</p>
+                    <div class="desc">
+                        あなたのWEBサイトのLIVE数の表示＆リンク先で歓声(コメント)の投稿・閲覧が出来ます。
+                    </div>
+
+                    <div data-href="https://own.<%= domain %>" class="talkn_banner"></div>
+                    <div class="howto">
+                        <input type="text" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();" value="<script src='//<%= bannerURL %>' async type='text/javascript'></script>" />
+                        <div class="suport">上記のコードをheadタグ内に挿入して下さい。</div>
+                        <textarea class="copy_user_url" wrap="soft" rows="3" type="text" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();" ><div data-href='https://own.<%= domain %>' class='talkn_banner'></div></textarea>
+                        <div class="suport">上記のコードをbodyタグ内のバナー表示させたい箇所に挿入して下さい。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="image_api">
+            <h2>
+                導入イメージ4
+                <small>- API -</small>
+            </h2>
+            <div class="block">
+                <span class="desc">
+                    <div class="symble"></div>
+                    <p>
+                        あなたのWEBサイトのLIVE数やLIVE数ランキング、感情値を取得したり、歓声(コメント)の取得・投稿等をすることが出来ます。<br /><br />
+                        また例えば飲食店のPOSシステムのcallbackに紐つけることで店舗の来客LIVE数・メニューLIVE数ランキング・メニュー毎の感情値の生成・取得が実現出来ます。
+                    </p>
+                    <div class="copy_ext">
+                        <div class="title">○headタグ内に挿入</div>
+                        <div class="copy_wrap">
+                            <div class="exe_copy">COPY</div>
+                            <input type="text" value="<script src='//<%= apiAccessURL %>' async type='text/javascript'></script>" onmouseover="this.select();" onmouseleave="this.blur();" onfocus="this.select();" />
+                        </div>
+                    </div>
+                </span>
+                <div class="usage">
+                    <div class="title">- USAGE -</div>
+                    <div class="code">
+                        // ch決定
+                        <br />
+                        const ch = url or favorit word;
+                        <br /><br />
+                        // chチューニング
+                        talknAPI.tune(ch, callback);
+                        <br /><br />
+                        // 歓声(コメント)取得
+                        talknAPI.fetchPost();
+                        <br /><br />
+                        // 歓声(コメント)投稿
+                        talknAPI.post("Hello talkn😃");
+                        <br /><br />
+                    </div>
+                    <a>詳細はこちら → </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="image_shop">
+            <h2>
+                導入イメージ5
+                <small>- 実店舗への集客に -</small>
+            </h2>
+            <h3>
+                例えば飲食店のPOSレジにtalknのAPIを組み込めば<br />
+                あなたの店舗の来店数、メニュー毎の飲食数のLIVE状態を<br />
+                あなたのWEBサイトに表示出来ます。<br />
+            </h3>
+            <div class="block">
+                <ul>
+                    <li class="ch">
+                        <span class="label">現在来店数</span>
+                        <span class="live_cnt">18</span>
+                    </li>
+                    <li onclick="onClickEats('maton')" class="active maton" >
+                        <span class="label">マトン&ひよこ豆カレーセット</span>
+                        <span class="live_cnt">6</span>
+                    </li>
+                    <li class="beef" onclick="onClickEats('beef')">
+                        <span class="label">ビーフ・ジャワカレー</span>
+                        <span class="live_cnt">5</span>
+                    </li>
+                    <li class="pan_cofee" onclick="onClickEats('pan_cofee')">
+                        <span class="label">パンケーキとコーヒーのセット</span>
+                        <span class="live_cnt">3</span>
+                    </li>
+                    <li class="kaisou" onclick="onClickEats('kaisou')">
+                        <span class="label">海藻サラダ</span>
+                        <span class="live_cnt">2</span>
+                    </li>
+                    <li class="aice" onclick="onClickEats('aice')">
+                        <span class="label">シューアイス</span>
+                        <span class="live_cnt">2</span>
+                    </li>
+                    <li class="yasai" onclick="onClickEats('yasai')">
+                        <span class="label">甘70タマネギの野菜カレー</span>
+                        <span class="live_cnt">1</span>
+                    </li>
+                    <li class="karaage" onclick="onClickEats('karaage')">
+                        <span class="label">唐揚げ満足カレー</span>
+                        <span class="live_cnt">0</span>
+                    </li>
+                    <li class="cofee" onclick="onClickEats('cofee')">
+                        <span class="label">アイスコーヒー</span>
+                        <span class="live_cnt">0</span>
+                    </li>
+                </ul>
+                <div class="content"></div>
+                <div class="detail"">
+                    <div class="order">注文する</div>
+                    <div class="price">価格　¥1280</div>
+                    <div class="desc">
+                        一晩じっくり煮込んだとろとろのマトンに、薄くスライスしたチーズを乗せました。
+                        当店おすすめの一品です。まだ未食の方は是非♬
+                    </div>
+                    
+                    <span>
+                        <a href='//<%= domain %>/tokyo/eats/demo' /><img  width="64px" src='//assets.<%= domain %>/img/logo.png' alt='talkn' /></a>
+                    </span>
+                    <span>感想を見る・話す →</span>
+                </div>
+            </div>
+            <div class="caution">
+                ※上記は導入例でレイアウト・写真・メニュー等は仮のものです。<br />
+                　UIなどご要望に応じた柔軟な導入が可能ですので、<br />
+                　まずはお問い合わせからお気軽にご連絡くださいませ。
+            </div>
+        </section>
+
+        <section class="future">
+            <h2>
+                未来
+                <small>- Update the internet for creaters -</small>
+            </h2>
+            <div class="block">
+                    <dl>
+                        <dt>- 中期 -</dt>
+                        <dd>・スマホアプリのリリース</dd>
+                        <dd>・管理機能のリリース</dd>
+                        <dd>・コメント・ポータルにカテゴリ検索リリース</dd>
+                        <dd>・広告配信機能リリース</dd>
+                    </dl>
+                    <div class="bar_wrap"><div class="bar"></div></div>
+                    <dl>
+                        <dt>- 長期(ビジョン) -</dt>
+                        <dd>・CHAT、BLOG、SNSに続く新しいWEBメディアに</dd>
+                        <dd>・世界中のコメント機能をtalknにする</dd>
+                        <dd>・世界中のWEBサイト・リアルな消費物をLIVE数＋感情検索出来るようにする</dd>
+                        <dd>・手数料0の投げ銭(talk to token)を実装し、世界中のクリエイターに貢献する</dd>
+                    </dl>
+                    <div class="bar_wrap"><div class="bar"></div></div>
+                    <dl>
+                        <dt>- 完成(思想) -</dt>  
+                        <dd>・運用も含めたDapps(分散型)化を実現し未来型の運用体制に移行</dd>
+                        <dd>・URLが信用創造する世界にし、価値の源泉・実態を個人に取り戻す</dd>
+                    </dl>
+                    <div class="bar_wrap last"><div class="bar"></div></div>
+                    <div class="arrow"></div>
+            </div>
+            <div class="walk"></div>
+            <div class="img"></div>
+        </section>
+
+        <section class="company">
+            <h2><%= fiveCompanyKey %></h2>
+            <table class="data">
+                <tbody>
+                    <tr>
+                        <th><%= fiveCompanyNameKey %></th>
+                        <td><%= fiveCompanyNameValue %></td>
+                    </tr>
+                    <tr>
+                        <th><%= fiveCompanyFoundedKey %></th>
+                        <td><%= fiveCompanyFoundedValue %></td>
+                    </tr>
+                    <tr>
+                        <th><%= fiveCompanyRepresentativeKey %></th>
+                        <td>
+                            <%= fiveCompanyRepresentativeValue %>
+                            <a href="https://twitter.com/mirazle" class="twitter-dm-button" data-size="large"
+                                data-screen-name="mirazle" data-show-count="false">
+                                <img class="twitter" src="https://<%= assetsURL %>/img/twitter.png" />
+                            </a>
+                            <a href="https://www.facebook.com/hiroyuki.miyazaki.5070">
+                                <img class="facebook" src="https://<%= assetsURL %>/img/facebook.png" />
+                            </a>
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><%= fiveCompanyPolicyKey %></th>
+                        <td><%= fiveCompanyPolicyValue %></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <br />
+            <h2><%= fiveContactKey %></h2>
+
+            <div class='contact_message'>SNSのメッセージからご連絡くださいませ。</div>
+            <!--
+            <div class="contact">
+                <form method="POST" action="/mail">
+                    <div class="oneline">
+                        <input class="grow" name="inquiry[name]" placeholder="<%= fiveContactNameKey %>" type="text" maxlength=50 size=20　 />
+                        <input class="grow" name="inquiry[mail]" placeholder="<%= fiveContactMailKey %>" maxlength=50 type="text" size=20　 />
+                    </div>
+                    <div class="oneline">
+                        <input name="inquiry[title]" placeholder="<%= fiveContactTitleKey %>" type="text" maxlength=50 size=20 />
+                    </div>
+                    <div class="oneline">
+                        <textarea name="inquiry[content]" placeholder="<%= fiveContactContentKey %>" type="text" maxlength=800 size=20></textarea>
+                    </div>
+                    <div class="oneline">
+                        <input type="hidden" value="<%=language %>" />
+                        <input type="submit" value=" <%=fiveContactSendKey %> " />
+                    </div>
+                </form>
+            </div>
+-->
+        </section>
+
+
+        <footer>
+            <div class="toTop" onclick="onClickToTop()">
+                <div class="arrow"></div>
+            </div>
+            <div class="sns">
+                <div class="twitter">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <div class="facebook">
+                    <div class="fb-share-button" data-href="https://www.talkn.io" data-layout="button_count" data-size="large">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.talkn.io%2F&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">
+                            Share
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div>Copyright © talkn, Inc.</div>
+        </footer>
+    </div>
+</body>
+
+</html>

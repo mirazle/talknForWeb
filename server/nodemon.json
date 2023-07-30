@@ -1,0 +1,10 @@
+{
+  "restartable": "rs",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "watch": ["./dist/src"],
+  "ext": "js",
+  "ignore": ["tests/**/*.js"],
+  "exec": "node -r ts-node/register -r tsconfig-paths/register --prof ./dist/src/run.js"
+}

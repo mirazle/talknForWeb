@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2020",
+    "strict": false,
+    "strictFunctionTypes": false,
+    "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "react",
+    "lib": ["es2019", "webworker", "dom"],
+    "incremental": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "./",
+    "typeRoots": ["node_modules/@types", "common/src/types"],
+    "types": ["node", "webpack-env"],
+    "paths": {
+      "common/node_modules/*": ["common/node_modules/*"],
+      "common/*": ["common/src/*"],
+      "server/*": ["server/src/*"],
+      "api/*": ["api/src/*"],
+      "client/*": ["client/src/*"],
+      "assets/*": ["assets/*"],
+      "cover/*": ["cover/src/*"],
+      "tune/*": ["tune/src/*"],
+      "components/*": ["components/src/*"]
+    }
+  }
+}

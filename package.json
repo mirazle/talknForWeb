@@ -1,0 +1,38 @@
+{
+  "name": "talkn-common",
+  "version": "1.0.0",
+  "description": "Eslint & Prettier",
+  "scripts": {
+    "fix": "yarn format & yarn lint",
+    "format": "yarn format:common & yarn format:server & yarn format:api & yarn format:client",
+    "format:common": "prettier --write 'common/src/**/*.{ts,tsx}'",
+    "format:server": "prettier --write 'server/src/**/*.{ts,tsx}'",
+    "format:api": "prettier --write 'api/src/**/*.{ts,tsx}'",
+    "format:client": "prettier --write 'client/src/**/*.{ts,tsx}'",
+    "format:cover": "prettier --write 'cover/src/**/*.{ts,tsx}'",
+    "format:rank": "prettier --write 'rank/src/**/*.{ts,tsx}'",
+    "lint": "yarn lint:common & yarn lint:server & yarn lint:api & yarn lint:client",
+    "lint:common": "eslint 'common/src/**/*.{ts,tsx}'",
+    "lint:server": "eslint 'server/src/**/*.{ts,tsx}'",
+    "lint:api": "eslint 'api/src/**/*.{ts,tsx}'",
+    "lint:client": "eslint 'client/src/**/*.{ts,tsx}'",
+    "lint:cover": "prettier --write 'cover/src/**/*.{ts,tsx}'",
+    "lint:rank": "prettier --write 'rank/src/**/*.{ts,tsx}'"
+  },
+  "author": "mirazle <mirazle2069@gmail.com> (https://github.com/mirazle)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.7",
+    "@trivago/prettier-plugin-sort-imports": "^2.0.4",
+    "@typescript-eslint/parser": "^4.31.2",
+    "babel-eslint": "10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "^7.25.1",
+    "prettier": "^2.3.2",
+    "typescript": "^4.4.3"
+  },
+  "packageManager": "yarn@3.0.2"
+}

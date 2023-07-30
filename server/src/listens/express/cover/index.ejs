@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html amp lang="<%= language %>">
+  <head>
+    <title>STARTUP-HUB</title>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <link rel="icon" href=="https://<%= assetsURL %>/cover/favicon.ico" />
+    <link rel="shortcut icon" href="//assets.localhost/cover/favicon.ico" />
+    <link rel="manifest" href="https://<%= domain %>/manifest.json" />
+    <script id="assignVariable" type="text/javascript">
+      window.talknDatas = {};
+      window.talknDatas.staticTagsById = {};
+      window.talknDatas.userTags = {
+        self: { investor: [], founder: [], member: [] },
+        search: { investor: [], founder: [], member: [] },
+        story: { story: [] },
+      };
+
+      window.talknDatas.selectContentMenu = JSON.parse('<%= JSON.stringify(method) %>'.replace(/&#34;/g, '"'));
+      window.talknDatas.stories = JSON.parse('<%= JSON.stringify(stories) %>'.replace(/&#34;/g, '"'));
+      window.talknDatas.config = JSON.parse('<%= JSON.stringify(config) %>'.replace(/&#34;/g, '"'));
+      window.talknDatas.staticTags = JSON.parse('<%= JSON.stringify(staticTags) %>'.replace(/&#34;/g, '"'));
+      window.talknDatas.staticTagsById = {};
+      window.talknDatas.user = JSON.parse('<%= JSON.stringify(user) %>'.replace(/&#34;/g, '"'));
+      window.talknDatas.users = JSON.parse('<%= JSON.stringify(users ? users : []) %>'.replace(/&#34;/g, '"'));
+      const talknUserTags = JSON.parse('<%= JSON.stringify(userTags) %>'.replace(/&#34;/g, '"'));
+
+      talknUserTags &&
+        talknUserTags.forEach((userTag) => {
+          const { tagParentType, tagType } = userTag;
+          if (tagParentType !== '' && tagType !== '') {
+            window.talknDatas.userTags[tagParentType][tagType].push(userTag);
+          }
+        });
+
+      Object.keys(window.talknDatas.staticTags).forEach((tagsKey) => {
+        if (!window.talknDatas.staticTagsById[tagsKey]) {
+          window.talknDatas.staticTagsById[tagsKey] = {};
+        }
+        window.talknDatas.staticTags[tagsKey].forEach((tag) => {
+          if (!window.talknDatas.staticTagsById[tagsKey][tag.uniqueId]) {
+            window.talknDatas.staticTagsById[tagsKey][tag.uniqueId] = {};
+          }
+          window.talknDatas.staticTagsById[tagsKey][tag.uniqueId] = tag;
+        });
+      });
+
+      document.querySelector('#assignVariable').remove();
+    </script>
+
+    <script id="talknTop" async type="text/javascript" src="https://<%= coverURL %>/talkn.cover.js"></script>
+    <script id="talknComponents" async type="text/javascript" src="https://<%= componentsURL %>/talkn.components.js"></script>
+    <!--script type="text/javascript" async src="//<%= extURL %>"></script -->
+    <script type="text/javascript">
+      const onServiceWorker = () => {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('/service.worker.js')
+            .then(function (registration) {
+              console.log('[ ServiceWorker] suscessful: ', registration.scope);
+            })
+            .catch(function (err) {
+              console.log('[ServiceWorker] failed: ', err);
+            });
+        }
+      };
+
+      onServiceWorker();
+    </script>
+    <noscript key="noscript">Your browser does not support JavaScript!</noscript>
+    <style amp-boilerplate>
+      body {
+        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+      }
+      @-webkit-keyframes -amp-start {
+        from {
+          visibility: hidden;
+        }
+        to {
+          visibility: visible;
+        }
+      }
+      @-moz-keyframes -amp-start {
+        from {
+          visibility: hidden;
+        }
+        to {
+          visibility: visible;
+        }
+      }
+      @-ms-keyframes -amp-start {
+        from {
+          visibility: hidden;
+        }
+        to {
+          visibility: visible;
+        }
+      }
+      @-o-keyframes -amp-start {
+        from {
+          visibility: hidden;
+        }
+        to {
+          visibility: visible;
+        }
+      }
+      @keyframes -amp-start {
+        from {
+          visibility: hidden;
+        }
+        to {
+          visibility: visible;
+        }
+      }
+      @keyframes logo {
+        0% {
+          transform: scale(1) translate3d(0px, 0px, 0px);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(0.9) translate3d(0px, 0px, 0px);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) translate3d(0px, 0px, 0px);
+          opacity: 1;
+        }
+      }
+      /*
+      #talkn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background: url('https://<%= assetsURL %>/logo1.png') 50% 40% / 128px no-repeat;
+        animation-name: logo;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        transition: 600ms;
+      }
+      */
+      #secret {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #fff;
+        z-index: 2147483647;
+      }
+    </style>
+    <noscript>
+      <style amp-boilerplate>
+        body {
+          -webkit-animation: none;
+          -moz-animation: none;
+          -ms-animation: none;
+          animation: none;
+        }
+      </style>
+    </noscript>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://assets.talkn.io/cover/interview/default.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=1655931587827697"
+    ></script>
+    <div id="talkn"></div>
+  </body>
+</html>
