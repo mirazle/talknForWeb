@@ -150,7 +150,7 @@ const Component: React.FC<Props> = (props) => {
       setAction(actions.apiRequestTuning);
     }
   }, [isTune]);
-
+  console.log(isTune, action, state.apiLog[0]);
   return (
     <div css={styles.container}>
       <section css={styles.section(isTune)}>
