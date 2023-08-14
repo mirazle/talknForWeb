@@ -267,7 +267,7 @@ yarn install すると
 512 MB RAM、2 vCPU、20 GB の SSD
 
 のスペックで LA は 2-30 になってしまう。
-最低限、このスペックで開発を行おうとする場合、スワップの設定が必要。
+最低限、このスペックで開発を行おうとする場合、f スワップの設定が必要。
 
 ## python3
 
@@ -395,7 +395,7 @@ Node はかなりメモリを空けることができ、メモリが不足した
 dd if=/dev/zero of=/swap bs=1M count=1024
 sudo mkswap /swap
 chmod 0600 /swap
-t4
+sudo swapon /swap
 ```
 
 ## git レポジトリのサイズが大き過ぎて clone 出来ない時 ff

@@ -10,11 +10,12 @@ import Thread from 'api/store/Thread';
 export default {
   setUp: async () => {
     const io = await Logics.io.get();
+    console.log('IO SETUP');
     return io.on('connection', Actions.io.attachAPI);
   },
 
   attachAPI: async (ioUser) => {
-    console.log('IO START', ioUser);
+    console.log('IO START', ioUser.id);
     const setting = await Actions.db.setUpUser();
     Object.keys(Sequence.map).forEach((endpoint) => {
       const oneSequence = Sequence.map[endpoint];
