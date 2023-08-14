@@ -13,12 +13,13 @@ export default {
     return io.on('connection', Actions.io.attachAPI);
   },
 
-  attachAPI: async (ioUser, tt) => {
+  attachAPI: async (ioUser) => {
+    console.log('IO START', ioUser);
     const setting = await Actions.db.setUpUser();
     Object.keys(Sequence.map).forEach((endpoint) => {
       const oneSequence = Sequence.map[endpoint];
       ioUser.on(endpoint, (requestState) => {
-        console.log('------------------------------- ' + endpoint);
+        console.log('IO -------------- ' + endpoint);
         //        console.log(requestState);
 
         Actions.io[endpoint](ioUser, requestState, setting);
