@@ -27,7 +27,7 @@ export default class Ws {
     return conf.env === define.DEVELOPMENT || conf.env === define.LOCALHOST ? define.DEVELOPMENT_DOMAIN : define.PRODUCTION_DOMAIN;
   }
   static get option() {
-    return { forceNew: true };
+    return { forceNew: false };
   }
   constructor(webWorker: WsApiWorker) {
     this.use = this.use.bind(this);

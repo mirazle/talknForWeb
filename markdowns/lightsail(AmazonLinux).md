@@ -392,9 +392,9 @@ free -m
 Node はかなりメモリを空けることができ、メモリが不足したときにスワップスペースが利用できない場合、エラーは必ず発生する。
 
 ```
-dd if=/dev/zero of=/swap bs=1M count=1024
+sudo dd if=/dev/zero of=/swap bs=1M count=512
 sudo mkswap /swap
-chmod 0600 /swap
+sudo chmod 0600 /swap
 sudo swapon /swap
 ```
 
