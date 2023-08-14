@@ -57,6 +57,18 @@ yum update -y
 $chmod 600 ~/Desktop/LightsailDefaultKey-us-east-1.pem
 $ssh ec2-user@talkn.io -i ~/Desktop/LightsailDefaultKey-us-east-1.pem
 
+client_loop: send disconnect: Broken pipe
+が出る場合、ローカルの SSH 設定を更新する必要がある
+
+`vi ~/.ssh/config`
+
+```
+ServerAliveInterval 10
+ServerAliveCountMax 100
+```
+
+SSH クライアントが 10 秒ごとに "生存"信号をサーバーに送信し、その応答を待つように指示します。サーバーから 100 回連続で応答がない場合にのみ、SSH クライアントは接続を切断します。
+
 ## step2 Let's Encrypt の SSL ワイルドカード証明書をリクエストする
 
 $ dnf install -y python3 augeas-libs pip
@@ -250,6 +262,13 @@ npm -v
 yarnPath: /root/.nvm/versions/node/v16.4.1/bin/yarn
 ```
 
+yarn install すると
+
+512 MB RAM、2 vCPU、20 GB の SSD
+
+のスペックで LA は 2-30 になってしまう。
+最低限、このスペックで開発を行おうとする場合、スワップの設定が必要。
+
 ## python3
 
 $ sudo yum install -y python3
@@ -376,7 +395,7 @@ Node はかなりメモリを空けることができ、メモリが不足した
 dd if=/dev/zero of=/swap bs=1M count=1024
 sudo mkswap /swap
 chmod 0600 /swap
-sudo swapon /swap
+t4
 ```
 
 ## git レポジトリのサイズが大き過ぎて clone 出来ない時 ff
