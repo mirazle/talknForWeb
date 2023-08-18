@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
+  version: 4
   cacheKey: 8
 
 "@adraffy/ens-normalize@npm:1.9.0":
@@ -38,7 +38,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.20.12":
+"@babel/core@npm:7.21.8, @babel/core@npm:^7.20.12":
   version: 7.21.8
   resolution: "@babel/core@npm:7.21.8"
   dependencies:
@@ -2570,70 +2570,70 @@ __metadata:
 "@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.1.1"
-  conditions: os=darwin & cpu=arm64
+  checksum: 85b599912281e13b9217bb4b31494cee012697889202ee744a2b0ef783506e469ff5cd03f35f0d56d87144d45d8392731c1051a56f7e69df8f704bb745ce7f8a
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.1.1"
-  conditions: os=darwin & cpu=x64
+  checksum: 76b420d73962c9d87960e9efc8a4ba48de21c3a5d179dc33bce910b9645b8fc9c7105c359cd03e4eaa66e2c8bccd7a9f2f7315a4f07037547d133cfbb4eb7cf4
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.1.1"
-  conditions: os=freebsd & cpu=x64
+  checksum: c9f30dba1abe99873c42f34b27e9cc800e3c60f70ac1371cfdeebb9adff9a46ac5be072bfbc6e8afea1eae1f67f229b8c2fb10282171a737ebfecb98c5f6a81f
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.1.1"
-  conditions: os=linux & cpu=arm64 & libc=glibc
+  checksum: ae326d201d36950772d4ab289105757cd19773447bf6ad81be2f5c97ed3faffc615f0f9deb9f4454c9121419ab12b54f090e5ff8072eccb7779836781a5c4be4
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.1.1"
-  conditions: os=linux & cpu=arm64 & libc=musl
+  checksum: ed82ca2765092ef92f63a91a01b115357abdbed25dca9c0de74662768aa31161769c757dee323fcdf75fccf758e743c5c2b5fdb51042d45575137f92ac55523a
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.1.1"
-  conditions: os=linux & cpu=x64 & libc=glibc
+  checksum: fad91e8abc929f1c8808efd8515f2a7bf58e6378e32e7bccfc8aec824ea4fcbb171dbbd3427b96bbe31f8ff3bb9ff69b22aaf735432041e591f6d366a17e64fc
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.1.1"
-  conditions: os=linux & cpu=x64 & libc=musl
+  checksum: 3cf05ccad1306f17907c1c43589510e6252a5d8f7ccb867fa4f99ee0837c696dc3434c14603333916e43eb71f78b70ccfce29f4d4bd0d2a1c8e6ecdc5dcdeb68
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.1.1"
-  conditions: os=win32 & cpu=arm64
+  checksum: f1114fc589d172f5dd8235ecbabd6646842af295c5bf6e69a432a731841bb889c42226895d30d95fc14260502fe3f8a6d7499b1ce955339e27881db903849b6a
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.1.1"
-  conditions: os=win32 & cpu=ia32
+  checksum: e6e69bce25fed5f75ae36319a0f2af00b3b18f0eaf39c3983106dfb7013b32918335ce4c089fde35f5749a3d00e085ab3921a4c4bd936abdd0c5d0255cf49153
   languageName: node
   linkType: hard
 
 "@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.1.1":
   version: 0.1.1
   resolution: "@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.1.1"
-  conditions: os=win32 & cpu=x64
+  checksum: 7489d4e198efbccb896764ece6274db955137fc0388b02c38a3bc8df16b659be1622b73e3255ad964847d4668218863634f49dc6ec65819f69b3964819fb4ffc
   languageName: node
   linkType: hard
 
@@ -4286,7 +4286,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.14.5, browserslist@npm:^4.21.3, browserslist@npm:^4.21.5":
+"browserslist@npm:4.21.5, browserslist@npm:^4.14.5, browserslist@npm:^4.21.3, browserslist@npm:^4.21.5":
   version: 4.21.5
   resolution: "browserslist@npm:4.21.5"
   dependencies:
@@ -5997,22 +5997,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@npm:~2.3.2":
+"fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
+  version: 2.3.2
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=1cc4b2"
+  dependencies:
+    node-gyp: latest
+  checksum: 78db9daf1f6526a49cefee3917cc988f62dc7f25b5dd80ad6de4ffc4af7f0cab7491ac737626ff53e482a111bc53aac9e411fe3602458eca36f6a003ecf69c16
+  languageName: node
+  linkType: hard
+
+fsevents@~2.3.2:
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
   dependencies:
     node-gyp: latest
   checksum: 97ade64e75091afee5265e6956cb72ba34db7819b4c3e94c431d4be2b19b8bb7a2d4116da417950c3425f17c8fe693d25e20212cac583ac1521ad066b77ae31f
-  conditions: os=darwin
-  languageName: node
-  linkType: hard
-
-"fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
-  version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
-  dependencies:
-    node-gyp: latest
-  conditions: os=darwin
   languageName: node
   linkType: hard
 
@@ -9048,7 +9047,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:1.17.0":
+resolve@1.17.0:
   version: 1.17.0
   resolution: "resolve@npm:1.17.0"
   dependencies:
@@ -9057,7 +9056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0":
+"resolve@^1.14.2, resolve@^1.19.0, resolve@^1.20.0":
   version: 1.22.3
   resolution: "resolve@npm:1.22.3"
   dependencies:
@@ -9072,23 +9071,23 @@ __metadata:
 
 "resolve@patch:resolve@1.17.0#~builtin<compat/resolve>":
   version: 1.17.0
-  resolution: "resolve@patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=07638b"
+  resolution: "resolve@patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=00b1ff"
   dependencies:
     path-parse: ^1.0.6
-  checksum: 6fd799f282ddf078c4bc20ce863e3af01fa8cb218f0658d9162c57161a2dbafe092b13015b9a4c58d0e1e801cf7aa7a4f13115fea9db98c3f9a0c43e429bad6f
+  checksum: a3606308046ca75c0a6350c26df636b64a71904a8e00f3181fd838b46b4fc303c32ae3e694c156eae5d9102cbe194c444f85822d8e6ce30cf7c510e412029908
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>":
   version: 1.22.3
-  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=07638b"
+  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=00b1ff"
   dependencies:
     is-core-module: ^2.12.0
     path-parse: ^1.0.7
     supports-preserve-symlinks-flag: ^1.0.0
   bin:
     resolve: bin/resolve
-  checksum: ad59734723b596d0891321c951592ed9015a77ce84907f89c9d9307dd0c06e11a67906a3e628c4cae143d3e44898603478af0ddeb2bba3f229a9373efe342665
+  checksum: 2145fe37a0502c67296ccd29099c89838d93730f4c6d0d8c4f6683129ad798f694fda6dce82e3d5a59131ad8bba5f90c96b97575049f1ab6ff43cfbdbd7e3772
   languageName: node
   linkType: hard
 
@@ -10283,7 +10282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.0.4":
+typescript@^5.0.4:
   version: 5.0.4
   resolution: "typescript@npm:5.0.4"
   bin:
@@ -10295,11 +10294,11 @@ __metadata:
 
 "typescript@patch:typescript@^5.0.4#~builtin<compat/typescript>":
   version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=32657b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 6a1fe9a77bb9c5176ead919cc4a1499ee63e46b4e05bf667079f11bf3a8f7887f135aa72460a4c3b016e6e6bb65a822cb8689a6d86cbfe92d22cc9f501f09213
+  checksum: eef93a07f84515b99738b7ea20d343036475c5623dd0f819a56609c676b1894493a83ce2f033791b0320dbca1ffacfbcb8c82a384d78539a531163f627f99d87
   languageName: node
   linkType: hard
 
