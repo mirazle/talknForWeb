@@ -3,7 +3,7 @@ import atob from 'atob';
 import Ui from 'common/clientState/store/Ui';
 
 export default {
-  isUrl: (str) => {
+  isUrl: (str: string) => {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -16,20 +16,20 @@ export default {
 
     return !pattern.test(str) ? false : true;
   },
-  getSaveFaviconName: (fileName) => {
+  getSaveFaviconName: (fileName: string) => {
     if (fileName) {
       const _fileName = fileName.replace(/\u002f/g, '_');
       return _fileName.indexOf('.png') > 0 ? _fileName : _fileName + '.png';
     }
   },
-  trimPx: (value) => {
+  trimPx: (value: string) => {
     return value.toString().replace('px', '');
   },
-  getUpperPrefix: (str) => {
+  getUpperPrefix: (str: string) => {
     let text = str.charAt(0).toUpperCase() + str.slice(1);
     return text.substring(0, 1).toUpperCase() + text.substring(1);
   },
-  timeAgoFormatter: (value, unit, suffix, extensionMode = Ui.extensionModeNone) => {
+  timeAgoFormatter: (value: string, unit: string, suffix: string, extensionMode = Ui.extensionModeNone) => {
     let shortUnit = String(unit);
     switch (String(unit)) {
       case 'year':
@@ -54,24 +54,24 @@ export default {
     const dispSuffix = extensionMode === Ui.extensionModeNone ? suffix : suffix.replace('ago', '');
     return `${value} ${shortUnit} ${dispSuffix}`;
   },
-  parseJwt: (token) => {
+  parseJwt: (token: null | string) => {
     if (token === null) return null;
-    const base64Url = token.split('.')[1];
+    const base64Url = token.split('.')[1] as string;
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
       atob(base64)
         .split('')
-        .map((c) => {
+        .map((c: string) => {
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         })
         .join('')
     );
     return JSON.parse(jsonPayload);
   },
-  deepCopy: (obj) => {
+  deepCopy: (obj: any) => {
     return JSON.parse(JSON.stringify(obj));
   },
-  deepEquals: (obj1, obj2) => {
+  deepEquals: (obj1: any, obj2: any) => {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
   },
   getAgeByBirthday: (birthday: number): number | '-' => {

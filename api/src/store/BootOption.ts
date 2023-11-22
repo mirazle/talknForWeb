@@ -6,7 +6,7 @@ export default class BootOption extends Schema {
     return this.create({ ...bootOption });
   }
 
-  static rebuildAttributes(attributes) {
+  static rebuildAttributes(attributes: { [key: string]: any }) {
     let rebuildAttributesObj: any = {};
     Object.keys(attributes).forEach((i) => {
       rebuildAttributesObj[attributes[i].name] = attributes[i].value;

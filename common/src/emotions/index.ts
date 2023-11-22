@@ -1,5 +1,11 @@
 import EmotionModel from 'common/emotions/model/index';
 
+type EmotionsKeyType = keyof typeof Emotions.TYPES;
+type EmotionLabels = typeof Emotions.TYPES[EmotionsKeyType]['LABEL'];
+type EmotionsInput = {
+  [K in EmotionLabels]: number[];
+};
+
 export default class Emotions {
   static get defaultModelKey() {
     return 'russellSimple';
@@ -41,7 +47,7 @@ export default class Emotions {
 
   static getGraphMaxNum(modelKey = Emotions.defaultModelKey, totalNum = 0, addZero = true) {
     let graphMaxNum = 0;
-    let limits = {};
+    let limits: {[key: number]: number} = {};
     switch (modelKey) {
       case 'plain':
         limits = {
@@ -88,7 +94,7 @@ export default class Emotions {
       const keyNum: any = limitKeys[i];
       const emotionLimitNum = limits[keyNum];
       if (keyNum > totalNum) break;
-      graphMaxNum = emotionLimitNum;
+      graphMaxNum = Number(emotionLimitNum);
     }
 
     // add zero graph space
@@ -105,13 +111,13 @@ export default class Emotions {
     this.idKeyTypes = {};
     this.typesArray = [];
 
-    Object.keys(Emotions.inputs).forEach((label) => {
-      Emotions.inputs[label].forEach((stampId) => {
-        this.belongCoverTypes[stampId] = label;
+    Object.keys(Emotions.inputs).forEach((key: EmotionsKeyType) => {
+      (Emotions.inputs[key] as number[]).forEach((stampId) => {
+        this.belongCoverTypes[stampId] = key;
       });
     });
 
-    Object.keys(Emotions.TYPES).forEach((key) => {
+    Object.keys(Emotions.TYPES).forEach((key: EmotionsKeyType) => {
       this.typesArray.push(key);
       const obj = Emotions.TYPES[key];
       this.idKeyTypes[obj.ID] = obj.LABEL;
@@ -126,20 +132,38 @@ export default class Emotions {
     };
   }
 
-  static get inputs() {
+  static get inputs(): EmotionsInput {
     return {
       [Emotions.TYPES.LIKE.LABEL]: [1, 2, 3, 4, 5],
+      [Emotions.TYPES.INTEREST.LABEL]: [],
+      [Emotions.TYPES.DISCOVERY.LABEL]: [],
+      [Emotions.TYPES.SUNNY.LABEL]: [],
+      [Emotions.TYPES.PEACE.LABEL]: [],
+      [Emotions.TYPES.CHEER.LABEL]: [],
       [Emotions.TYPES.MONEY.LABEL]: [100],
-
+      [Emotions.TYPES.UNLIKE.LABEL]: [],
+      [Emotions.TYPES.LOVE.LABEL]: [],
+      [Emotions.TYPES.SUPRISE.LABEL]: [],
       [Emotions.TYPES.EXCITE.LABEL]: [1101, 1102, 1103, 1001, 1002],
       [Emotions.TYPES.HAPPY.LABEL]: [1201, 1202, 1203, 1204, 1301, 1302, 1303, 1304, 1305, 1306, 1307],
       [Emotions.TYPES.JOY.LABEL]: [1401, 1402, 1501, 1502, 1503, 1504],
+      [Emotions.TYPES.GLAD.LABEL]: [],
+      [Emotions.TYPES.SATISFACTION.LABEL]: [],
+      [Emotions.TYPES.COMFORT.LABEL]: [],
       [Emotions.TYPES.RELAX.LABEL]: [1601, 1602, 1603, 1701, 1702, 1703, 1801, 1802, 1803],
-
+      [Emotions.TYPES.TIRED.LABEL]: [],
+      [Emotions.TYPES.SLEEPY.LABEL]: [],
       [Emotions.TYPES.SLACK.LABEL]: [2001, 2002, 2003, 2004, 2005, 2101, 2102, 2103],
-      [Emotions.TYPES.MELANCHOLY.LABEL]: [2301, 2302, 2303, 2201, 2202, 2203, 2204, 2205, 2401, 2402, 2403, 2404, 2501, 2502, 2503],
+      [Emotions.TYPES.BORING.LABEL]: [],
+      [Emotions.TYPES.MELANCHOLY.LABEL]: [],
+      [Emotions.TYPES.SAD.LABEL]: [],
+      [Emotions.TYPES.UNPLEASANT.LABEL]: [],
+      [Emotions.TYPES.FRUSTRATED.LABEL]: [],
+      [Emotions.TYPES.DISSATISFIED.LABEL]: [],
       [Emotions.TYPES.ANGER.LABEL]: [2701, 2702, 2703, 2704, 2705, 2706, 2601, 2602],
-      [Emotions.TYPES.WORRY_FEAR.LABEL]: [2904, 2905, 2906, 2801, 2802, 2803, 2804, 2805, 2806, 2901, 2903],
+      [Emotions.TYPES.WORRY.LABEL]: [],
+      [Emotions.TYPES.FEAR.LABEL]: [],
+      [Emotions.TYPES.WORRY_FEAR.LABEL] : [2904, 2905, 2906, 2801, 2802, 2803, 2804, 2805, 2806, 2901, 2903],
     };
   }
 

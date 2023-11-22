@@ -1,12 +1,23 @@
 {
   "extensions.ignoreRecommendations": false, // .extensions.jsonをまず優先する
-
   /* Linter and Formatter */
   // linter
   "eslint.packageManager": "yarn",
-  "eslint.nodePath": "~/talkn/node_modules/",
-  "eslint.workingDirectories": ["./common/", "./server/", "./api/", "./client/"],
-  "eslint.validate": ["javascript", "javascriptreact", "html", "css", "typescript", "typescriptreact"],
+  "eslint.nodePath": ".yarn/sdks",
+  "eslint.workingDirectories": [
+    "./common/",
+    "./server/",
+    "./api/",
+    "./client/"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "css",
+    "typescript",
+    "typescriptreact"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true, // eslint
     "source.fixAll.stylelint": true // Stylelint
@@ -17,6 +28,12 @@
   "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   "prettier.configPath": "~/talkn/.prettierrc.json",
-  "prettier.prettierPath": "~/talkn/node_modules/prettier",
-  "svg.preview.background": "black"
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "svg.preview.background": "black",
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

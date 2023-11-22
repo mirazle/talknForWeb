@@ -54,7 +54,7 @@ export default class ApiState {
     this.apiLog = new ApiLog();
   }
 
-  static getAppParams(thread, bootOption, caches) {
+  static getAppParams(thread: any, bootOption: BootOption, caches: any) {
     return {
       isTransition: true,
       rootTitle: thread.title,
@@ -63,7 +63,7 @@ export default class ApiState {
     };
   }
 
-  static getUserParams(self, caches) {
+  static getUserParams(self: any, caches: any) {
     if (caches && caches.user && caches.user.uid) {
       return { ...caches.user };
     } else {

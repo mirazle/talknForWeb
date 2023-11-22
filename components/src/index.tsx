@@ -15,6 +15,7 @@ import Thread from 'components/container/Thread/App';
 
 import MediaClient from './MediaClient';
 import MediaServer from './MediaServerTs';
+import { isValidKey } from './utils/obj';
 
 const Components = {
   talknCover: Cover,
@@ -64,16 +65,21 @@ export const Load = (publicClassName?: string, ch?: string, reRenderId?: string)
 
   if (reactRoots.length > 0) {
     reactRoots.forEach((reactRoot, index) => {
-      let className = publicClassNames[0].replace('.', '');
-      const rootClassNames = reactRoot.className.split(' ');
-      publicClassNames.forEach((publicClassName) => {
-        rootClassNames.forEach((rootClassName) => {
-          if (publicClassName === `.${rootClassName}`) {
-            className = publicClassName;
-            return false;
-          }
+      let className = '';
+
+      if (publicClassNames[0]) {
+        className = publicClassNames[0].replace('.', '');
+        const rootClassNames = reactRoot.className.split(' ');
+
+        publicClassNames.forEach((publicClassName) => {
+          rootClassNames.forEach((rootClassName) => {
+            if (publicClassName === `.${rootClassName}`) {
+              className = publicClassName;
+              return false;
+            }
+          });
         });
-      });
+      }
 
       const componentType = className.replace(/^\./, '');
       const ch = reactRoot.dataset && reactRoot.dataset.ch ? reactRoot.dataset.ch : '/';
@@ -93,21 +99,22 @@ const getReactRoots = (publicClassName?: string, ch?: string, reRenderId?: strin
     reactRoots = [document.querySelector(`[data-talkn-app-id="${reRenderId}"]`)];
   } else {
     if (publicClassName && ch) {
-      if (Components[publicClassName]) {
+      if (isValidKey(publicClassName, Components)) {
         reactRoots = document.querySelectorAll(`.${publicClassName}[data-ch="${ch}"]`);
       }
     } else {
       reactRoots = document.querySelectorAll(publicClassNames.join(','));
     }
   }
-  return reactRoots ? reactRoots : [];
+  return (reactRoots ? reactRoots : []) as HTMLElement[];
 };
 
-const renderDom = async (reactRoot, id, componentType, ch) => {
+const renderDom = async (reactRoot: HTMLElement, id: string, componentType: string, ch: string) => {
   let component: React.ReactNode;
   if (ch) {
     const isFullscreen = reactRoot.clientWidth === window.innerWidth && reactRoot.clientHeight === window.innerHeight;
-    const bootOption = new BootOption(id, appType, { ...bootOptionCustom[componentType], ch, isFullscreen });
+    const bootOptionCustomInit = isValidKey(componentType, bootOptionCustom) ? bootOptionCustom[componentType] : {};
+    const bootOption = new BootOption(id, appType, { ...bootOptionCustomInit, ch, isFullscreen });
     if (!window.talknComponents[id]) {
       if (!window.talknComponents[id]) {
         window.talknComponents[id] = new Window(id, appType, bootOption);

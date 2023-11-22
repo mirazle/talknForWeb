@@ -17,18 +17,19 @@ const paramsInit = {
 // Workerとして独立させる(読み込んだComponent分実行されてしまう)
 
 export default class MediaServer {
+  [key: string]: any;
   public initId = '';
-  public ch = null;
+  public ch: string | null = null;
   public status = '';
-  public components = {};
+  public components: { [key: string]: any } = {};
   public audios: HTMLAudioElement[];
   public videos: HTMLVideoElement[];
-  public handleEventSrc = [];
-  public file = null;
+  public handleEventSrc: string[] = [];
+  public file: any = null;
   public searchingId = null;
-  public searchingIds = {};
+  public searchingIds: { [key: string]: number } = {};
   public maxSearchingCnt = 30;
-  public playIntervalId = null;
+  public playIntervalId: null | number = null;
   public searchingCnt = 0;
   public pointerTime = 0;
   public isLog = false;
@@ -62,7 +63,7 @@ export default class MediaServer {
   static get COMPONENTS_KEY() {
     return 'COMPONENTS';
   }
-  constructor(initId) {
+  constructor(initId: string) {
     this.initId = initId;
 
     // postMessage to ids.
@@ -92,7 +93,7 @@ export default class MediaServer {
     window.addEventListener('messageerror', this.onError);
   }
 
-  setStatus(status, called = '') {
+  setStatus(status: string, called = '') {
     this.status = status;
     this.log('SET STATUS ' + called);
   }
@@ -110,7 +111,7 @@ export default class MediaServer {
     Object.keys(this.searchingIds).forEach((id) => {
       window.clearInterval(this.searchingIds[id]);
     });
-    window.clearInterval(this.playIntervalId);
+    window.clearInterval(Number(this.playIntervalId));
 
     this.components = {};
     this.audios = [];
@@ -123,10 +124,12 @@ export default class MediaServer {
   }
 
   setRelationElms(id?: string) {
-    this.components[id] = {
-      dom: window,
-      params: { ...paramsInit },
-    };
+    if (id && this.components[id]) {
+      this.components[id] = {
+        dom: window,
+        params: { ...paramsInit },
+      };
+    }
 
     if (this.videos.length === 0) {
       this.videos = Array.from(window.document.querySelectorAll('video'));
@@ -136,20 +139,20 @@ export default class MediaServer {
     }
   }
 
-  setClientParams(params) {
+  setClientParams(params: any) {
     if (params && params.id) {
       this.components[params.id].params = params;
     }
   }
 
-  onMessage(e) {
+  onMessage(e: any) {
     if (e.data && e.data.type) {
       if (e.data.type === 'MEDIA_CLIENT_TO_MEDIA_SERVER_TYPE') {
         const { method, params } = e.data;
         if (this.file && this.file[method] && typeof this.file[method] === 'function') {
           this.file[method]();
         } else {
-          if (this[method] && typeof this[method] === 'function') {
+          if (method && typeof method === 'string' && this[method] && typeof this[method] === 'function') {
             this.setRelationElms(params.id);
             this.setClientParams(params);
             this[method](params.id);
@@ -159,7 +162,7 @@ export default class MediaServer {
     }
   }
 
-  onError(e) {
+  onError(e: any) {
     console.warn(e);
   }
 
@@ -183,13 +186,13 @@ export default class MediaServer {
     });
   }
 
-  searching(id) {
+  searching(id: string) {
     if (!id) {
       console.warn('Please Set id TalknMediaServer ');
       return false;
     }
 
-    if (this.searchingIds[id] && this.searchingIds[id] > 0) {
+    if (this.searchingIds[id] && Number(this.searchingIds[id]) > 0) {
       window.clearInterval(this.searchingIds[id]);
     }
 
@@ -200,10 +203,10 @@ export default class MediaServer {
     this.audios = [];
     this.videos = [];
     this.handleEventSrc = [];
-    const handleEventsWrap = (mediaType) => {
+    const handleEventsWrap = (mediaType: 'audios' | 'videos') => {
       let isHandle = false;
 
-      this[mediaType].forEach((media) => {
+      this[mediaType].forEach((media: HTMLMediaElement) => {
         if (isHandle) return;
         this[mediaType].forEach((iframeMedia) => {
           if (isHandle) return;
@@ -253,42 +256,42 @@ export default class MediaServer {
     }, MediaServer.SECOND_INTERVAL);
   }
 
-  handleEvents(media) {
+  handleEvents(media: any) {
     console.log('handleEvents', media);
     media.addEventListener('play', this.play);
     media.addEventListener('pause', this.pause);
     media.addEventListener('ended', this.ended);
   }
 
-  play(e) {
+  play(e: any) {
     this.file = e.srcElement;
-    this.ch = this.file.currentSrc.replace('http:/', '').replace('https:/', '') + '/';
+    this.ch = String(this.file.currentSrc.replace('http:/', '').replace('https:/', '') + '/');
     this.setStatus(MediaServer.STATUS_PLAY, 'play');
     this.postMessage();
 
-    this.playIntervalId = setInterval(() => {
+    this.playIntervalId = window.setInterval(() => {
       this.postMessage();
     }, MediaServer.SECOND_INTERVAL);
   }
 
-  pause(e) {
+  pause(e: any) {
     if (this.status !== MediaServer.STATUS_STANBY) {
       this.setStatus(MediaServer.STATUS_STANBY, 'pause');
-      window.clearInterval(this.playIntervalId);
+      window.clearInterval(Number(this.playIntervalId));
       this.postMessage();
     }
   }
 
-  ended(e) {
+  ended(e: any) {
     this.setStatus(MediaServer.STATUS_ENDED, 'ended');
-    window.clearInterval(this.playIntervalId);
+    window.clearInterval(Number(this.playIntervalId));
     this.postMessage();
     Object.keys(this.searchingIds).forEach((id) => {
       window.clearInterval(this.searchingIds[id]);
     });
   }
 
-  log(label, called?: string) {
+  log(label: string, called?: string) {
     if (this.isLog) {
       console.log(`@@@@@@@@@@@ ${label} ${this.status} [${called}] ch: ${this.ch} time: ${this.pointerTime} @@@`);
     }

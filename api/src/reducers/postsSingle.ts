@@ -1,7 +1,7 @@
 import Post from 'api/store/Post';
 import PostsSingle from 'api/store/PostsSingle';
 
-export default (state: Post[] = [], action) => {
+export default (state: Post[] = [], action: { type: string; postsSingle: any; app: any }) => {
   switch (action.type) {
     case 'ON_CLICK_MULTISTREAM':
       return action.postsSingle;

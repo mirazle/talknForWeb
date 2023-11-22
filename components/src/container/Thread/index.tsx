@@ -311,7 +311,7 @@ const getMenuCss = (menuMode: MenuModeType) => {
 };
 
 const getPostsCss = (menuMode: MenuModeType, layout: LayoutType, openDetail: boolean, dragX: number) => {
-  const menuModeWidth = getMenuModeWidth(menuMode);
+  const menuModeWidth = Number(getMenuModeWidth(menuMode));
   const detailWidth = getDetailWidth(layout, openDetail);
   const width = menuModeWidth + detailWidth + dragX;
   return css`

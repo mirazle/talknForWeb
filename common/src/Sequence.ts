@@ -169,34 +169,39 @@ export default class Sequence {
     };
   }
 
-  static getSequenceActionMap(method): { sequence: string; actionType: string; actionName: string } {
+  static getSequenceActionMap(method: string): { sequence: string; actionType: string; actionName: string } {
     const splited = method.split(Sequence.METHOD_COLON);
-    const sequence = splited[0].split('[')[0];
-    let actionType;
+    if (splited && splited[0]) {
+      const sequence = String(splited[0].split('[')[0]);
+      let actionType;
 
-    if (splited[0].indexOf(`[${Sequence.API_REQUEST_TYPE}]`) > 0) {
-      actionType = Sequence.API_REQUEST_TYPE;
+      if (splited[0].indexOf(`[${Sequence.API_REQUEST_TYPE}]`) > 0) {
+        actionType = Sequence.API_REQUEST_TYPE;
+      } else {
+        actionType =
+          splited[0].indexOf(`[${Sequence.API_RESPONSE_TYPE_EMIT}]`) > 0
+            ? Sequence.API_RESPONSE_TYPE_EMIT
+            : Sequence.API_RESPONSE_TYPE_BROADCAST;
+      }
+
+      const actionName = String(splited[1]);
+      return { sequence, actionType, actionName };
     } else {
-      actionType =
-        splited[0].indexOf(`[${Sequence.API_RESPONSE_TYPE_EMIT}]`) > 0
-          ? Sequence.API_RESPONSE_TYPE_EMIT
-          : Sequence.API_RESPONSE_TYPE_BROADCAST;
+      throw 'Error: Sequence getSequenceActionMap';
     }
-
-    const actionName = splited[1];
-    return { sequence, actionType, actionName };
   }
 
-  static updateCallbackExeConditionMap(actionName): { emit: boolean; broadcast: boolean } {
+  static updateCallbackExeConditionMap(actionName: string): { emit: boolean; broadcast: boolean } {
     let activeResponseMap = { emit: true, broadcast: true };
-    if (Sequence.map[actionName]) {
-      activeResponseMap.emit = !(Object.keys(Sequence.map[actionName].responseEmitState).length > 0);
-      activeResponseMap.broadcast = !(Object.keys(Sequence.map[actionName].responseBroadcastState).length > 0);
+    const sequenceMap = Sequence.map as any;
+    if (sequenceMap[actionName]) {
+      activeResponseMap.emit = !(Object.keys(sequenceMap[actionName].responseEmitState).length > 0);
+      activeResponseMap.broadcast = !(Object.keys(sequenceMap[actionName].responseBroadcastState).length > 0);
     }
     return activeResponseMap;
   }
 
-  static convertServerToApiIoType(iFrameId, actionType) {
+  static convertServerToApiIoType(iFrameId: string, actionType: string) {
     if (actionType.indexOf(`${Sequence.API_SEPARATE_IO_TYPE_START}${Sequence.API_REQUEST_TYPE}${Sequence.API_SEPARATE_IO_TYPE_END}`) >= 0) {
       return Sequence.API_REQUEST_TYPE;
     }
@@ -216,12 +221,12 @@ export default class Sequence {
     return Sequence.API_SETUP;
   }
 
-  static convertExtToClientActionType(iFrameId, actionType) {
+  static convertExtToClientActionType(iFrameId: string, actionType: string) {
     actionType = Sequence.convertApiToClientActionType(actionType);
     return actionType;
   }
 
-  static convertApiToClientActionType(actionType) {
+  static convertApiToClientActionType(actionType: string) {
     if (actionType.indexOf(Sequence.API_TO_SERVER_REQUEST) === 0) {
       return actionType.replace(Sequence.API_TO_SERVER_REQUEST, Sequence.API_TO_CLIENT_REQUEST);
     }
@@ -234,14 +239,15 @@ export default class Sequence {
     return actionType;
   }
 
-  static getRequestState(actionName, reduxState, requestParams) {
+  static getRequestState(actionName: string, reduxState: any, requestParams: any) {
     const endpointKey = actionName.replace(Sequence.API_TO_SERVER_REQUEST, '');
-    const { requestPublicState, requestPrivateState } = Sequence.map[endpointKey];
-    let requestState = { [Sequence.REDUX_ACTION_KEY]: endpointKey };
+    const sequenceMap = Sequence.map as any;
+    const { requestPublicState, requestPrivateState } = sequenceMap[endpointKey];
+    let requestState: { [key in string]: any } = { [Sequence.REDUX_ACTION_KEY]: endpointKey };
 
     Object.keys(requestPrivateState).forEach((stateKey) => {
       if (!requestState[stateKey]) requestState[stateKey] = {};
-      requestPrivateState[stateKey].forEach((columnName) => {
+      requestPrivateState[stateKey].forEach((columnName: string) => {
         if (!requestState[stateKey][columnName]) {
           let value = reduxState[stateKey][columnName];
           if (requestParams && requestParams[stateKey] && Schema.isSet(requestParams[stateKey][columnName])) {
@@ -255,7 +261,7 @@ export default class Sequence {
     Object.keys(requestPublicState).forEach((stateKey) => {
       if (!requestState[stateKey]) requestState[stateKey] = {};
 
-      requestPublicState[stateKey].forEach((columnName) => {
+      requestPublicState[stateKey].forEach((columnName: string) => {
         if (!requestState[stateKey][columnName]) {
           requestState[stateKey][columnName] = requestParams;
         }
@@ -264,9 +270,10 @@ export default class Sequence {
     return requestState;
   }
 
-  static getResponseState(responseType, requestState, updateState) {
+  static getResponseState(responseType: string, requestState: any, updateState: any) {
     const endpointKey = requestState.type;
-    const responseSchema = Sequence.map[endpointKey][`response${responseType}State`];
+    const sequenceMap = Sequence.map as any;
+    const responseSchema = sequenceMap[endpointKey][`response${responseType}State`];
     let responseState = { [Sequence.REDUX_ACTION_KEY]: endpointKey };
     Object.keys(responseSchema).forEach((updateStateKey) => {
       if (updateState[updateStateKey]) {
@@ -287,7 +294,7 @@ export default class Sequence {
             [updateStateKey]: updateStateValue,
           };
         } else {
-          columnNames.forEach((columnName) => {
+          columnNames.forEach((columnName: string) => {
             if (updateState[updateStateKey][columnName] !== undefined) {
               responseState = {
                 ...responseState,
@@ -308,7 +315,7 @@ export default class Sequence {
     return responseState;
   }
 
-  static getRequestActionState(actionName, requestParams1 = null, requestParams2 = null) {
+  static getRequestActionState(actionName: string, requestParams1: any = null, requestParams2: any = null) {
     if (typeof requestParams1 === 'string' && requestParams2 === null) {
       return { type: actionName };
     }

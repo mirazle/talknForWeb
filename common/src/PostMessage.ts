@@ -53,7 +53,7 @@ export default class PostMessage {
   static get MEDIA_CLIENT_TO_MEDIA_SERVER_TYPE() {
     return 'MEDIA_CLIENT_TO_MEDIA_SERVER_TYPE';
   }
-  static convertApiToClientActionType(actionType) {
+  static convertApiToClientActionType(actionType: string) {
     if (actionType.indexOf(Sequence.API_TO_SERVER_REQUEST) === 0) {
       return actionType.replace(Sequence.API_TO_SERVER_REQUEST, Sequence.API_TO_CLIENT_REQUEST);
     }
@@ -65,14 +65,14 @@ export default class PostMessage {
     }
     return `API_TO_CLIENT[ACTION]:${actionType}`;
   }
-  static getMessageTypes(actionType) {
+  static getMessageTypes(actionType: string) {
     const splited1 = actionType.split(':');
-    const splited2 = splited1[0].split('[');
-    const ioType = splited2[1].replace(']', '');
+    const splited2 = splited1[0] && splited1[0] ? splited1[0] && splited1[0].split('[') : [];
+    const ioType = splited2[1] && splited2[1] ? splited2[1] && splited2[1].replace(']', '') : [];
     const exeMethod = splited1[1];
     return { ioType, exeMethod };
   }
-  static convertExtToClientActionType(actionType) {
+  static convertExtToClientActionType(actionType: string) {
     return `EXT_TO_CLIENT[ACTION]:${actionType}`;
   }
 }

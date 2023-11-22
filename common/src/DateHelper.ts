@@ -11,7 +11,7 @@ const DateHelper = class DateHelper {
     return { Y: nowY, M: nowM, D: nowD, H: nowH, I: nowI, S: nowS, Day: nowDay };
   }
 
-  static getMongoYmdhis(d) {
+  static getMongoYmdhis(d: any) {
     const splited = d.split('T');
     const splitedYMD = splited[0].split('-');
     const Y = splitedYMD[0];
@@ -27,7 +27,7 @@ const DateHelper = class DateHelper {
     return { Y, M, D, H, I, S, Day };
   }
 
-  static getYoubi(num) {
+  static getYoubi(num: any) {
     if (num === 0) return 'Sun';
     if (num === 1) return 'Mon';
     if (num === 2) return 'Tue';
@@ -37,7 +37,7 @@ const DateHelper = class DateHelper {
     if (num === 6) return 'Sat';
   }
 
-  static getDiffDay(start, end) {
+  static getDiffDay(start: any, end: any) {
     const date1 = new Date(`${start.Y}/${start.M}/${start.D}`);
     const date2 = new Date(`${end.Y}/${end.M}/${end.D}`);
     // @ts-ignore

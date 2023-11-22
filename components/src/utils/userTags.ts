@@ -5,7 +5,7 @@ import { fixMemberValuesInit } from 'components/model/userTags/Member';
 import { fixProfileValuesInit } from 'components/model/userTags/Profile';
 import { fixStoryValuesInit } from 'components/model/userTags/Story';
 
-export const getFixValuesEmpty = (tagType, includeFillProfile = false): FixValuesType => {
+export const getFixValuesEmpty = (tagType: any, includeFillProfile = false): FixValuesType => {
   let fixValuesEmpty;
   switch (tagType) {
     case tagInvestor:
@@ -17,6 +17,7 @@ export const getFixValuesEmpty = (tagType, includeFillProfile = false): FixValue
     case tagMember:
       fixValuesEmpty = { ...fixMemberValuesInit };
       break;
+    default:
     case tagStory:
       fixValuesEmpty = { ...fixStoryValuesInit };
       break;
@@ -24,12 +25,12 @@ export const getFixValuesEmpty = (tagType, includeFillProfile = false): FixValue
   return includeFillProfile ? { ...fixValuesEmpty, ...fixProfileValuesInit } : fixValuesEmpty;
 };
 
-export const getExtractFixValues = (openModalOption): FixValuesType => {
-  let fixValues = {};
+export const getExtractFixValues = (openModalOption: any): FixValuesType => {
+  let fixValues: { [key: string]: any } = {};
   let fixValuesEmpty = getFixValuesEmpty(openModalOption.tagType);
 
   Object.keys(openModalOption).forEach((columnName) => {
-    if (fixValuesEmpty[columnName] !== undefined) {
+    if (fixValuesEmpty[columnName as keyof FixValuesType] !== undefined) {
       fixValues[columnName] = openModalOption[columnName];
     }
   });

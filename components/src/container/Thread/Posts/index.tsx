@@ -65,7 +65,7 @@ const Component: React.FC<Props> = ({
 
 export default Component;
 
-const getTimelinePostList = (isLoading, postsTimeline, domsTimelines, state) => {
+const getTimelinePostList = (isLoading: boolean, postsTimeline: any, domsTimelines: any, state: any) => {
   const { app, thread } = state;
   const dispPosts = [];
   const postCnt = postsTimeline.length;

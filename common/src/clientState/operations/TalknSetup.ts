@@ -3,7 +3,7 @@ export default class TalknSetupJs {
     TalknSetupJs.setupMath();
   }
   static setupMath() {
-    Math.easeInOutQuad = (t, b, c, d) => {
+    Math.easeInOutQuad = (t: number, b: number, c: number, d: number) => {
       t /= d / 2;
       if (t < 1) return (c / 2) * t * t + b;
       t--;

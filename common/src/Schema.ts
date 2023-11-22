@@ -1,3 +1,8 @@
+
+type MyObject = {
+  [key: string]: any;
+};
+
 export default class Schema {
   errorThrow: any;
 
@@ -35,7 +40,7 @@ export default class Schema {
     return val === "true" ? true : false;
   }
 
-  static isAnonymousFunc(fn) {
+  static isAnonymousFunc(fn: any) {
     const fnString = fn.toString();
 
     if (fnString === "function(){}") return true;
@@ -148,7 +153,7 @@ export default class Schema {
 
   canSet(key: any, validValue: any) {
     try {
-      const currentValue = this[key];
+      const currentValue = this[key as keyof Schema];
       if (currentValue === undefined) {
         return true;
       }
@@ -165,18 +170,18 @@ export default class Schema {
         return true;
       }
 
-      const { error } = (this[key] = validValue);
+      const { error } = (this[key  as keyof Schema] = validValue);
       if (error) {
         return false;
       } else {
-        this[key] = currentValue;
+        this[key as keyof Schema] = currentValue;
         return true;
       }
     } catch (e) {
       console.warn("BAD CAN SET KEY: " + this.constructor.name + " " + key);
       console.warn("BEFOER VALUE");
-      console.warn(typeof this[key]);
-      console.warn(this[key]);
+      console.warn(typeof this[key as keyof Schema]);
+      console.warn(this[key as keyof Schema]);
       console.warn("AFTER VALUE");
       console.warn(typeof validValue);
       console.warn(validValue);
@@ -184,7 +189,7 @@ export default class Schema {
     }
   }
 
-  merge(params = {}, immutable = true) {
+  merge(params: MyObject = {}, immutable = true) {
     try {
       const paramsType = Schema.getType(params);
       const objKeys = Object.keys(params);
@@ -192,7 +197,7 @@ export default class Schema {
       if (objKeys.length > 0) {
         let mergedObj: any = { ...this };
         objKeys.forEach((key) => {
-          if (this[key] !== params[key]) {
+          if (this[key as keyof Schema] !== params[key]) {
             if (this.canSet(key, params[key])) {
               mergedObj[key] = params[key];
             } else {
@@ -257,41 +262,41 @@ export default class Schema {
     return jsonObj;
   }
 
-  forEach(func) {
+  forEach(func: any) {
     return Object.values(this).forEach(func);
   }
 
-  concat(func) {
+  concat(func: any) {
     return this.returnImmutable(Object.values(this).concat(func), func);
   }
 
-  map(func) {
+  map(func: any) {
     return this.returnImmutable(Object.values(this).map(func), func);
   }
 
-  filter(func) {
+  filter(func: any) {
     return this.returnImmutable(Object.values(this).filter(func), func);
   }
 
-  reduce(func) {
+  reduce(func: any) {
     return this.returnImmutable(Object.values(this).reduce(func), func);
   }
 
-  find(func) {
+  find(func: any) {
     return Object.values(this).find(func);
   }
 
-  sort(func) {
+  sort(func: any) {
     return Object.values(this).sort(func);
   }
 
-  push(value) {
+  push(value: any) {
     const values = Object.values(this);
     values.push(value);
     return this.returnImmutable(values);
   }
 
-  unshift(value) {
+  unshift(value: any) {
     const values = Object.values(this);
     values.unshift(value);
     return this.returnImmutable(values);
@@ -303,13 +308,13 @@ export default class Schema {
     return this.returnImmutable(results);
   }
 
-  pop(value) {
+  pop(value: any) {
     const values: any = Object.values(this);
     values.pop(value);
     return this.returnImmutable(values);
   }
 
-  returnImmutable(values, func = () => {}) {
+  returnImmutable(values: any, func = () => {}) {
     if (typeof values === "undefined") {
       return new (<typeof Schema>this.constructor)();
     } else if (values.length === 0 && Object.keys(this).length === 0) {
@@ -325,7 +330,7 @@ export default class Schema {
     }
   }
 
-  validWarn(validResult) {
+  validWarn(validResult: any) {
     console.warn("##########################");
     console.warn("#" + validResult.pointer);
     console.warn("##########################");

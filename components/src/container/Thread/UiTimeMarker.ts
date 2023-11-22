@@ -33,17 +33,17 @@ export default class UiTimeMarker extends Schema {
     });
   }
 
-  public static generate(root: HTMLElement, scrollTop = 0, _timeMarkers) {
-    const timeMarkers = _timeMarkers.filter((t) => t).sort((a: HTMLElement, b: HTMLElement) => a.offsetTop - b.offsetTop);
+  public static generate(root: HTMLElement, scrollTop = 0, _timeMarkers: any) {
+    const timeMarkers = _timeMarkers.filter((t: any) => t).sort((a: HTMLElement, b: HTMLElement) => a.offsetTop - b.offsetTop);
     const timeMarkerSize = timeMarkers.length;
-    let list = [];
+    let list: UiTimeMarkerObject[] = [];
     let now = { ...initUiTimeMarkerObject };
     let before = { ...initUiTimeMarkerObject };
     let after = { ...initUiTimeMarkerObject };
 
     if (timeMarkerSize > 0) {
       const scrollBaseTop = scrollTop + hosei;
-      timeMarkers.forEach((timeMarker, index) => {
+      timeMarkers.forEach((timeMarker: any, index: number) => {
         if (now.label === '' && scrollBaseTop <= timeMarker.offsetTop + root.offsetHeight) {
           now.index = index;
           now.label = timeMarker.innerHTML;
@@ -96,7 +96,7 @@ export default class UiTimeMarker extends Schema {
     return new UiTimeMarker({ list, now, before, after });
   }
 
-  public static update(scrollTop = 0, uiTimeMarker) {
+  public static update(scrollTop = 0, uiTimeMarker: any) {
     let list = uiTimeMarker.list;
     let now = uiTimeMarker.now;
     let before = uiTimeMarker.before;

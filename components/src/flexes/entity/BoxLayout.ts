@@ -56,17 +56,17 @@ export const boxLayoutPropsInit = {
 };
 
 export const BoxLayoutCss = css<BoxLayoutPropsType>`
-  overflow: ${(props) => props.overflow};
-  width: ${(props) => getWidth(props)};
-  min-width: ${(props) => getMinMaxSize(props.minWidth)};
-  max-width: ${(props) => getMinMaxSize(props.maxWidth)};
-  height: ${(props) => getHeight(props)};
-  padding: ${(props) => getPadding(props)};
-  margin: ${(props) => getMargin(props)};
-  ${(props) => getBorder(props)};
-  ${(props) => getRadius(props)};
-  ${(props) => getBackground(props)};
-  ${(props) => (props.resetOrigin ? 'transform: translate(0px, 0px)' : '')};
+  overflow: ${(props: BoxLayoutPropsType) => props.overflow};
+  width: ${(props: BoxLayoutPropsType) => getWidth(props)};
+  min-width: ${(props: BoxLayoutPropsType) => getMinMaxSize(props.minWidth as string | number)};
+  max-width: ${(props: BoxLayoutPropsType) => getMinMaxSize(props.maxWidth as string | number)};
+  height: ${(props: BoxLayoutPropsType) => getHeight(props)};
+  padding: ${(props: BoxLayoutPropsType) => getPadding(props)};
+  margin: ${(props: BoxLayoutPropsType) => getMargin(props)};
+  ${(props: BoxLayoutPropsType) => getBorder(props)};
+  ${(props: BoxLayoutPropsType) => getRadius(props)};
+  ${(props: BoxLayoutPropsType) => getBackground(props)};
+  ${(props: BoxLayoutPropsType) => (props.resetOrigin ? 'transform: translate(0px, 0px)' : '')};
   transition: ${styles.transitionDuration}ms;
 `;
 

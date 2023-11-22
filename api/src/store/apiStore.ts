@@ -15,7 +15,8 @@ export default function apiStore(initialState = {}) {
   const store = createStore(
     apiReducers,
     initialState,
-    composeEnhancers ? composeEnhancers(applyMiddleware(...middlewares)) : applyMiddleware(...middlewares)
+    //    composeEnhancers ? composeEnhancers(applyMiddleware(...middlewares)) : applyMiddleware(...middlewares)
+    applyMiddleware(...middlewares)
   );
 
   if (module.hot) {

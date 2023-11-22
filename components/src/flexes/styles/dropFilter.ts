@@ -19,7 +19,7 @@ export const beforeBlur = `
     bottom: 0;
     left: 0;
     content: ' ';
-    backdrop-filter: ${(props) => getBackdropFilter(props)};
+    backdrop-filter: ${(props: any) => getBackdropFilter(props)};
     transition: ${transitionDuration}ms;
 `;
 

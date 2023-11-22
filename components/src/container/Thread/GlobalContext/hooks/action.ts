@@ -17,6 +17,7 @@ import { init as timelineInit } from 'components/container/Thread/GlobalContext/
 import { init as uiTimeMarkerInit } from 'components/container/Thread/GlobalContext/hooks/posts/uiTimeMarker';
 
 import { dataset } from './refs';
+import { isValidKey } from 'components/utils/obj';
 
 export const actions = {
   init: 'init',
@@ -84,9 +85,10 @@ export default (props: HookProps) => {
     setRankCatched,
   } = props;
   const { app } = state;
-  const postsElm = doms.posts;
+  const postsElm = doms.posts as HTMLElement;
+  const postTextareaElm = doms.postTextarea as HTMLTextAreaElement;
 
-  const exeApi = (method, params?: any) => {
+  const exeApi = (method: string, params?: any) => {
     exeApiId = window.setTimeout(() => {
       setBools({ ...bools, loading: false });
       setAction(actions.neutral);
@@ -159,8 +161,9 @@ export default (props: HookProps) => {
       setBools({ ...bools, openTuneModal: false, openPictograms: false });
       break;
     case actions.apiRequestPost:
-      const inputStampId = doms.postTextarea.dataset[dataset['stamp-id']];
-      const inputPost = Number(inputStampId) > 0 ? Emotions.map[inputStampId] : doms.postTextarea.value;
+      const inputStampId = String(postTextareaElm.dataset[dataset['stamp-id']]);
+      const stampId = isValidKey(inputStampId, Emotions.map) ? Emotions.map[inputStampId] : 0;
+      const inputPost = Number(inputStampId) > 0 ? stampId : postTextareaElm.value;
       const inputCurrentTime = 0;
       exeApi('post', { app: { inputPost, inputStampId, inputCurrentTime } });
       setBools({ ...bools, openPostsTextarea: false, openPictograms: false });
@@ -197,14 +200,14 @@ export default (props: HookProps) => {
 
     case actions.apiResponsePost:
       if (bools.postsScrollBottom) {
-        doms.posts.scrollTo({ left: 0, top: Number.MAX_SAFE_INTEGER, behavior: 'smooth' });
+        postsElm.scrollTo({ left: 0, top: Number.MAX_SAFE_INTEGER, behavior: 'smooth' });
         setBools({ ...bools, postsScrollingBottom: true });
         setTimeout(() => {
           setBools({ ...bools, postsScrollingBottom: false });
           setAction(actions.neutral);
         }, 1000);
       } else {
-        if (doms.posts.clientHeight < doms.posts.scrollHeight) {
+        if (postsElm.clientHeight < postsElm.scrollHeight) {
           setBools({ ...bools, openNewPost: true });
         }
       }

@@ -51,12 +51,12 @@ export default class MediaClient {
     this.postsTimelineStock = [];
   }
 
-  private requestServer(method, params = {}) {
+  private requestServer(method: string, params = {}) {
     this.window.toMediaServer(method, params);
   }
 
   // Window.tsのonMessageでstateを受け取る
-  public onMessage(e: MessageEvent, state) {
+  public onMessage(e: MessageEvent, state: any) {
     const { id, type, params } = e.data;
     const { currentTime, status, ch } = params;
 
@@ -85,7 +85,7 @@ export default class MediaClient {
     }
   }
 
-  public wsClientBeforeFilter({ method, params }) {
+  public wsClientBeforeFilter({ method, params }: { method: string; params: any }) {
     if (method === 'post') {
       const state = this.window.store.getState();
       if (state.app.isMediaCh) {
@@ -97,7 +97,7 @@ export default class MediaClient {
     return params;
   }
 
-  public wsClientAfterFilter({ method, params, state }) {
+  public wsClientAfterFilter({ method, params, state }: { method: string; params: any; state: any }) {
     switch (method) {
       case 'SERVER_TO_API[EMIT]:tune':
         this.isPosting = false;
@@ -152,7 +152,7 @@ export default class MediaClient {
     }
   }
 
-  public setPostsTimelines({ postsTimeline, postsTimelineStock }) {
+  public setPostsTimelines({ postsTimeline, postsTimelineStock }: any) {
     // 現在、表示されている投稿
     this.postsTimeline = [...postsTimeline];
 
@@ -161,7 +161,7 @@ export default class MediaClient {
     // console.log('SET', this.postsTimeline.length, this.postsTimelineStock.length);
   }
 
-  public refrectSelfPost(post) {
+  public refrectSelfPost(post: any) {
     const length = this.postsTimeline.length;
     let pushFlg = false;
     for (let i = 0; i < length; i++) {
@@ -177,7 +177,7 @@ export default class MediaClient {
     }
   }
 
-  public setServerParams(params) {
+  public setServerParams(params: any) {
     this.ch = params.ch;
     this.status = params.status;
     this.pointerTime = params.currentTime;

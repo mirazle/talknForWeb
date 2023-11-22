@@ -3,7 +3,7 @@ import conf from 'common/conf';
 import Post from 'api/store/Post';
 import Posts from 'api/store/Posts';
 
-export default (state: Post[] = [], action) => {
+export default (state: Post[] = [], action: { type: string; postsMulti: any; app: any }) => {
   switch (action.type) {
     case 'ON_CLICK_MULTISTREAM':
       return action.postsMulti;

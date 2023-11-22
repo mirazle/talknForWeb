@@ -6,7 +6,7 @@ export default class Threads extends Schema {
     return this.create(params);
   }
 
-  static getMergedThreads(baseThreads, mergeThread) {
+  static getMergedThreads(baseThreads: any, mergeThread: any) {
     baseThreads[mergeThread.ch] = { ...mergeThread };
     return baseThreads;
   }

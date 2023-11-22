@@ -22,7 +22,7 @@ export default class User extends CommonModel {
   public hasSelfTags: UserHasSelfTagsType;
   constructor(props?: User) {
     super();
-    this.id = this.resolveId(props);
+    this.id = props ? this.resolveId(props) : '';
     this.name = props && props.name ? props.name : '';
     this.email = props && props.email ? props.email : '';
     this.bg = props && props.bg ? props.bg : '';
@@ -35,7 +35,7 @@ export default class User extends CommonModel {
     this.hasSelfTags = props && props.hasSelfTags ? props.hasSelfTags : userHasSelfTagsInit;
   }
 
-  resolveId(props) {
+  resolveId(props: User & { _id?: string }) {
     if (props) {
       if (props.id) return props.id;
       if (props._id) return props._id;

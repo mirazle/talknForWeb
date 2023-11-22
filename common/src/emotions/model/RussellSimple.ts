@@ -15,15 +15,20 @@ export default class RussellSimple {
   }
 
   typesArray: any;
-  constructor(type) {
+  constructor() {
     this.typesArray = [];
+    RussellSimple.TYPES.forEach((emotionType) => {
+      this.typesArray.push(emotionType.LABEL);
+    });
+    /*
     Object.keys(RussellSimple.TYPES).forEach((index) => {
       this.typesArray.push(RussellSimple.TYPES[index].LABEL);
     });
+    */
   }
 
-  static getSaveBalance(stampId) {
-    const balance = {
+  static getSaveBalance(stampId: number) {
+    const balance: {[key: number]: any} = {
       // Suprise(Posi1)
       1001: [{ [Emotions.TYPES.EXCITE.ID]: 1 }],
       1002: [{ [Emotions.TYPES.EXCITE.ID]: 1 }],
@@ -139,7 +144,7 @@ export default class RussellSimple {
   }
 
   static getSchemas() {
-    let schemas = {};
+    let schemas: { [key: string]: any} = {};
     RussellSimple.TYPES.forEach((obj, i) => {
       schemas[obj.LABEL] = { type: Number, default: 0, min: 0 };
     });

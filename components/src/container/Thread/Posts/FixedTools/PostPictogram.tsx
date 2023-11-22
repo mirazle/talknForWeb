@@ -2,15 +2,13 @@ import { css } from '@emotion/react';
 import React, { useEffect, useState } from 'react';
 
 import Emotions from 'common/emotions';
-
-import TalknComponent from 'client/components/TalknComponent';
-
 import { useGlobalContext, actions, dataset } from 'components/container/Thread/GlobalContext';
 import { animations, layouts } from 'components/styles';
 import colors from 'components/styles/colors';
 
-import Icon from '../Icon';
+// import Icon from '../Icon';
 import handleOnPayment from '../handleOnPayment';
+import { isValidKey } from 'components/utils/obj';
 
 type ListType = {
   onClick: () => void;
@@ -21,17 +19,21 @@ type ListType = {
 const List: React.FC<ListType> = ({ onClick, menu, stampId }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const isBack = !menu && !stampId;
-  return (
-    <li
-      key={stampId}
-      css={styles.li(isMouseOver)}
-      onClick={onClick}
-      onMouseOver={() => setIsMouseOver(true)}
-      onMouseLeave={() => setIsMouseOver(false)}>
-      <div className={`pictogram ${isBack ? 'back' : menu} `}>{Emotions.map[stampId]}</div>
-      {menu && <label className="menu">{menu}</label>}
-    </li>
-  );
+  if (stampId && isValidKey(stampId, Emotions.map)) {
+    return (
+      <li
+        key={stampId}
+        css={styles.li(isMouseOver)}
+        onClick={onClick}
+        onMouseOver={() => setIsMouseOver(true)}
+        onMouseLeave={() => setIsMouseOver(false)}>
+        <div className={`pictogram ${isBack ? 'back' : menu} `}>{stampId && Emotions.map[stampId]}</div>
+        {menu && <label className="menu">{menu}</label>}
+      </li>
+    );
+  } else {
+    return null;
+  }
 };
 
 type Props = {
@@ -68,14 +70,16 @@ const Component: React.FC<Props> = ({ api }) => {
 
   const getLis = (menu = '') => {
     let display = [];
+    const menus = Emotions.inputs[menu] as number[];
     switch (menu) {
       case '':
         display = Object.keys(Emotions.inputs).map((menu) => {
-          return <List key={menu} stampId={Emotions.inputs[menu][0]} menu={menu} onClick={() => setMenu(menu)} />;
+          const stampId = Emotions.inputs ? menus[0] : 0;
+          return <List key={menu} stampId={stampId} menu={menu} onClick={() => setMenu(menu)} />;
         });
         break;
       default:
-        display = Emotions.inputs[menu].map((stampId) => {
+        display = menus.map((stampId) => {
           return <List key={`${menu}_${stampId}`} stampId={stampId} menu={''} onClick={() => handleOnClickPost(stampId)} />;
         });
         display.unshift(<List key={`${menu}_backCover`} onClick={() => setMenu('')} />);

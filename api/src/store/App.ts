@@ -52,31 +52,34 @@ export default class App extends Schema {
       [App.mediaTypeM4a]: App.mediaTagTypeAudio,
     };
   }
-  static getMediaType(src, params) {
+  static getMediaType(src: string, params: any) {
     if (params && params.chType) {
       return params.chType;
     }
     return App.getMediaTypeFromSrc(src);
   }
-  static getMediaTypeFromSrc(src) {
-    const mediaChTagTypeKeys = Object.keys(App.mediaChTagTypes);
+  static getMediaTypeFromSrc(src: any) {
+    const mediaChTagTypeKeys: any[] = Object.keys(App.mediaChTagTypes);
     const mediaChTagTypeLength = mediaChTagTypeKeys.length;
-    let mediaType = 'html';
+    let mediaType: typeof App.mediaTagTypeAudio | typeof App.mediaTagTypeVideo | typeof App.mediaTagTypeNo = 'html';
     for (let i = 0; i < mediaChTagTypeLength; i++) {
       const regExp = new RegExp(`.${mediaChTagTypeKeys[i]}$`);
       if (src.match(regExp)) {
-        mediaType = App.mediaChTagTypes[mediaChTagTypeKeys[i]];
+        mediaType = App.mediaChTagTypes[mediaChTagTypeKeys[i]] as
+          | typeof App.mediaTagTypeAudio
+          | typeof App.mediaTagTypeVideo
+          | typeof App.mediaTagTypeNo;
         break;
       }
     }
     return mediaType;
   }
-  static validInputPost(value) {
+  static validInputPost(value: string) {
     if (/\r\n$|\n$|\r$/gim.test(value)) return 'LAST TYPE BREAK LINE.';
     return false;
   }
 
-  static validPost(value) {
+  static validPost(value: string) {
     if (value === '') return 'NO INPUT POST';
     if (/^\r\n+$|\n+$|\r+$/g.test(value)) return 'ONLY NEW LINE';
     if (/^\s+$/g.test(value)) return 'only space';
@@ -84,7 +87,7 @@ export default class App extends Schema {
     return false;
   }
 
-  static getWidth(params) {
+  static getWidth(params: any) {
     if (typeof window === 'object' && window.innerWidth) return window.innerWidth;
     if (params.width) {
       if (typeof params.width === 'string') {
@@ -223,30 +226,30 @@ export default class App extends Schema {
     });
   }
 
-  static isMediaContentType(contentType) {
+  static isMediaContentType(contentType: string) {
     return App.isAudioContentType(contentType) || App.isVideoContentType(contentType);
   }
 
-  static isAudioContentType(contentType) {
+  static isAudioContentType(contentType: string) {
     return contentType.indexOf(App.mediaTagTypeAudio) >= 0;
   }
 
-  static isVideoContentType(contentType) {
+  static isVideoContentType(contentType: string) {
     return contentType.indexOf(App.mediaTagTypeVideo) >= 0;
   }
 
-  static getMediaSrc(protocol, ch) {
+  static getMediaSrc(protocol: string, ch: string) {
     return protocol + '/' + ch.replace(/\/$/, '');
   }
 
-  static getIsMediaCh(ch) {
+  static getIsMediaCh(ch: string) {
     return App.mediaChs.some((ext) => {
       const regexp = new RegExp(`.${ext}\/$|.${ext}$`);
       return ch.match(regexp);
     });
   }
 
-  static getDispThreadType(params, isMediaCh) {
+  static getDispThreadType(params: any, isMediaCh: boolean) {
     if (params && params.dispThreadType) {
       return params.dispThreadType;
     } else {
@@ -258,7 +261,7 @@ export default class App extends Schema {
     }
   }
 
-  static getOffsetFindId({ posts }) {
+  static getOffsetFindId({ posts }: any) {
     if (posts && posts[0] && posts[0]._id) {
       return posts[0]._id;
     }
@@ -273,7 +276,7 @@ export default class App extends Schema {
     return { app, stepTo: `${beforeDispThreadType} to ${afterDispThreadType}` };
   }
 
-  static getStepDispThreadType({ app, ranks }, threadStatus: any = {}, toCh, clicked) {
+  static getStepDispThreadType({ app, ranks }: any, threadStatus: any = {}, toCh: string, clicked: string) {
     const log = false;
     const updatedApp = app ? app : {};
     updatedApp.offsetFindId = App.defaultOffsetFindId;
@@ -295,7 +298,7 @@ export default class App extends Schema {
     }
 
     if (clicked === 'Links' && ranks.length > 0) {
-      const haveMenuIndex = ranks.some((mi) => {
+      const haveMenuIndex = ranks.some((mi: any) => {
         return mi.ch === toCh || mi.ch === toCh + '/';
       });
 

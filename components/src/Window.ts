@@ -28,7 +28,7 @@ export default class Window {
   static get SET_CALLBACK_METHOD() {
     return 'tune';
   }
-  constructor(id, type, bootOptionParams?: BootOptionParamsType) {
+  constructor(id: string, type: string, bootOptionParams?: BootOptionParamsType) {
     TalknSetup.setupMath();
 
     // client store.
@@ -100,7 +100,7 @@ export default class Window {
 
         if (this.id === define.APP_TYPES.EXTENSION) {
           // ext
-          this.extTo(method, ioType, params);
+          this.extTo(method, ioType as IoTypeValues, params);
         }
 
         if (window.talknMediaClients[this.id]) {
@@ -114,14 +114,14 @@ export default class Window {
     console.warn(e);
   }
 
-  clientAction(type: string, params?, callback = () => {}) {
+  clientAction(type: string, params?: any, callback = () => {}) {
     const action = params ? { ...params, type } : { type };
     this.store.dispatch(action);
   }
 
   public extTo(method: string, ioType: IoTypeValues, params: MessageParams = {}): void {
     if (method.indexOf(Sequence.METHOD_COLON) >= 0) {
-      method = method.split(Sequence.METHOD_COLON)[1];
+      method = method.split(Sequence.METHOD_COLON)[1] as string;
     }
     const message: MessageClientAndExtType = {
       id: this.id,

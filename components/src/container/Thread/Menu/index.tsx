@@ -65,7 +65,7 @@ const Component: React.FC<Props> = ({
               />
             )}
           </li>
-          {state.ranks.map((rank, i) => (
+          {state.ranks.map((rank: any, i: number) => (
             <li className="MenuLi" key={`MenuList${i}`} css={styles.li}>
               <Content
                 isHighlight={rank.ch === state.thread.ch}

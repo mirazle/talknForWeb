@@ -1,6 +1,6 @@
 import Post from 'api/store/Post';
 
-export default (state: Post = new Post(), action) => {
+export default (state: Post = new Post(), action: { type: string; thread: any; posts: any }) => {
   // console.log(action.type, action);
   switch (action.type) {
     case 'SERVER_TO_API[EMIT]:tune':

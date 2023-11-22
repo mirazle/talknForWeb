@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import styles from '../styles';
 
-export const getHoverAltCss = (props) => {
+export const getHoverAltCss = (props: any) => {
   if (props.alt) {
     let att;
     let horizon;

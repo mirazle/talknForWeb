@@ -1,13 +1,15 @@
 import Posts from 'api/store/Posts';
 
 import { HookProps, actions } from 'components/container/Thread/GlobalContext';
+import { isValidKey } from 'components/utils/obj';
 
 export type Type = string[];
 export const init: Type = [];
 
 export default (hookProps: HookProps) => {
-  if (hookActions[hookProps.state.apiLog[0]]) {
-    hookActions[hookProps.state.apiLog[0]](hookProps);
+  const hookActionKey = String(hookProps.state.apiLog[0]);
+  if (isValidKey(hookActionKey, hookActions)) {
+    hookActions[hookActionKey](hookProps);
   }
 };
 
@@ -42,15 +44,11 @@ const hookActions = {
   },
   'SERVER_TO_API[BROADCAST]:post': async ({ state, postsTimeline, setAction, setPostsTimeline }: HookProps) => {
     const { app, apiLog, thread, ranks, posts } = state;
-    console.log('A', app.rootCh, posts);
     if (app.isRootCh) {
-      console.log('B', app.rootCh, posts);
       setPostsTimeline(postsTimeline.concat(posts));
       setAction(actions.apiResponsePost);
     } else {
-      console.log('C', app.rootCh, posts);
       if (posts[0].ch === thread.ch) {
-        console.log('D', app.rootCh, posts);
         setPostsTimeline(postsTimeline.concat(posts));
         setAction(actions.apiResponsePost);
       }

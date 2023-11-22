@@ -20,14 +20,15 @@ declare global {
     easeInOutQuad: any;
   }
 }
+
 export default {
-  updateAction: (store) => (next) => (action) => {
+  updateAction: (store: any) => (next: any) => (action: any) => {
     const state = store.getState();
     action.ui = action.ui ? { ...state.ui, ...action.ui } : state.ui;
     action.app = action.app ? { ...state.app, ...action.app } : state.app;
 
-    if (functions[action.type]) {
-      action = functions[action.type](state, action);
+    if (functions[action.type as keyof typeof functions]) {
+      action = functions[action.type as keyof typeof functions](state, action);
     }
 
     if (action) {
@@ -37,23 +38,23 @@ export default {
 };
 
 const functions = {
-  'API_TO_CLIENT[REQUEST]:getMore': (state, action) => {
+  'API_TO_CLIENT[REQUEST]:getMore': (state: any, action: any) => {
     action.ui.isLoading = true;
     return action;
   },
-  'API_TO_CLIENT[EMIT]:getMore': (state, action) => {
+  'API_TO_CLIENT[EMIT]:getMore': (state: any, action: any) => {
     action.ui.isLoading = false;
     return action;
   },
-  'API_TO_CLIENT[REQUEST]:fetchPosts': (state, action) => {
+  'API_TO_CLIENT[REQUEST]:fetchPosts': (state: any, action: any) => {
     // action.ui.isLoading = true;
     return action;
   },
-  'API_TO_CLIENT[REQUEST]:changeThread': (state, action) => {
+  'API_TO_CLIENT[REQUEST]:changeThread': (state: any, action: any) => {
     action.ui.isLoading = true;
     return action;
   },
-  'API_TO_CLIENT[EMIT]:fetchPosts': (state, action) => {
+  'API_TO_CLIENT[EMIT]:fetchPosts': (state: any, action: any) => {
     action.ui.isLoading = false;
     action.ui.detailCh = action.thread.ch;
     if (!action.app.isLinkCh) {
@@ -85,7 +86,7 @@ const functions = {
     }
     return action;
   },
-  'API_TO_CLIENT[BROADCAST]:post': (state, action) => {
+  'API_TO_CLIENT[BROADCAST]:post': (state: any, action: any) => {
     const postLength = action.posts.length - 1;
     switch (action.ui.extensionMode) {
       case Ui.extensionModeBottom:
@@ -113,15 +114,15 @@ const functions = {
     }
     return action;
   },
-  'CLIENT_TO_API[EMIT]:getMore': (state, action) => {
+  'CLIENT_TO_API[EMIT]:getMore': (state: any, action: any) => {
     action.ui.isLoading = true;
     return action;
   },
-  'ON_CLICK_MULTISTREAM': (state, action) => {
+  'ON_CLICK_MULTISTREAM': (state: any, action: any) => {
     const posts = Posts.getDispPosts(action);
     const postLength = posts && posts.length ? posts.length : 0;
     if (postLength > 0 && state.ranks.length > 0) {
-      action.ranks = state.ranks.map((mi) => {
+      action.ranks = state.ranks.map((mi: any) => {
         if (state.app.rootCh === mi.ch) {
           return {
             ...mi,
@@ -136,7 +137,7 @@ const functions = {
     }
     return action;
   },
-  'NEXT_POSTS_TIMELINE': (state, action) => {
+  'NEXT_POSTS_TIMELINE': (state: any, action: any) => {
     const postsTimelineKey = action.postsTimeline.length - 1;
     const id = action.postsTimeline[postsTimelineKey]['_id'];
     const post = action.postsTimeline[postsTimelineKey]['post'];
@@ -155,79 +156,79 @@ const functions = {
     action.postsTimeline = [...state.postsTimeline, ...action.postsTimeline];
     return action;
   },
-  'TOGGLE_DISP_POSTS_SUPPORTER': (state, action) => {
+  'TOGGLE_DISP_POSTS_SUPPORTER': (state: any, action: any) => {
     state.ui.isOpenPostsSupporter = !state.ui.isOpenPostsSupporter;
     return action;
   },
-  'TOGGLE_LINKS': (state, action) => {
+  'TOGGLE_LINKS': (state: any, action: any) => {
     action.ui.isOpenLinks = !state.ui.isOpenLinks;
     return action;
   },
-  'ON_CLICK_TOGGLE_POSTS': (state, action) => {
+  'ON_CLICK_TOGGLE_POSTS': (state: any, action: any) => {
     action.ui.isOpenPosts = action.ui.isOpenPosts ? action.ui.isOpenPosts : Ui.getIsOpenPosts(action.ui);
     return action;
   },
-  'ON_CLICK_TOGGLE_DISP_DETAIL': (state, action) => {
+  'ON_CLICK_TOGGLE_DISP_DETAIL': (state: any, action: any) => {
     const threadDetail = state.threads[action.app.detailCh];
     action.threadDetail = { ...threadDetail };
     return action;
   },
-  'OFF_TRANSITION': (state, action) => {
+  'OFF_TRANSITION': (state: any, action: any) => {
     action.ui.height = App.getHeight();
     action.ui.isOpenPosts = action.ui.isOpenPosts ? action.ui.isOpenPosts : Ui.getIsOpenPosts(action.ui);
     return action;
   },
-  'ON_TRANSITION_END': (state, action) => {
+  'ON_TRANSITION_END': (state: any, action: any) => {
     action.ui.height = Ui.getHeight();
     action.ui.isOpenPosts = Ui.getIsOpenPosts(action.ui);
     return action;
   },
-  'ON_RESIZE_START_WINDOW': (state, action) => {
+  'ON_RESIZE_START_WINDOW': (state: any, action: any) => {
     action.ranks = state.ranks;
     return action;
   },
-  'ON_RESIZE_END_WINDOW': (state, action) => {
+  'ON_RESIZE_END_WINDOW': (state: any, action: any) => {
     action.ranks = state.ranks;
     return action;
   },
-  'ON_CLICK_TO_MULTI_THREAD': (state, action) => {
+  'ON_CLICK_TO_MULTI_THREAD': (state: any, action: any) => {
     action.ui.isLoading = !action.ui.isLoading;
     return action;
   },
-  'ON_CLICK_TOGGLE_DISP_MENU': (state, action) => {
+  'ON_CLICK_TOGGLE_DISP_MENU': (state: any, action: any) => {
     action.ui.isOpenMenu = !action.ui.isOpenMenu;
     return action;
   },
-  'TOGGLE_DISP_SET_CH_MODAL': (state, action) => {
+  'TOGGLE_DISP_SET_CH_MODAL': (state: any, action: any) => {
     action.ui.isOpenSetChModal = !state.ui.isOpenSetChModal;
     return action;
   },
-  'TOGGLE_DISP_BOARD': (state, action) => {
+  'TOGGLE_DISP_BOARD': (state: any, action: any) => {
     action.ui.isOpenBoard = !state.ui.isOpenBoard;
     return action;
   },
-  'OPEN_NEW_POST': (state, action) => {
+  'OPEN_NEW_POST': (state: any, action: any) => {
     action.ui.isOpenNewPost = true;
     return action;
   },
-  'TOGGLE_BUBBLE_POST': (state, action) => {
+  'TOGGLE_BUBBLE_POST': (state: any, action: any) => {
     action.ui.isBubblePost = !state.ui.isBubblePost;
     return action;
   },
-  'CLOSE_NEW_POST': (state, action) => {
+  'CLOSE_NEW_POST': (state: any, action: any) => {
     action.ui.isOpenNewPost = false;
     return action;
   },
-  'OPEN_INNER_NOTIF': (state, action) => {
+  'OPEN_INNER_NOTIF': (state: any, action: any) => {
     action.ui.openInnerNotif = action.ui.openInnerNotif === '' ? define.noInnerNotif : action.ui.openInnerNotif;
     return action;
   },
-  'ON_CHANGE_INPUT_POST': (state, action) => {
+  'ON_CHANGE_INPUT_POST': (state: any, action: any) => {
     const inputPost = action.ui.inputPost;
     window.talknWindow.ext.to('setInputPost', Sequence.UNKNOWN, { inputPost });
     return action;
   },
-  'GET_CLIENT_METAS': (state, action) => {
+  'GET_CLIENT_METAS': (state: any, action: any) => {
     let updateFlg = false;
     // let { clientMetas } = action;
     let clientMetas = action;

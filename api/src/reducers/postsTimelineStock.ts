@@ -1,7 +1,7 @@
 import Post from 'api/store/Post';
 import PostsTimelineStock from 'api/store/PostsTimelineStock';
 
-export default (state: Post[] = [], action) => {
+export default (state: Post[] = [], action: { type: string; postsTimelineStock: any }) => {
   switch (action.type) {
     case 'SERVER_TO_API[BROADCAST]:post':
       return action.postsTimelineStock ? [...state, action.postsTimelineStock] : state;

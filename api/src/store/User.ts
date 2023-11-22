@@ -23,7 +23,7 @@ export default class User extends Schema {
     const offsetLogsFindId = params && params.offsetLogsFindId ? params.offsetLogsFindId : User.defaultOffsetFindId;
 
     const requestLoginType = params.requestLoginType ? params.requestLoginType : '';
-    const friends = [];
+    const friends: string[] = [];
     return this.create({
       uid,
       utype,
@@ -39,7 +39,7 @@ export default class User extends Schema {
     });
   }
 
-  static getOffsetFindId({ posts }) {
+  static getOffsetFindId({ posts }: { posts: Post[] }) {
     if (posts && posts[0] && posts[0]._id) {
       return posts[0]._id;
     }

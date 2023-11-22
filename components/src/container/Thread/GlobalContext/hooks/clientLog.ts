@@ -8,8 +8,9 @@ export default ({ state, postsTimeline, setPostsTimeline, setAction }: HookProps
     case 'NEXT_POSTS_TIMELINE':
       const postsTimelineCnt = postsTimeline.length - 1;
       const postsTimelineStateCnt = state.postsTimeline.length - 1;
-      if (postsTimeline[postsTimelineCnt] && state.postsTimeline[postsTimelineStateCnt]) {
-        if (postsTimeline[postsTimelineCnt]._id !== state.postsTimeline[postsTimelineStateCnt]._id) {
+      const postsTimelineObj = postsTimeline[postsTimelineCnt] as any;
+      if (postsTimelineObj && state.postsTimeline[postsTimelineStateCnt]) {
+        if (postsTimelineObj._id !== state.postsTimeline[postsTimelineStateCnt]._id) {
           setPostsTimeline([...postsTimeline, state.postsTimeline[postsTimelineStateCnt]]);
           setAction(actions.nextPostsTimeline);
         }

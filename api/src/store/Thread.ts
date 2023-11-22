@@ -15,6 +15,12 @@ export type ThreadStatusType = {
   getMore: boolean;
 };
 
+export type ThreadFindType =
+  | typeof Thread.findTypeHtml
+  | typeof Thread.findTypeMusic
+  | typeof Thread.findTypeVideo
+  | typeof Thread.findTypeOther;
+
 export default class Thread extends Schema {
   static get findTypeAll(): 'All' {
     return 'All';
@@ -57,7 +63,7 @@ export default class Thread extends Schema {
     return `https://${conf.assetsURL}/favicon.ico`;
   }
 
-  static isWindowObj(params) {
+  static isWindowObj(params: any) {
     return params.alert ? true : false;
   }
 
@@ -93,7 +99,7 @@ export default class Thread extends Schema {
     return this.create(thread);
   }
 
-  static constructorFromWindow(params, bootOption) {
+  static constructorFromWindow(params: any, bootOption: any) {
     const bootCh = bootOption.ch ? bootOption.ch : false;
     const ch = Thread.getCh(bootOption);
 
@@ -147,7 +153,7 @@ export default class Thread extends Schema {
     return bootOption && bootOption.ch && bootOption.ch !== '' ? bootOption.ch : '/';
   }
 
-  static getChTop(ch) {
+  static getChTop(ch: string) {
     if (ch !== '') {
       return '/' + ch.split('/')[1];
     } else {
@@ -155,7 +161,7 @@ export default class Thread extends Schema {
     }
   }
 
-  static getChs(_ch) {
+  static getChs(_ch: string) {
     let chs = ['/'];
 
     if (_ch !== '') {
@@ -188,7 +194,7 @@ export default class Thread extends Schema {
     return chs;
   }
 
-  static getHost(ch) {
+  static getHost(ch: string) {
     if (ch.indexOf('.') >= 0) {
       ch = ch.replace('https://', '').replace('http://', '');
       return ch.replace(/^\//, '').replace(/\/.*$/, '');
@@ -197,14 +203,14 @@ export default class Thread extends Schema {
     }
   }
 
-  static getProtocol(href) {
+  static getProtocol(href: string) {
     if (href.indexOf('http:') >= 0) return 'http:';
     if (href.indexOf('https:') >= 0) return 'https:';
     if (location && location.protocol) return location.protocol;
     return '????:';
   }
 
-  static getIsSelfCh(href, ch) {
+  static getIsSelfCh(href: string, ch: string) {
     const replacedHref = href
       .replace('http:/', '')
       .replace('https:/', '')
@@ -216,16 +222,16 @@ export default class Thread extends Schema {
     return ch.split('/').length - 1;
   }
 
-  static getMediaSrc(thread) {
+  static getMediaSrc(thread: any) {
     return App.getMediaSrc(thread.protocol, thread.ch);
   }
 
-  static getMediaTagType(thread) {
+  static getMediaTagType(thread: any) {
     const src = Thread.getMediaSrc(thread);
     return App.getMediaType(src, null);
   }
 
-  static getFaviconFromWindow(window) {
+  static getFaviconFromWindow(window: any) {
     if (window && window.document) {
       const u = window.document.evaluate(
         "//link[contains(@rel,'icon')or(contains(@rel,'ICON'))][1]/@href",
@@ -253,7 +259,7 @@ export default class Thread extends Schema {
     }
   }
 
-  static getStatus(thread, app, isExist): ThreadStatusType {
+  static getStatus(thread: any, app: any, isExist: boolean): ThreadStatusType {
     let status = {
       dispType: '', // TIMELINE, MULTI, SINGLE, CHILD, LOGS
       isCreate: false,
@@ -296,11 +302,11 @@ export default class Thread extends Schema {
     return status;
   }
 
-  static getStatusCreate(isExist) {
+  static getStatusCreate(isExist: boolean) {
     return !isExist;
   }
 
-  static getStatusIsRequireUpsert(thread, isCreate = false) {
+  static getStatusIsRequireUpsert(thread: any, isCreate = false) {
     if (!isCreate) {
       return true;
     }
@@ -324,31 +330,35 @@ export default class Thread extends Schema {
     }
   }
 
-  static getStatusIsMultistream(app): boolean {
+  static getStatusIsMultistream(app: any): boolean {
     if (app === undefined || app.dispThreadType === undefined) return true;
     return app.dispThreadType === App.dispThreadTypeMulti && app.multistream;
   }
 
-  static getStatusIsMediaCh(ch) {
+  static getStatusIsMediaCh(ch: string) {
     return App.getIsMediaCh(ch);
   }
 
-  static getStatusIsToggleMultistream(app): boolean {
+  static getStatusIsToggleMultistream(app: any): boolean {
     // TODO: Judge fix actioned.
     if (app === undefined || app.actioned === undefined) return false;
     return app.isToggleMultistream;
   }
 
-  static getContentTypeFromFindType(contentType) {
+  static getContentTypeFromFindType(contentType: string): ThreadFindType {
     const findTypeHtml = Thread.findTypes[Thread.findTypeHtml];
     const findTypeMusic = Thread.findTypes[Thread.findTypeMusic];
     const findTypeVideo = Thread.findTypes[Thread.findTypeVideo];
 
-    let findType: typeof Thread.findTypeHtml | typeof Thread.findTypeMusic | typeof Thread.findTypeVideo | typeof Thread.findTypeOther;
+    let findType: ThreadFindType = Thread.findTypeOther;
     if (contentType && contentType !== '') {
       let splitedContentType = '';
       if (contentType.indexOf(';') > 0) {
-        splitedContentType = contentType.split(';')[0];
+        const _splitedContentType = contentType.split(';');
+
+        if (_splitedContentType[0]) {
+          splitedContentType = _splitedContentType[0];
+        }
       }
       if (findTypeHtml.includes(contentType) || findTypeHtml.includes(splitedContentType)) {
         findType = Thread.findTypeHtml;
@@ -363,7 +373,7 @@ export default class Thread extends Schema {
     return findType;
   }
 
-  static getFindTypeFromSrc(src) {
+  static getFindTypeFromSrc(src: string) {
     const str = App.getMediaTypeFromSrc(src);
     return str.charAt(0).toUpperCase() + str.slice(1);
   }

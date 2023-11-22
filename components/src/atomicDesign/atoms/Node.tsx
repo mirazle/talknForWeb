@@ -8,14 +8,14 @@ export type Props = {
   nodes?: string | Props[];
 };
 
-const isGangerousTag = (nodes) => {
+const isGangerousTag = (nodes: any) => {
   if (nodes.indexOf('&lt;') >= 0 && nodes.indexOf('&gt;') >= 0) return 1;
   if (nodes.indexOf('<') >= 0 && nodes.indexOf('</') >= 0) return 2;
   if (nodes.indexOf('<') >= 0 && nodes.indexOf('/>') >= 0) return 3;
   return 0;
 };
 
-const Component: React.FC<Props> = (params) => {
+const Component: React.FC<Props> = (params: any) => {
   const { type, nodes } = params;
   let { props } = params;
   if (typeof nodes === 'string' && isGangerousTag(nodes)) {
@@ -27,7 +27,13 @@ const Component: React.FC<Props> = (params) => {
     return React.createElement(
       type,
       props,
-      nodes.map((tag, index) => <Node key={`${tag.type}${index}`} type={tag.type} props={tag.props} nodes={tag.nodes} />)
+      nodes.map((tag: Props, index: number) =>
+        <Node
+          key={`${tag.type}${index}`}
+          type={tag.type}
+          props={tag.props}
+          nodes={tag.nodes}
+        />)
     );
   }
 

@@ -2,7 +2,7 @@ import Schema from 'common/Schema';
 
 import App from 'api/store/App';
 
-import conf from 'client/conf';
+// import conf from 'client/conf';
 
 export type ClickedType = 'Ch' | 'BackToRootCh' | 'ToMedia' | 'Links' | 'findMediaCh' | '';
 
@@ -44,10 +44,10 @@ export default class Ui extends Schema {
     return 'DETAIL';
   }
   static get screenSizeSmallWidthPx() {
-    return conf.screenSize.small;
+    return 0; // conf.screenSize.small;
   }
   static get screenSizeMiddleWidthPx() {
-    return conf.screenSize.middle;
+    return 0; //conf.screenSize.middle;
   }
   static get extensionModeModal() {
     return 'Modal';
@@ -83,7 +83,7 @@ export default class Ui extends Schema {
     return Ui.menuComponentRankLabel;
   }
 
-  static getWidth(params) {
+  static getWidth(params: any) {
     if (params && params.extensionWidth > 0) {
       return params.extensionWidth;
     }
@@ -142,7 +142,7 @@ export default class Ui extends Schema {
     return Ui.screenSizeLargeLabel;
   }
 
-  static getIsOpenMenu(ui) {
+  static getIsOpenMenu(ui: any) {
     switch (ui.screenSize) {
       case Ui.screenSizeSmallLabel:
         return false;
@@ -152,7 +152,7 @@ export default class Ui extends Schema {
     }
   }
 
-  static getIsOpenBoard(ui) {
+  static getIsOpenBoard(ui: any) {
     switch (ui.screenSize) {
       case Ui.screenSizeSmallLabel:
         return false;
@@ -193,7 +193,7 @@ export default class Ui extends Schema {
     }
   }
 
-  static getUiUpdatedOpenFlgs({ app, ui }, call = '') {
+  static getUiUpdatedOpenFlgs({ app, ui }: any, call = '') {
     switch (call) {
       case 'toggleMain':
       case 'headerDetailIcon':
@@ -249,7 +249,7 @@ export default class Ui extends Schema {
     return ui;
   }
 
-  static isActiveMultistream({ app, ui }, called = '') {
+  static isActiveMultistream({ app, ui }: any, called = '') {
     return ui.menuComponent === Ui.menuComponentRankLabel && app.dispThreadType === App.dispThreadTypeMulti;
   }
 

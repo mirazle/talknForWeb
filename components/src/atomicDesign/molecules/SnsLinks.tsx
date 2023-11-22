@@ -8,7 +8,7 @@ type Props = {
   serverMetas: any;
 };
 
-const getSnsIconSrc = ({ type, visible }) => {
+const getSnsIconSrc = ({ type, visible }: { type: string; visible: boolean }) => {
   switch (type) {
     case 'twitter':
       return visible ? `//${conf.assetsImgPath}twitter.svg` : `//${conf.assetsImgPath}twitter_gray.svg`;

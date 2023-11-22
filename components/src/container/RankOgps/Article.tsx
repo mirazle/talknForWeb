@@ -62,8 +62,8 @@ const Component: React.FC<Props> = ({ article, index, focusIndex, setFocusIndex 
   // did mount.
   useEffect(() => {
     if (headerRef.current) {
-      const headerElm = headerRef.current;
-      const titleElm = headerElm.children[0];
+      const headerElm = headerRef.current as HTMLElement;
+      const titleElm = headerElm.children[0] as HTMLElement;
       setMarqueeOn(titleElm.clientWidth < titleElm.scrollWidth);
     }
   }, []);

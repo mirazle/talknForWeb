@@ -50,7 +50,7 @@ export default (props: HookProps) => {
   const { screen, posts } = doms;
 
   if (!bools.inited && bools.finnishFetch && screen && posts) {
-    const timelineDoms = {};
+    const timelineDoms: { [key: string]: any } = {};
 
     Array.from(root.querySelectorAll('time.TimeMarker')).forEach((time) => {
       if (time.innerHTML !== '') {

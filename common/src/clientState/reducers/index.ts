@@ -1,16 +1,15 @@
-import { combineReducers } from 'common/node_modules/redux';
+import { combineReducers } from 'redux';
 
-import uiTimeMarker from 'common/clientState/reducers/uiTimeMarker';
+//import uiTimeMarker from 'common/clientState/reducers/uiTimeMarker';
 
 import { reducerFiles } from 'api/reducers';
 
 import clientLog from './clientLog';
 import componentDidMounts from './componentDidMounts';
 import setting from './setting';
-import style from './style';
 import ui from './ui';
 
-const apiReducers = {};
+const apiReducers: { [key: string]: any } = {};
 const someReudcer =
   (key: string) =>
   (state: any = {}, action: any) => {
@@ -31,8 +30,7 @@ Object.keys(reducerFiles).forEach((key) => {
 const reducers = combineReducers({
   ...apiReducers,
   ui,
-  uiTimeMarker,
-  style,
+  //  uiTimeMarker,
   componentDidMounts,
   clientLog,
   setting,

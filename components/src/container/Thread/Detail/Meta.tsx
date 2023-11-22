@@ -28,7 +28,7 @@ const calcRate = 1000000;
 const emotions = new Emotions();
 const russellSimple = new emotions.model.RussellSimple();
 
-const getGraphDatas = (threadDetail) => {
+const getGraphDatas = (threadDetail: any) => {
   const emotionModelKey = Emotions.defaultModelKey;
 
   const { emotions } = threadDetail;
@@ -40,9 +40,9 @@ const getGraphDatas = (threadDetail) => {
   let graphMaxNum = 0;
   let rateMax = 0;
   let rateOne = 0;
-  let rateMap = {};
-  let graphRateMap = [];
-  let data = [];
+  let rateMap: { [key: string]: any } = {};
+  let graphRateMap: number[] = [];
+  let data: number[] = [];
 
   // 合計数と各指標の数値を取得
   emotionKeys.forEach((emotionKey) => {
@@ -87,7 +87,7 @@ const getGraphDatas = (threadDetail) => {
       const { rate } = rateMap[emotionKey];
       let assignedFlg = false;
       for (let graphIndex = 0; graphIndex < graphMaxNum; graphIndex++) {
-        const graphRate = graphRateMap[graphIndex];
+        const graphRate = Number(graphRateMap[graphIndex]);
 
         if (rate < graphRate) {
           rateMap[emotionKey].graphNum = graphIndex;
@@ -267,7 +267,7 @@ const styles = {
     transition: height ${animations.transitionDuration}ms, min-height ${animations.transitionDuration}ms;
     transform: translate(0px, 0px);
   `,
-  contents: (image, isModal: boolean, detailTransformMode: DetailModeType) => css`
+  contents: (image: string, isModal: boolean, detailTransformMode: DetailModeType) => css`
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;

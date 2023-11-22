@@ -10,7 +10,7 @@ export default class Posts {
     return params;
   }
 
-  static getDispPosts(state) {
+  static getDispPosts(state: any) {
     const { app, postsTimeline, postsMulti, postsSingle, postsChild, postsLogs } = state;
     switch (app.dispThreadType) {
       case App.dispThreadTypeTimeline:
@@ -26,7 +26,7 @@ export default class Posts {
     }
   }
 
-  static getAnyActionPosts(action, state) {
+  static getAnyActionPosts(action: any, state: any) {
     const { app, posts } = action;
     const existPosts = posts && posts.length > 0;
     action.postsMulti = new PostMulti();
@@ -54,7 +54,7 @@ export default class Posts {
 
     return action;
   }
-  static getAnyActionPostsTimeline(action, posts, state, existPosts) {
+  static getAnyActionPostsTimeline(action: any, posts: any, state: any, existPosts: any) {
     if (action.type === 'SERVER_TO_API[BROADCAST]:post') {
       action.postsTimeline = new PostsTimeline();
       action.postsTimeline.push(action.posts[0]);

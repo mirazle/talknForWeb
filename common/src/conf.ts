@@ -1,11 +1,9 @@
-import os from 'os';
 import process from 'process';
-
 import define from './define';
 
 const { PRODUCTION, DEVELOPMENT, PRODUCTION_DOMAIN, DEVELOPMENT_DOMAIN, SUB_DOMAINS, PORTS } = define;
 const apiVer = 1;
-const hostName = os.hasOwnProperty('hostname') ? os.hostname() : DEVELOPMENT_DOMAIN;
+const hostName = getHostName();
 const env = getEnv(hostName);
 const files = {
   client: 'talkn.client.js',
@@ -121,8 +119,18 @@ const conf: any = {
 };
 export default { ...conf };
 
+function getHostName() {
+  let hostName = DEVELOPMENT_DOMAIN;
+  if (typeof window === 'undefined') {
+    // Node.js 環境
+    const os = require('os');
+    hostName = os.hostname();
+  }
+  return hostName;
+}
+
 // TODO: Move to server conf( not use from client ).
-function getEnv(hostName) {
+function getEnv(hostName: string) {
   // from client.
   if (process.title === 'browser') {
     if (location.href.indexOf(define.DEVELOPMENT_DOMAIN) >= 0) {

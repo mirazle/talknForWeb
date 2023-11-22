@@ -1,6 +1,6 @@
 import Thread from 'api/store/Thread';
 
-export default (state = new Thread({}, {}), action) => {
+export default (state = new Thread({}, {}), action: { type: string; thread: any }) => {
   switch (action.type) {
     case 'SETUPED_API_STORE':
     case 'SERVER_TO_API[EMIT]:tune':

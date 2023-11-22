@@ -1,7 +1,8 @@
 {
-    "recommendations": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
-        "gruntfuggly.todo-tree"
-    ]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "gruntfuggly.todo-tree",
+    "arcanis.vscode-zipfs"
+  ]
 }

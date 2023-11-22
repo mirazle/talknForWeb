@@ -7,7 +7,7 @@ import { basePadding, doublePadding, sexPadding } from 'components/styles/layout
 const marqueeClassName = 'marquee';
 const innerMarqueeClassName = 'innerMarquee';
 
-export const useMarqueeContainer = (containerRef, title, setDurationMs) => {
+export const useMarqueeContainer = (containerRef: any, title: string, setDurationMs: any) => {
   if (title && containerRef.current) {
     const containerElm = containerRef.current as HTMLElement;
     const hoverElm = containerElm.querySelector(`.${marqueeClassName}`) as HTMLElement;

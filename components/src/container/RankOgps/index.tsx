@@ -7,7 +7,7 @@ import mapToStateToProps from 'common/clientState/mapToStateToProps/';
 
 import AppStore from 'api/store/App';
 
-import handles from 'client/actions/handles';
+// import handles from 'client/actions/handles';
 
 import Title, { H3Height } from 'components/atomicDesign/atoms/Title';
 import FloatMenu from 'components/atomicDesign/molecules/FloatMenu';
@@ -42,7 +42,7 @@ const Component: React.FC<Props> = (props) => {
   const orderRef = useRef(null);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
-  const [focusIndex, setFocusIndex] = useState<undefined | number>(undefined);
+  const [focusIndex, setFocusIndex] = useState<number>();
   const [articleHeights, setArticleHeights] = useState<number[]>([0]);
 
   const handleOnClickNav = () => {
@@ -75,15 +75,17 @@ const Component: React.FC<Props> = (props) => {
   };
 
   const handleOnButtonClick = (direction: 'left' | 'right') => {
-    const orderElm = orderRef.current;
-    const listElm = orderElm.children[0];
-    const currentLeft = orderRef.current.scrollLeft;
-    const addScrollLeft = direction === 'left' ? -listElm.clientWidth : listElm.clientWidth;
+    if (orderRef.current) {
+      const orderElm = orderRef.current as HTMLElement;
+      const listElm = orderElm.children[0] as HTMLElement;
+      const currentLeft = orderElm.scrollLeft;
+      const addScrollLeft = direction === 'left' ? -listElm.clientWidth : listElm.clientWidth;
 
-    orderRef.current.scrollTo({
-      left: currentLeft + addScrollLeft,
-      behavior: 'smooth',
-    });
+      orderElm.scrollTo({
+        left: currentLeft + addScrollLeft,
+        behavior: 'smooth',
+      });
+    }
   };
 
   const activeOnEvents = { onMouseMove: handleOnMouseMove, onMouseOver: handleOnMouseOver, onTouchStart: handleOnMouseOver };
@@ -98,10 +100,12 @@ const Component: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (orderRef.current) {
+      const orderElm = orderRef.current as HTMLElement;
       let _articleHeights = [];
       for (let index = 0; index < articles.length; index++) {
-        const articleLi = orderRef.current.children[index];
-        _articleHeights.push(articleLi.querySelector('article').scrollHeight * layouts.articleOpenScale);
+        const _articleLi = orderElm.children[index] as HTMLLIElement;
+        const articleLi = _articleLi.querySelector('article') as HTMLElement;
+        _articleHeights.push(articleLi.scrollHeight * layouts.articleOpenScale);
       }
       setArticleHeights(_articleHeights);
     }
@@ -120,7 +124,7 @@ const Component: React.FC<Props> = (props) => {
   return (
     <Container
       ref={containerRef}
-      focusHeight={articleHeights[focusIndex]}
+      focusHeight={articleHeights[focusIndex ? focusIndex : 0]}
       onMouseOver={handleOnMouseOverContainer}
       onMouseLeave={handleOnMouseLeave}>
       <UpperFlex className="UpperFlex" alignItems="center" justifyContent={'flex-start'} openMenu={openMenu}>
@@ -148,11 +152,11 @@ const Component: React.FC<Props> = (props) => {
       />
       <ArticleOrder
         ref={orderRef}
-        focusHeight={articleHeights[focusIndex]}
+        focusHeight={focusIndex ? articleHeights[focusIndex] : 0}
         onScroll={handleOnScroll}
         onMouseLeave={handleOnMouseLeave}
         {...activeOnEvents}>
-        {articles.map((article, index) => (
+        {articles.map((article: ArticleType, index: number) => (
           <ArticleList key={`${article.ch}.${index}`}>
             <Article article={article} index={index} focusIndex={focusIndex} setFocusIndex={setFocusIndex} />
           </ArticleList>
@@ -169,7 +173,7 @@ const Component: React.FC<Props> = (props) => {
   );
 };
 
-export default connect(mapToStateToProps, { ...handles })(Component);
+export default connect(mapToStateToProps /*, { ...handles }*/)(Component);
 
 type ContainerPropeType = {
   focusHeight?: number;

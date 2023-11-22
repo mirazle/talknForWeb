@@ -1,8 +1,8 @@
 import { transitionDuration } from './animations';
-import colors, { getRgba } from './colors';
+import colors, { ColorType, getRgba } from './colors';
 
 export const alphaBgSet = `
-    background: ${getRgba(colors.whiteRgb)};
+    background: ${getRgba(colors.whiteRgb as ColorType)};
     backdrop-filter: blur(5px);
 `;
 
@@ -17,12 +17,12 @@ export const alphaMenuHoverBgSet = `
 `;
 
 export const alphaLightBgSet = `
-    background: ${getRgba(colors.whiteRgb)};
+    background: ${getRgba(colors.whiteRgb as ColorType)};
     backdrop-filter: blur(2.5px);
 `;
 
 export const alphaDarkBgSet = `
-    background: ${getRgba(colors.darkRgb)};
+    background: ${getRgba(colors.darkRgb as ColorType)};
     backdrop-filter: blur(2.5px);
 `;
 
@@ -34,7 +34,7 @@ export const beforeBlur = `
     bottom: 0;
     left: 0;
     content: ' ';
-    backdrop-filter: ${(props) => getBackdropFilter(props)};
+    backdrop-filter: ${(props: any) => getBackdropFilter(props)};
     transition: ${transitionDuration}ms;
 `;
 

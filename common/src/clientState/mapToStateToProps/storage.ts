@@ -7,11 +7,11 @@ import TalknSession from '../operations/TalknSession';
 export default {
   'API_TO_CLIENT[BROADCAST]:post': setStorageHtmlPosts,
   'API_TO_CLIENT[EMIT]:getMore': setStorageHtmlPosts,
-  'API_TO_CLIENT[EMIT]:fetchPosts': (clientState, apiState, props) => {
+  'API_TO_CLIENT[EMIT]:fetchPosts': (clientState: any, apiState: any, props: any) => {
     setStoragePosts(clientState, apiState, props);
     return { clientState, apiState, props };
   },
-  'API_TO_CLIENT[EMIT]:changeThread': (clientState, apiState, props) => {
+  'API_TO_CLIENT[EMIT]:changeThread': (clientState: any, apiState: any, props: any) => {
     const { app } = apiState;
     const { rootCh } = app;
     const { storageKey } = define;
@@ -19,12 +19,12 @@ export default {
     TalknSession.setStorage(rootCh, define.storageKey[postKey], []);
     return { clientState, apiState, props };
   },
-  'ON_CLICK_MENU': (clientState, apiState, props) => {
+  'ON_CLICK_MENU': (clientState: any, apiState: any, props: any) => {
     const { rootCh } = apiState.app;
     TalknSession.setStorage(rootCh, define.storageKey.app, clientState.app);
     return { clientState, apiState, props };
   },
-  'RESIZE_END_WINDOW': (clientState, apiState, props) => {
+  'RESIZE_END_WINDOW': (clientState: any, apiState: any, props: any) => {
     return { clientState, apiState, props };
   },
   setStoragePosts,
@@ -34,7 +34,7 @@ export default {
   getStoragePostsTimelineZero,
 };
 
-function setStoragePosts(clientState, apiState, props) {
+function setStoragePosts(clientState: any, apiState: any, props: any) {
   const { app } = apiState;
   if (app.isMediaCh) {
     apiState = setStoragePostsTimeline(apiState);
@@ -44,7 +44,7 @@ function setStoragePosts(clientState, apiState, props) {
   }
 }
 
-function setStorageHtmlPosts(clientState, apiState, props) {
+function setStorageHtmlPosts(clientState: any, apiState: any, props: any) {
   const { app } = apiState;
   const { storageKey } = define;
   if (app.isRootCh) {
@@ -56,7 +56,7 @@ function setStorageHtmlPosts(clientState, apiState, props) {
   return { clientState, apiState, props };
 }
 
-function setStoragePostsTimeline(apiState) {
+function setStoragePostsTimeline(apiState: any) {
   const { app, thread, postsTimeline: postsTimelineAll } = apiState;
   const { storageKey } = define;
   if (app.isMediaCh) {
@@ -106,13 +106,13 @@ function addStoragePostsTimeline(action) {
   }
 }
 */
-function getStoragePostsTimelineZero(rootCh) {
+function getStoragePostsTimelineZero(rootCh: string) {
   const { storageKey } = define;
   const response = TalknSession.getStorage(rootCh, storageKey.postsTimelineZero);
   return response.constructor.name === 'Array' ? response : [];
 }
 
-function getStoragePostsTimeline(rootCh) {
+function getStoragePostsTimeline(rootCh: string) {
   const { storageKey } = define;
   const response = TalknSession.getStorage(rootCh, storageKey.postsTimeline);
   return response.constructor.name === 'Array' ? response : [];

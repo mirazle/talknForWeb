@@ -10,7 +10,7 @@ export const generateUiTimeMarker = ({ doms, state, root, setAction, setUiTimeMa
     const timelineKeys = Object.keys(doms.timelines);
     const timelineElms = timelineKeys.map((key) => doms.timelines[key]);
     if (postsElm) {
-      const { scrollTop } = doms.posts;
+      const { scrollTop } = doms.posts as HTMLElement;
       const reduceTop = -layouts.appHeaderHeight;
       const updateUiTimeMarker = UiTimeMarker.generate(root, scrollTop - reduceTop, timelineElms);
       setUiTimeMarker(updateUiTimeMarker);

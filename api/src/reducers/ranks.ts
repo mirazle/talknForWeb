@@ -1,9 +1,9 @@
 import Posts from 'api/store/Posts';
 
-export default (state = [], action) => {
-  let posts = [];
+export default (state: any[] = [], action: { type: string; app: any; thread: any; rank: any; posts: any }) => {
+  let posts: any[] = [];
   let postLength = 0;
-  const sortWatchCnt = (a, b) => {
+  const sortWatchCnt = (a: any, b: any) => {
     if (a.ch === action.app.rootCh || b.ch === action.app.rootCh) {
       return 0;
     }
@@ -25,7 +25,7 @@ export default (state = [], action) => {
         return state;
       }
 
-      return state.map((rank) => {
+      return state.map((rank: any) => {
         if (action.thread.ch === rank.ch) {
           return {
             ...rank,
@@ -41,7 +41,7 @@ export default (state = [], action) => {
     case 'SERVER_TO_API[BROADCAST]:changeThread':
     case 'SERVER_TO_API[BROADCAST]:disconnect':
       return state
-        .map((rank) => {
+        .map((rank: any) => {
           if (action.thread.ch === rank.ch) {
             return { ...rank, liveCnt: action.thread.liveCnt };
           } else {
@@ -50,7 +50,7 @@ export default (state = [], action) => {
         })
         .sort(sortWatchCnt);
     case 'SERVER_TO_API[BROADCAST]:post':
-      return state.map((rank) => {
+      return state.map((rank: any) => {
         if (action.posts[0].ch === rank.ch) {
           return {
             ...rank,

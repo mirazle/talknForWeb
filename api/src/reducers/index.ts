@@ -42,4 +42,6 @@ export const reducerFiles = {
   apiLog,
 };
 
+export type ReducerFilesType = keyof typeof reducerFiles;
+
 export default combineReducers(reducerFiles);

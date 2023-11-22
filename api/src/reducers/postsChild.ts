@@ -1,7 +1,7 @@
 import Post from 'api/store/Post';
 import Posts from 'api/store/Posts';
 
-export default (state: Post[] = [], action) => {
+export default (state: Post[] = [], action: { type: string; postsChild: any; thread: any }) => {
   switch (action.type) {
     case 'API_TO_SERVER[REQUEST]:changeThread':
       return new Posts();

@@ -22,6 +22,7 @@ export type AltPropsType =
     };
 
 export type CorePropsType = {
+  key?: string;
   children?: React.ReactNode;
   ref?: any;
   id?: string;

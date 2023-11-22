@@ -19,8 +19,8 @@ export type AlphaType = typeof brightAlpha | typeof baseAlpha | typeof darkAlpha
 /*  function
 /*******************/
 
-export const getRgbColor = (color: ColorType) => `rgb(${color})`;
-export const getRgbaColor = (color: ColorType, alpha: AlphaType = baseAlpha) => `rgba(${color}, ${alpha})`;
+export const getRgbColor = (color: ColorType | string) => `rgb(${color})`;
+export const getRgbaColor = (color: ColorType | string, alpha: AlphaType = baseAlpha) => `rgba(${color}, ${alpha})`;
 
 /*******************/
 /*  base colors

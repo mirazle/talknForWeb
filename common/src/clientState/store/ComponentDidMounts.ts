@@ -1,5 +1,5 @@
 export default class ComponentDidMounts {
-  constructor(params?) {
+  constructor(params?: any) {
     return [];
   }
 }

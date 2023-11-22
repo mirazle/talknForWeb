@@ -75,13 +75,13 @@ export const coldRgb = `0, 150, 255`;
 // linear-gradient(55deg, rgba(55, 200, 255, 0.9), rgba(55, 255, 200,0.9))
 //'linear-gradient(55deg, rgba(35, 180, 235, 0.9), rgba(35, 235, 180,0.9))';
 export const themeColor = getRgba(themeRgb);
-export const themeDarkColor = getRgba(themeDarkRgb);
+export const themeDarkColor = getRgba(themeDarkRgb as ColorType);
 export const hotColor = getRgba(hotRgb);
 export const flatColor = getRgba(flatRgb);
 export const coldColor = getRgba(coldRgb);
 export const whiteColor = getRgba(whiteRgb);
-export const brightestColor = getRgba(brightestRgb);
-export const brightMoreColor = getRgba(brightMoreRgb);
+export const brightestColor = getRgba(brightestRgb as ColorType);
+export const brightMoreColor = getRgba(brightMoreRgb as ColorType);
 export const brighterColor = getRgba(brighterRgb);
 export const brightColor = getRgba(brightRgb);
 export const hoverInputColor = getRgba(hoverInputRgb);
@@ -116,10 +116,10 @@ export const saveCheckColor = getRgba(themeRgb);
 export const fullBackgroundColor = getRgba(blackRgb, deepDarkAlpha);
 export const notifTipColor = getRgba(blackRgb, deepDarkAlpha);
 
-export const rank1Color = getRgba(rank1Rgb);
-export const rank2Color = getRgba(rank2Rgb);
-export const rank3Color = getRgba(rank3Rgb);
-export const otherRankColor = getRgba(otherRankRgb);
+export const rank1Color = getRgba(rank1Rgb as ColorType);
+export const rank2Color = getRgba(rank2Rgb as ColorType);
+export const rank3Color = getRgba(rank3Rgb as ColorType);
+export const otherRankColor = getRgba(otherRankRgb as ColorType);
 
 export const baseShadowColor = '#aaa';
 

@@ -7,7 +7,7 @@ type Props = {
   value: string;
 };
 
-const getConvertValue = (value): string => {
+const getConvertValue = (value: string): string => {
   return value;
 };
 
@@ -20,7 +20,15 @@ const Component: React.FC<Props> = ({ value: _value }) => {
     }, 1000);
   }, [value]);
 
-  return <TimeAgo date={value} formatter={(value, unit, suffix) => util.timeAgoFormatter(value, unit, suffix)} />;
+  return (
+    <TimeAgo
+      date={value}
+      formatter={(value, unit, suffix) => {
+        const valueStr = String(value);
+        return util.timeAgoFormatter(valueStr, unit, suffix);
+      }}
+    />
+  );
 };
 
 export default Component;

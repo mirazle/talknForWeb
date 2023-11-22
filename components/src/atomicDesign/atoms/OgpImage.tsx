@@ -16,7 +16,7 @@ type Props = {
 const Component: React.FC<Props> = ({ src, ch, findType = Thread.findTypeHtml }) => {
   const [isPlay, setIsPlay] = useState(false);
 
-  const handleOnClickPlay = (e) => {
+  const handleOnClickPlay = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
     setIsPlay(!isPlay);
   };

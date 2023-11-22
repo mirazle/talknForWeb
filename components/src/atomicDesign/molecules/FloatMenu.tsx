@@ -52,34 +52,34 @@ export default Component;
 
 type BackgroundTypeProps = {
   show: boolean;
-  showBackground: boolean;
+  showBackground?: boolean;
 };
 
 const Background = styled.div<BackgroundTypeProps>`
   position: fixed;
   top: 0;
   left: 0;
-  display: ${(props) => (props.show ? 'flex' : 'flex')};
+  display: ${(props: BackgroundTypeProps) => (props.show ? 'flex' : 'flex')};
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: ${(props) => (props.showBackground ? colors.fullBackgroundColor : 'none')};
-  z-index: ${(props) => (props.show ? 1000 : -1)};
-  opacity: ${(props) => (props.show ? 1 : 0)};
+  background: ${(props: BackgroundTypeProps) => (props.showBackground ? colors.fullBackgroundColor : 'none')};
+  z-index: ${(props: BackgroundTypeProps) => (props.show ? 1000 : -1)};
+  opacity: ${(props: BackgroundTypeProps) => (props.show ? 1 : 0)};
   transition: opacity ${animations.transitionDuration}ms;
 `;
 
 type MenuOlProps = {
   show: boolean;
   didMount: boolean;
-  fitRight: boolean;
+  fitRight?: boolean;
 };
 
 const MenuOl = styled.ol<MenuOlProps>`
   position: absolute;
   bottom: ${layouts.blockHeight}px;
-  ${(props) => (props.show && props.fitRight ? 'left: 0' : 'left: 0')};
+  ${(props: MenuOlProps) => (props.show && props.fitRight ? 'left: 0' : 'left: 0')};
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
@@ -93,8 +93,8 @@ const MenuOl = styled.ol<MenuOlProps>`
   border: 1px solid ${colors.borderColor};
   border-radius: ${blocks.borderRadius}px;
   box-shadow: ${shadow.shadowHorizonBase};
-  z-index: ${(props) => (props.show ? 1001 : -1)};
-  opacity: ${(props) => (props.show ? 1 : 0)};
+  z-index: ${(props: MenuOlProps) => (props.show ? 1001 : -1)};
+  opacity: ${(props: MenuOlProps) => (props.show ? 1 : 0)};
   transition: transform ${animations.transitionDuration}ms;
-  transform: translateY(${(props) => (props.show && !props.didMount ? 0 : `-${layouts.baseSize * 2}px`)});
+  transform: translateY(${(props: MenuOlProps) => (props.show && !props.didMount ? 0 : `-${layouts.baseSize * 2}px`)});
 `;

@@ -126,19 +126,21 @@ const Component: React.FC<Props> = ({ state, api, ch, root, menuMode, postTextar
   };
 
   const handleOnSubmit = () => {
-    const elm = inputRef.current as HTMLInputElement;
-    const ch = BootOption.getCh(elm.value);
+    if (inputRef.current) {
+      const elm = inputRef.current as HTMLInputElement;
+      const ch = BootOption.getCh(elm.value);
 
-    if (bootOption.isFullscreen) {
-      window.location.href = `https://${conf.domain}${ch}`;
-    } else {
-      const className = root.className;
-      const inputElm = doms.tuneInput as HTMLInputElement;
-      inputElm.value = ch;
-      root.dataset.ch = ch;
-      setIsTune(false);
-      setAction(actions.apiRequestChangeTuning, { className, ch, findType: inputFindType });
-      setBootOption({ ...bootOption, ch });
+      if (bootOption.isFullscreen) {
+        window.location.href = `https://${conf.domain}${ch}`;
+      } else {
+        const className = root.className;
+        const inputElm = doms.tuneInput as HTMLInputElement;
+        inputElm.value = ch;
+        root.dataset.ch = ch;
+        setIsTune(false);
+        setAction(actions.apiRequestChangeTuning, { className, ch, findType: inputFindType });
+        setBootOption({ ...bootOption, ch });
+      }
     }
   };
 
@@ -154,7 +156,7 @@ const Component: React.FC<Props> = ({ state, api, ch, root, menuMode, postTextar
   }, [bools.openTuneModal]);
 
   useEffect(() => {
-    const index = ranks.findIndex((rank) => rank.ch === thread.ch, []);
+    const index = ranks.findIndex((rank: { ch: string }) => rank.ch === thread.ch, []);
     setTuneLabel(index !== -1 ? index + 1 : 'TUNE');
   }, [thread.ch, ranks]);
 

@@ -32,14 +32,14 @@ type Props = {
   setDetailMenuIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
-let scrollTimeout = null;
+let scrollTimeout: number | null = null;
 
 const Component: React.FC<Props> = ({ isModal, footerRef, detailMenuIndex, setDetailMenuIndex }) => {
   const { detailTransformMode: _detailTransformMode, detailMenu, bools, setDetailMenu } = useGlobalContext();
   const [detailTransformMode, setDetailTransformMode] = useState(_detailTransformMode);
 
   // alt
-  const getAlt = (label) => {
+  const getAlt = (label: string) => {
     return detailTransformMode === detailModeExpand ? { ...{ alt: { label, type: 'upper' } } } : {};
   };
 
@@ -65,10 +65,10 @@ const Component: React.FC<Props> = ({ isModal, footerRef, detailMenuIndex, setDe
       clearTimeout(scrollTimeout);
     }
 
-    scrollTimeout = setTimeout(() => onScrollEnd(index), 200);
+    scrollTimeout = window.setTimeout(() => onScrollEnd(index), 200);
   };
 
-  const handleOnClickFooterMenu = (_detailMenu) => {
+  const handleOnClickFooterMenu = (_detailMenu: any) => {
     const _detailMenuIndex = detailMenuIndexList.findIndex((detailMenu) => detailMenu === _detailMenu);
 
     setDetailMenuIndex(_detailMenuIndex);
@@ -116,7 +116,7 @@ export default Component;
 const tipSize = 16;
 
 const styles = {
-  footer: (isModal: boolean, detailTransformMode: DetailModeType, detailMenu: string) => css`
+  footer: (isModal: boolean, detailTransformMode: DetailModeType, detailMenu: DetailMenuType) => css`
     position: fixed;
     bottom: 0px;
     display: flex;
@@ -137,7 +137,7 @@ const styles = {
   `,
 };
 
-const getFooterMenu = (menuType, isModal, detailTransformMode, detailMenu) => {
+const getFooterMenu = (menuType: string, isModal: boolean, detailTransformMode: DetailModeType, detailMenu: DetailMenuType) => {
   const widths = isModal
     ? ''
     : `

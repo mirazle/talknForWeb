@@ -5,7 +5,7 @@ export type Type = {
   footer: React.MutableRefObject<any>;
   posts: React.MutableRefObject<any>;
   postTextarea: React.MutableRefObject<any>;
-  tuneInput: React.MutableRefObject<HTMLInputElement>;
+  tuneInput: React.MutableRefObject<any>;
   timelines: React.MutableRefObject<any>;
   menu: React.MutableRefObject<any>;
   detail: React.MutableRefObject<any>;

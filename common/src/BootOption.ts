@@ -59,8 +59,9 @@ export default class BootOption {
     this.isFullscreen = params && params.isFullscreen ? params.isFullscreen : false;
     this.host = params && params.host ? params.host : location.host;
     this.extensionMode = params && params.mode ? params.mode : BootOption.extensionModeNone;
-    this.isRankDetailMode =
-      params && params.isRankDetailMode !== undefined ? params.isRankDetailMode : this.defaultProps.params.isRankDetailMode;
+
+    const _isRankDetailMode = this.defaultProps.params && this.defaultProps.params.isRankDetailMode;
+    this.isRankDetailMode = Boolean(params && params.isRankDetailMode !== undefined ? params.isRankDetailMode : _isRankDetailMode);
   }
   static get extensionModeModal() {
     return 'Modal';
@@ -115,7 +116,7 @@ export default class BootOption {
     return initialRootCh;
   }
 
-  static getType(extScript, clientScript): BootType {
+  static getType(extScript: boolean, clientScript: boolean): BootType {
     let type = define.APP_TYPES.API;
     if (extScript) return define.APP_TYPES.EXTENSION;
     if (clientScript) return define.APP_TYPES.CLIENT;
@@ -129,15 +130,15 @@ export default class BootOption {
     return Sequence.TALKN_PROTOCOL;
   }
 
-  static getFirstHasSlach(ch): boolean {
+  static getFirstHasSlach(ch: string): boolean {
     return ch.startsWith('/');
   }
 
-  static getLastHasSlach(ch): boolean {
+  static getLastHasSlach(ch: string): boolean {
     return ch.endsWith('/');
   }
 
-  static getActiveCh(initialRootCh, firstHasSlash, lastHasSlash): string {
+  static getActiveCh(initialRootCh: string, firstHasSlash: boolean, lastHasSlash: boolean): string {
     let ch = initialRootCh;
     ch = firstHasSlash ? ch : `/${ch}`;
     ch = lastHasSlash ? ch : `${ch}/`;

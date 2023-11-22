@@ -6,9 +6,6 @@ import BootOption from 'common/BootOption';
 import mapToStateToProps from 'common/clientState/mapToStateToProps/';
 
 import AppStore from 'api/store/App';
-
-import handles from 'client/actions/handles';
-
 import Thread from 'components/container/Thread';
 import { GlobalContext, useGlobalProviderValue } from 'components/container/Thread/GlobalContext';
 
@@ -43,4 +40,4 @@ const App: React.FC<Props> = ({ bootOption, api, state, root }) => {
   );
 };
 
-export default connect(mapToStateToProps, { ...handles })(App);
+export default connect(mapToStateToProps /*{ ...handles }*/)(App);

@@ -10,6 +10,7 @@ import { colors, emotions, getRgba, layouts } from 'components/styles';
 import animations from 'components/styles/animations';
 
 import Favicon from '../Favicon';
+import { ColorType } from 'components/styles/colors';
 
 const emotionCoverTypes = new Emotions();
 
@@ -60,7 +61,13 @@ const Component: React.FC<PostProps> = ({ state, post }) => {
       return <time>{dispCurrentTime} sec.</time>;
     } else {
       return (
-        <TimeAgo date={post.updateTime} formatter={(value, unit, suffix) => util.timeAgoFormatter(value, unit, suffix, ui.extensionMode)} />
+        <TimeAgo
+          date={post.updateTime}
+          formatter={(value, unit, suffix) => {
+            const valueStr = String(value);
+            return util.timeAgoFormatter(valueStr, unit, suffix, ui.extensionMode);
+          }}
+        />
       );
     }
   };
@@ -181,7 +188,7 @@ const styles = {
         padding: 4px 24px;
         margin: 0 24px;
         border-radius: 8px 8px 0 0;
-        background: ${getRgba('0,0,0', '0.3')};
+        background: ${getRgba('0,0,0' as ColorType, '0.3')};
         color: ${colors.whiteColor};
         font-size: 75%;
         user-select: none;

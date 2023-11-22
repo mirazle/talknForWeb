@@ -21,7 +21,7 @@ type Props = {
 
 const getMyUserFromSession = () => {
   const item = localStorage.getItem(myUserKey);
-  return new User(JSON.parse(item));
+  return new User(JSON.parse(item || ''));
 };
 
 const Component: React.FC<Props> = ({ myUser, setShowUserMenu, setMyUser, setIsMyPage }: Props) => {
@@ -38,7 +38,7 @@ const Component: React.FC<Props> = ({ myUser, setShowUserMenu, setMyUser, setIsM
     }
   };
 
-  const handleGoolgeCredentialResponse = async (goolgeCredentialResponse) => {
+  const handleGoolgeCredentialResponse = async (goolgeCredentialResponse: any) => {
     const googleResponse = commonUtil.parseJwt(goolgeCredentialResponse.credential);
     const snsIcon = googleResponse.picture;
     const request = commonUtil.deepCopy(googleResponse);
@@ -76,7 +76,7 @@ const Component: React.FC<Props> = ({ myUser, setShowUserMenu, setMyUser, setIsM
         callback: handleGoolgeCredentialResponse,
       });
       if (myUserSession === null) {
-        window.google.accounts.id.prompt((notification) => {
+        window.google.accounts.id.prompt((notification: any) => {
           if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
             // continue with another identity provider.
           }
@@ -100,7 +100,7 @@ const Component: React.FC<Props> = ({ myUser, setShowUserMenu, setMyUser, setIsM
 
 export default Component;
 
-const deleteRequest = (request) => {
+const deleteRequest = (request: any) => {
   delete request.iss;
   delete request.nbf;
   delete request.aud;

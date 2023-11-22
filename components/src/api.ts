@@ -8,7 +8,7 @@ type ResponseResultType = {
   error: string;
 };
 
-export const json = async (action, _body = {}) => {
+export const json = async (action: string, _body = {}) => {
   const body = JSON.stringify(_body);
   if (JSON.parse(body)) {
     const response = await fetch(`https://${conf.coverURL}/api/${action}`, {
@@ -30,7 +30,7 @@ export const json = async (action, _body = {}) => {
   }
 };
 
-export const formData = async (action, email, body) => {
+export const formData = async (action: string, email: string, body: any) => {
   const response = await fetch(`https://${conf.coverURL}/api/${action}`, {
     method,
     mode,
